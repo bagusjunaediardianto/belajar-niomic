@@ -1,0 +1,21 @@
+p {
+    width: 400px;
+    background-color: aqua;
+    border: 1px solid black;
+}
+
+.satu {
+    padding: 20px;
+}
+
+.dua {
+    padding: 5px 20px;
+}
+
+.tiga {
+    padding: 5px 30px 10px;
+}
+
+.empat {
+    padding: 5px 12px 25px 35px;
+}

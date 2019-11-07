@@ -1,0 +1,15 @@
+/* prioritas dari cascade style / yang mana dahulu css yang di prioritaskan
+1. User Style
+2. Inline Style
+3. Embedded Style dan External Style
+4. Web Browser style 
+
+dan juga aturan yang kedua adalah, apabila sama - sama menggunakan style pada element/class yang sama, maka 
+yang akan di eksekusi adalah selector / style yang paling akhir, contoh lihat pada file html (p -> red, green, blue)
+maka yang akan tereksekusi adalah yang blue*/
+
+p {
+    color: silver;
+    font-size: 25px;
+}
+

@@ -1,0 +1,49 @@
+@font-face {
+    font-family: 'Font Digital';
+    src: url('/font/digital-7/digital-7.ttf');
+}
+
+div {
+    font-family: 'Font Digital';
+}
+.container {
+    width: 1320px;
+    height: 700px;
+    background-color: grey;
+    margin: 0 auto;
+    position: relative;
+}
+
+.satu,
+.dua,
+.tiga {
+    width : 150px;
+    height: 150px;
+    line-height: 150px;
+    font-size: 30px;
+    text-align: center;
+}
+
+.satu {
+    background-color: red;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    z-index: 3;
+}
+
+.dua {
+    background-color: green;
+    position: absolute;
+    left: 50px;
+    top: 50px;
+    z-index: 1;
+}
+
+.tiga {
+    background-color: blue;
+    position: absolute;
+    left: 100px;
+    top: 100px;
+    z-index: 2;
+}

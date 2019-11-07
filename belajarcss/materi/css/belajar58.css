@@ -1,0 +1,30 @@
+.container {
+    width: 800px;
+    margin: 0 auto;
+}
+
+.box {
+    float: left;
+    margin-left: 50px;
+    border: solid;
+    width: 200px;
+    height: 200px;
+    border-image-width: 30%;
+    border-image-slice: 33%;
+}
+.satu {
+    background-color: green;
+    border-image-source: url("/gambar/border1.png");
+    border-image-repeat: stretch;
+    border-image-outset: 30px;
+}
+
+.dua {
+    background-color: green;
+    border-image-source: url("/gambar/border1.png");
+}
+
+.tiga {
+    background-color: black;
+    border-image-source: url("/gambar/border1.png");
+}

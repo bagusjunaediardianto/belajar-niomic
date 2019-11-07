@@ -1,0 +1,17 @@
+.container {
+    width: 800px;
+    margin: 0 auto;
+}
+
+.satu {
+    border: solid;
+    background-color: green;
+    width: 200px;
+    height: 200px;
+    margin-top: 50px;
+    border-image-source: repeating-linear-gradient(to bottom right, red, blue, green 10px);
+    border-image-repeat: round;
+    border-image-width: 20px;
+    border-image-slice: 10%;
+
+}

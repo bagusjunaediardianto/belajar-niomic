@@ -1,0 +1,18 @@
+div {
+    width: 960px;
+    height: 500px;
+    border: 2px solid black;
+    margin: 0 auto;
+    background: url('/gambar/prambanan.jpg') bottom right
+                / 700px 400px no-repeat scroll padding-box content-box red;
+
+                /* 
+                - background-image
+                - background-position
+                - background-size
+                - background-repeat
+                - background-attachment
+                - background-origin
+                - background-clip
+                - background-color */
+}

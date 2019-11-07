@@ -1,0 +1,62 @@
+.col-md-12 {
+    border: 1px solid white;
+    background-color: blue;
+    height: 110px;
+    text-align: center;
+    position: relative;
+    top: 110px;
+}
+
+.col-md-9 {
+    border: 1px solid white;
+     background-color: green;
+    height: 90px;
+    text-align: center;
+    position: relative;
+    top: 10px;
+    left: 10px;
+}
+
+.col-md-6 {
+    border: 1px solid red;
+    background-color: blue;
+   height: 70px;
+   text-align: center;
+   position: relative;
+   top: -70px;
+   left: 20px;
+}
+
+.col-md-3 {
+    border: 1px solid white;
+    background-color: red;
+   height: 50px;
+   text-align: center;
+   position: relative;
+   top: -130px;
+   left: 30px;
+}
+
+.col-md-1 {
+    border: 1px solid white;
+    background-color: yellow;
+   height: 30px;
+   text-align: center;
+   position: relative;
+   top: -170px;
+   left: 40px;
+}
+
+.col-xs-2 {
+    border: 1px solid white;
+    background-color: navy;
+   height: 15px;
+   text-align: center;
+   position: relative;
+   top: -192.5px;
+   left: 50px;
+}
+
+.col-xs-2-width {
+    width: 15px;
+}

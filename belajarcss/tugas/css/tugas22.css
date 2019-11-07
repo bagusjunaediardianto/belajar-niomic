@@ -1,0 +1,7 @@
+table,thead,tbody,tr {
+    border-top: 30px;
+    border-bottom: 30px;
+    border-style: solid;
+    border-color: black;
+    color: black;
+}

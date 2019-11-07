@@ -1,0 +1,27 @@
+/* Semakin tinggi selector, semakin tinggi nilainya = Specificity Selector 
+
+Selector                        Contoh                          Nilai Specificity
+Inline Style                    style = "color:blue"            1000
+ID Selector                     #paragraf_pertama               100
+Class Selector                  .paragraf                       10
+Attribute Selector              [href]                          10
+Pseudo-Class Selector           :link                           10
+Element Selector                p                               1
+Pseudo-Element Selector         ::first-line                    1
+Universal Selector              *                               0
+
+*/
+
+#paragraf_pertama {
+    color: red;
+}
+
+.paragraf {
+    color : blue;
+}
+
+p {
+    color: green;
+}
+
+

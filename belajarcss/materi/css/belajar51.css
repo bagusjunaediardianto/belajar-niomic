@@ -1,0 +1,66 @@
+@font-face {
+    font-family: "Font Digital";
+    src: url('/font/digital-7/digital-7.ttf');
+}
+
+div {
+    width: 500px;
+    height: 250px;
+    margin: 0 auto;
+    border: 2px solid black;
+    float: left;
+    margin: 20px;
+    line-height: 200px;
+    font-size: 30px;
+    font-family: "Font Digital";
+    text-align: center;
+}
+
+/* .satu {
+    background-image: radial-gradient(circle at 100% 50%, green, yellow);
+}
+
+.dua {
+    background-image: radial-gradient(ellipse at 100% 50%, green, yellow);
+}
+
+.tiga {
+    background-image: radial-gradient(circle at 100% 100%, green, yellow);
+}
+
+.empat {
+    background-image: radial-gradient(circle at top right, green, yellow);
+} */
+
+/* .satu {
+    background-image: radial-gradient(circle 50px, black, yellow);
+}
+
+.dua {
+    background-image: radial-gradient(circle 100px, black, yellow);
+}
+
+.tiga {
+    background-image: radial-gradient(circle 1em, black, yellow);
+}
+
+.empat {
+    background-image: radial-gradient(circle 6em, black, yellow);
+} */
+
+.satu {
+    background-image: radial-gradient(farthest-side circle, black, yellow, black);
+}
+
+.dua {
+    background-image: radial-gradient(closest-side circle at 10% 10%, black, yellow, black);
+}
+
+.tiga {
+    background-image: radial-gradient(farthest-corner circle at 10% 60%, black, yellow, black);
+}
+
+.empat {
+    background-image: radial-gradient(farthest-side circle at 10% 60%, black, yellow, black);
+}
+

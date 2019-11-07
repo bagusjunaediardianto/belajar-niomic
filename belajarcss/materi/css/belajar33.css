@@ -1,0 +1,62 @@
+div {
+    width: 200px;
+    height: 200px;
+
+    border-top-width: 5px;
+    border-top-style: solid;
+    border-top-color: blue;
+
+    border-right-width: 5px;
+    border-right-style: dashed;
+    border-right-color: brown;
+
+    border-bottom-width: 10px;
+    border-bottom-style: dotted;
+    border-bottom-color: chocolate;
+
+    border-left-width: 1em;
+    border-left-style: solid;
+    border-left-color:rgb(50,200,100);
+}
+
+.satu {
+    border: 10px none green;
+}
+
+.dua {
+    border: 10px hidden green;
+}
+
+.tiga {
+    border: 10px solid green;
+}
+
+.empat {
+    border: 10px dotted green;
+}
+
+.lima {
+    border: 10px dashed green;
+}
+
+.enam {
+    border: 10px double green;
+}
+
+.tujuh {
+    border: 10px groove green;
+}
+
+.delapan {
+    border: 10px ridge green;
+}
+
+.sembilan {
+    border: 10px inset green;
+}
+
+.sepuluh {
+    border: 10px outset green;
+}
+
+

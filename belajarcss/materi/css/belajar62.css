@@ -1,0 +1,31 @@
+.container {
+    width: 1000px;
+    margin: 50px auto;
+}
+
+.satu,
+.dua,
+.tiga,
+.empat {
+    width: 200px;
+    height: 200px;
+    background-color: #39b54a;
+    float: left;
+    margin-left: 50px;
+}
+
+.satu {
+    box-shadow: 5px 5px, -5px -5px;
+}
+
+.dua {
+    box-shadow: 10px 10px blue, 20px 20px red ;
+}
+
+.tiga {
+    box-shadow: inset 10px 10px 10px, inset -10px -10px 10px;
+}
+
+.empat {
+    box-shadow: inset 7px 7px 3px hsl(100, 100%, 50%), inset -7px -7px 3px hsl(150, 100%, 50%);
+}

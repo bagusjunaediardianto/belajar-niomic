@@ -1,0 +1,5 @@
+.content {
+    height: 400px;
+    column-width: 300px;
+    column-fill: balance;
+}

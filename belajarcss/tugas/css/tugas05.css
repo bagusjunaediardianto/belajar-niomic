@@ -1,0 +1,42 @@
+div {
+    width: 100%;
+}
+
+.div-menu {
+    background-color: black;
+    margin-bottom: 10px;
+}
+
+.menu {
+    color: white;
+}
+
+.slider-div {
+    height:400px;
+    align-content: center;
+    margin-left: 5%;  
+}
+
+.slider {
+    height:100%;
+    width: 45%;
+}
+
+p {
+    text-align: justify;
+}
+
+footer {
+    width: 100%;
+    background-color: black;
+    color: white;
+}
+
+.footer {
+    font-size: 20px;
+    text-align: center;
+}
+
+.footer-alamat {
+    text-align: center;
+}

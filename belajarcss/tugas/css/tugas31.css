@@ -1,0 +1,70 @@
+body {
+    background-color: #f8f9fa;
+}
+.set-container {
+    margin: 0 auto;
+    margin-top: 50px;
+    padding-top: 50px;
+    width: 800px;
+    height: 600px;
+}
+
+.set-img {
+    height: 500px;
+    width: 500px;
+}
+
+.navbar-brand {
+    font-size: 30px;
+    font-family: 'Courier New', Courier, monospace;
+    font-style: normal;
+    font-weight: bolder;
+}
+
+.nav-trans {
+    opacity: 0.9;
+}
+
+.set-jumbotron {
+    margin: 0 auto;
+    margin-top: 50px;
+    height: 750px;
+    background-color: aqua !important;
+}
+
+.set-row-content {
+    padding-top: 25x;
+}
+
+.set-font-content {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 20px;   
+}
+
+.set-course {
+    background-color:grey !important;
+    margin: 0 auto;
+    margin-top: -32px;
+    width: 100%;
+    height: 600px;
+    position: relative;
+    top: 0;
+}
+
+.set-content-course {
+    background-color:grey !important;
+}
+
+.card {
+    margin: 0 auto;
+    padding: 0px 5px;
+    margin-left: 5%;
+}
+
+.card-img-top {
+    height: 150px;
+}
+
+.set-row {
+    margin-top: 50px;
+}

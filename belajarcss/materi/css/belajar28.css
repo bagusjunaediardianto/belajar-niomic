@@ -1,0 +1,14 @@
+p {
+    /* font: 2em "Open Sans","sans-serif"; */
+    font: italic small-caps bolder 16px/2 cursive;
+    /* 
+    font shorthand notation bisa digunakan untuk 6 jenis font sekaligus
+    antara lain :
+    - font-style,
+    - font-variant,
+    - font-weight,
+    - font-size,
+    - Line-height,
+    - font-family    
+    secara berurutan*/
+}   

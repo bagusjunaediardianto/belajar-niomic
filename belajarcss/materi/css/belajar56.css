@@ -1,0 +1,8 @@
+.content {
+    height: 400px;
+    column-width: 300px;
+    column-fill: auto;
+    column-gap: 50px;
+    column-rule: 5px solid black;
+    text-align: justify;
+}
