@@ -1,0 +1,11 @@
+.content {
+    height: 400px;
+    column-width: 300px;
+    column-gap: 50px;
+    column-fill: balance;
+    column-rule: 5px double black;
+}
+
+.span {
+    column-span: all;
+}

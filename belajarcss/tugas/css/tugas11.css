@@ -1,0 +1,40 @@
+header {
+    background-color: black;
+    height: 40px;
+    width: 100%;
+    position: relative;
+}
+
+ul {
+    color: white;
+}
+
+li{
+    display: inline-flex;
+    padding: 15px;   
+}
+
+.container {
+    background-color: lightgray;
+    column-width: 300px;
+    column-gap: 30px;
+    column-fill: balance;
+    column-rule: 5px solid black;
+
+}
+
+.judul {
+    height: 50px;
+    font-size: 40px;
+    column-span: all;
+    margin-top: 50px;
+}
+
+p {
+    text-align: justify;
+}
+
+.empty {
+    height: 30px;
+    column-span: all;
+}

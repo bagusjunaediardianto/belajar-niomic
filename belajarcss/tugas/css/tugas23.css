@@ -1,0 +1,9 @@
+.bold-label {
+    font-style: normal;
+    font-weight: bold;
+}
+
+.light-label {
+    font-style: normal;
+    font-weight: lighter;
+}

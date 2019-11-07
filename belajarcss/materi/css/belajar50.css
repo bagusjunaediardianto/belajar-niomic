@@ -1,0 +1,79 @@
+div {
+    width: 500px;
+    height: 200px;
+    margin: 0 auto;
+    border: 2px solid black;
+    /* background-image: linear-gradient(red 75%, white); */
+    float: left;
+    margin: 20px;
+    font-size: 30px;
+    text-align: center;
+}
+
+.satu {
+    background-image: repeating-linear-gradient(0deg, blue,white 10%);  
+}
+
+.dua {
+        background-image: repeating-linear-gradient(135deg, blue,white 10px);  
+    }
+
+.tiga {
+        background-image: repeating-linear-gradient(-45deg, blue,white, yellow 1%);  
+    }
+
+.empat {
+        background-image: repeating-linear-gradient(90deg,red, orange, yellow, green, blue, indigo, violet 10%);  
+    }
+/* -------------------------------------------------------------------- */
+/* .satu {
+    background-image: linear-gradient(0deg, blue,white);  
+}
+
+.dua {
+        background-image: linear-gradient(135deg, blue,white);  
+    }
+
+.tiga {
+        background-image: linear-gradient(-45deg, blue,white, yellow);  
+    }
+
+.empat {
+        background-image: linear-gradient(90deg,red, orange, yellow, green, blue, indigo, violet);  
+    } */
+
+
+/* ------------------------------------------------------- */
+/* .satu {
+    background-image: linear-gradient(to top, blue,white);  
+}
+
+.dua {
+        background-image: linear-gradient(to bottom right, blue,white);  
+    }
+
+.tiga {
+        background-image: linear-gradient(to top right, blue,white, yellow);  
+    }
+
+.empat {
+        background-image: linear-gradient(to right,red, orange, yellow, green, blue, indigo, violet);  
+    } */
+
+
+/* --------------------------------------------------------------------- */
+/* .satu {
+    background-image: linear-gradient(red, white,red);
+}
+
+.dua {
+    background-image: linear-gradient(green, blue, white);
+}
+
+.tiga {
+    background-image: linear-gradient(red, white,red,white,red);
+}
+
+.empat {
+    background-image: linear-gradient(red,orange, yellow, green, blue, indigo, violet);
+} */

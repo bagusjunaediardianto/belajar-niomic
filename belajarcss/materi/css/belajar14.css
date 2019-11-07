@@ -1,0 +1,7 @@
+/* merencanakan code CSS 
+
+    - Hindari penggunaan inline Style sama sekali
+    - Jika memungkinkan, hindari penggunaan internal / embedded style
+    - Rencanakan struktur HTML yang akan dibangun
+    - Pertimbangkan jika ingin menggunakan ID selector
+    - manfaaatkan fitur Inheritance*/

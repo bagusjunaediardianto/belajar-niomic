@@ -1,0 +1,18 @@
+.container {
+    width: 800px;
+    margin: 0 auto;
+}
+
+.satu {
+    border: solid;
+    width: 200px;
+    height: 200px;
+    background-color: blue;
+    margin-top: 50px;
+    border-image-source: url('/gambar/hearts.png');
+    border-image-repeat: round;
+    border-image-width: 20px;
+    border-image-slice: 20 22;
+    border-image-outset: 20px;
+
+}

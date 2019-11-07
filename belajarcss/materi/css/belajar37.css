@@ -1,0 +1,11 @@
+/* body {
+    background-image: url('/gambar/prambanan.jpg');
+    background-size: cover;
+} */
+
+div {
+    width: 600px;
+    height: 400px;
+    background-image: url('https://www.ancient.eu/img/r/p/500x600/9249.jpg?v=1537878174');
+    background-repeat: no-repeat;
+}

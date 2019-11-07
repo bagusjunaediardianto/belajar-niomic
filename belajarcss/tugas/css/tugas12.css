@@ -1,0 +1,55 @@
+header {
+    height: 50px;
+    width: 100%;
+    background-color: black;
+    position: fixed;
+}
+
+ul {
+    display: inline-flex;
+    position: relative;
+    top: 1em;
+    left: 1em;
+}
+
+li {
+    margin-left:2em;
+}
+
+a {
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+}
+
+.card{
+    background-color: lightblue;
+    margin: 0 auto;
+}
+
+.slider {
+    height: 700px;
+    width: 1320px;
+    margin: 0 auto;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.image {
+    float: left;
+    height: 330px;
+    width: 160px;
+    margin: 20px;
+}
+
+p {
+    text-align: justify;
+    border: 1px solid black;
+}
+.p-text {
+    column-width: 200px;
+    column-fill: auto;
+    column-rule: 1px solid black;
+    padding: 20px;
+    overflow-y: scroll;
+}

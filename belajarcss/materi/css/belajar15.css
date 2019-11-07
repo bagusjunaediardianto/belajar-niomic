@@ -1,0 +1,36 @@
+/* 
+Generic font 
+serif
+sans-serif
+monospace
+cursive
+fantasy
+*/
+p.arial {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+p.times {
+    font-family: 'Times New Roman', Helvetica, sans-serif;
+}
+
+p.sans-serif {
+    font-family: sans-serif;
+}
+
+p.serif {
+    font-family:serif;
+}
+
+p.monospace {
+    font-family: monospace;
+}
+
+p.cursive {
+    font-family: cursive;
+}
+
+p.fantasy {
+    font-family: fantasy;
+}
+

@@ -1,0 +1,11 @@
+#paragraf_pertama {
+    color: red !important;
+}
+
+.paragraf {
+    color: blue !important;
+}
+
+p {
+    color : green;
+}

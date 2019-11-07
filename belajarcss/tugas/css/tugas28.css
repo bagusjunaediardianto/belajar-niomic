@@ -1,0 +1,16 @@
+body {
+    background: grey !important;
+    margin: 0 auto !important; 
+}
+
+.position {
+    position: relative;
+    top: 10%;
+}
+
+.formcolor {
+    background: white !important;
+    margin: 0 auto !important;
+    height: 320px;
+    width: 400px;
+}

@@ -1,0 +1,9 @@
+#paragraf_pertama {
+    color: orange;
+}
+
+#judul {
+    text-decoration: underline;
+    color: blue;
+    font-size: 30px;
+}

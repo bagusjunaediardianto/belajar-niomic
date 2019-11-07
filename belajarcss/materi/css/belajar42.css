@@ -1,0 +1,80 @@
+div {
+    width: 200px;
+    height: 150px;
+    text-align: center;
+    float: left;
+    color: white;
+    font-size: 23px;
+    border: 2px solid black;
+    margin: 10px;
+    background-image: url('/gambar/prambanan.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: green;
+}
+
+.satu {
+    background-blend-mode: normal;
+}
+
+.dua {
+    background-blend-mode: multiply;
+}
+
+.tiga {
+    background-blend-mode: overlay;
+}
+
+.empat {
+    background-blend-mode: screen;
+}
+
+.lima {
+    background-blend-mode: darken;
+}
+
+.enam {
+    background-blend-mode: lighten;
+}
+
+.tujuh {
+    background-blend-mode: color-dodge;
+}
+
+.delapan {
+    background-blend-mode: color-burn;
+}
+
+.sembilan {
+    background-blend-mode: hard-light;
+}
+
+.sepuluh {
+    background-blend-mode: soft-light;
+}
+
+.sebelas {
+    background-blend-mode: difference;
+}
+
+.duabelas {
+    background-blend-mode: exclusion;
+}
+
+.tigabelas {
+    background-blend-mode: hue;
+}
+
+.empatbelas {
+    background-blend-mode: saturation;
+}
+
+.limabelas {
+    background-blend-mode: color;
+}
+
+.enambelas {
+    background-blend-mode: luminosity;
+}
+
+

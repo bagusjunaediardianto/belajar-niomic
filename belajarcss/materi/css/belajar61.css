@@ -1,0 +1,67 @@
+.container {
+    width: 1000px;
+    margin: 50px auto;
+
+}
+
+.satu,
+.dua,
+.tiga,
+.empat {
+    width: 200px;
+    height: 200px;
+    background-color: blue;
+    float: left;
+    margin-left: 50px;
+}
+
+/* sumbu X dan sumbu Y
+.satu {
+    box-shadow: 5px 5px;
+}
+
+.dua {
+    box-shadow: 20px 20px;
+}
+
+.tiga {
+    box-shadow: -8px -10px;
+}
+
+.empat {
+    box-shadow: -15px 20px;
+} */
+
+/*  with blur
+.satu {
+    box-shadow: 10px 10px 2px;
+}
+
+.dua {
+    box-shadow: 10px 10px 5px;
+}
+
+.tiga {
+    box-shadow: 10px 10px 15px;
+}
+
+.empat {
+    box-shadow: 10px 10px 30px;
+} */
+
+/* with split and color */
+.satu {
+    box-shadow: 10px 10px 10px 10px red;
+}
+
+.dua {
+    box-shadow: 10px 10px 10px 20px #c0c0c0;
+}
+
+.tiga {
+    box-shadow: 10px 10px 10px -10px rgba(255, 88, 75, 0.8);
+}
+
+.empat {
+    box-shadow: 10px 10px 10px -20px hsl(100, 100%, 50%);
+}
