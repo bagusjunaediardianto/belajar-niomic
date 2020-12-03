@@ -1,0 +1,35 @@
+{
+  "data-karyawan": [
+    {
+      "id": 1557298963816,
+      "nama_karyawan": "putra agung",
+      "jabatan": "Security",
+      "jenis_kelamin": "laki-laki",
+      "tanggal_lahir": "1991-12-12"
+    },
+    {
+      "id": 1557298993816,
+      "nama_karyawan": "gerysena",
+      "jabatan": "Marketing",
+      "jenis_kelamin": "laki-laki",
+      "tanggal_lahir": "2011-01-31"
+    },
+    {
+      "id": 1591837942584,
+      "nama_karyawan": "Hasan",
+      "jabatan": "Marketing",
+      "jenis_kelamin": "Laki-Laki",
+      "tanggal_lahir": "1990-05-28"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
