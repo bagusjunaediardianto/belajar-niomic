@@ -1,0 +1,103 @@
+ - membuat table data_mahasiswa
+MariaDB [belajar]> CREATE TABLE IF NOT EXISTS data_mahasiswa
+    -> (nim CHAR(8) PRIMARY KEY,
+    -> nama VARCHAR(50),
+    -> semester_1 DEC(4,2),
+    -> semester_2 DEC(4,2),
+    -> semester_3 DEC(4,2));
+Query OK, 0 rows affected (0.020 sec)
+
+- membuat table ipk_mahasiswa
+MariaDB [belajar]> CREATE TABLE IF NOT EXISTS ipk_mahasiswa (
+    -> no INT auto_increment PRIMARY KEY,
+    -> nama_dan_nip VARCHAR(50),
+    -> nilai_ipk DEC(4,2),
+    -> activity TEXT);
+Query OK, 0 rows affected (0.019 sec)
+
+
+-membuat trigger before insert
+MariaDB [belajar]> DELIMITER $$
+MariaDB [belajar]> CREATE TRIGGER before_datamahasiswa_insert
+    -> BEFORE INSERT ON data_mahasiswa
+    -> FOR EACH ROW
+    -> BEGIN
+    -> DECLARE nama_dan_nip VARCHAR(50);
+    -> DECLARE nilai_ipk DEC(4,2);
+    -> DECLARE keterangan TEXT;
+    -> SET nama_dan_nip = CONCAT(UPPER(NEW.nama),' (',NEW.nim,')');
+    -> SET nilai_ipk = ROUND((NEW.semester_1 + NEW.semester_2 + NEW.semester_3)/3,2);
+    -> SET keterangan = CONCAT('Ada Penambahan Data baru -> ',nama_dan_nip, 'Pada : ',NOW());
+    -> INSERT INTO ipk_mahasiswa VALUES
+    -> (0,nama_dan_nip,nilai_ipk,keterangan);
+    -> END$$
+Query OK, 0 rows affected (0.009 sec)
+MariaDB [belajar]> DELIMITER ;
+
+- menampilkan table data mahasiswa yang masih kosong
+MariaDB [belajar]> SELECT * FROM data_mahasiswa;
+Empty set (0.001 sec)
+
+- melakukan insert data dan menampilkan kedua table yang terhubung
+MariaDB [belajar]> INSERT INTO data_mahasiswa VALUES
+    -> ('17090113', 'Riana Putria', 3.12, 2.98, 3.45),
+    -> ('17140143', 'Rudi Permana', 2.56, 3.14, 3.22);
+Query OK, 2 rows affected (0.005 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+MariaDB [belajar]> SELECT * FROM data_mahasiswa;
++----------+--------------+------------+------------+------------+
+| nim      | nama         | semester_1 | semester_2 | semester_3 |
++----------+--------------+------------+------------+------------+
+| 17090113 | Riana Putria |       3.12 |       2.98 |       3.45 |
+| 17140143 | Rudi Permana |       2.56 |       3.14 |       3.22 |
++----------+--------------+------------+------------+------------+
+2 rows in set (0.001 sec)
+
+MariaDB [belajar]> SELECT * FROM ipk_mahasiswa;
++----+-------------------------+-----------+-------------------------------------------------------------------------------+
+| no | nama_dan_nip            | nilai_ipk | activity                                                                      |
++----+-------------------------+-----------+-------------------------------------------------------------------------------+
+|  1 | RIANA PUTRIA (17090113) |      3.18 | Ada Penambahan Data baru -> RIANA PUTRIA (17090113)Pada : 2020-08-26 02:56:03 |
+|  2 | RUDI PERMANA (17140143) |      2.97 | Ada Penambahan Data baru -> RUDI PERMANA (17140143)Pada : 2020-08-26 02:56:03 |
++----+-------------------------+-----------+-------------------------------------------------------------------------------+
+2 rows in set (0.000 sec)
+
+- membuat trigger after_datamahasiswa_delete
+MariaDB [belajar]> CREATE TRIGGER after_datamahasiswa_delete
+    -> AFTER DELETE ON data_mahasiswa
+    -> FOR EACH ROW
+    -> BEGIN
+    -> DECLARE nama_dan_nip VARCHAR(50);
+    -> DECLARE nilai_ipk DEC(4,2);
+    -> DECLARE keterangan TEXT;
+    -> SET nama_dan_nip = CONCAT(UPPER(OLD.nama),' (',OLD.nim,')');
+    -> SET nilai_ipk = ROUND((OLD.semester_1 + OLD.semester_2 + OLD.semester_3)/3,2);
+    -> SET keterangan = CONCAT('Ada data mahasiswa terhapus -> ',nama_dan_nip, 'Pada : ',NOW());
+    -> INSERT INTO ipk_mahasiswa VALUES
+    -> (0,nama_dan_nip,nilai_ipk,keterangan);
+    -> END$$
+Query OK, 0 rows affected (0.032 sec)
+MariaDB [belajar]> DELIMITER ;
+
+- melakukan delete data_mahasiswa
+MariaDB [belajar]> DELETE FROM data_mahasiswa WHERE nim = '17140143';
+Query OK, 1 row affected (0.028 sec)
+
+MariaDB [belajar]> SELECT * FROM data_mahasiswa;
++----------+--------------+------------+------------+------------+
+| nim      | nama         | semester_1 | semester_2 | semester_3 |
++----------+--------------+------------+------------+------------+
+| 17090113 | Riana Putria |       3.12 |       2.98 |       3.45 |
++----------+--------------+------------+------------+------------+
+1 row in set (0.001 sec)
+
+MariaDB [belajar]> SELECT * FROM ipk_mahasiswa;
++----+-------------------------+-----------+----------------------------------------------------------------------------------+
+| no | nama_dan_nip            | nilai_ipk | activity                                                                         |
++----+-------------------------+-----------+----------------------------------------------------------------------------------+
+|  1 | RIANA PUTRIA (17090113) |      3.18 | Ada Penambahan Data baru -> RIANA PUTRIA (17090113)Pada : 2020-08-26 02:56:03    |
+|  2 | RUDI PERMANA (17140143) |      2.97 | Ada Penambahan Data baru -> RUDI PERMANA (17140143)Pada : 2020-08-26 02:56:03    |
+|  3 | RUDI PERMANA (17140143) |      2.97 | Ada data mahasiswa terhapus -> RUDI PERMANA (17140143)Pada : 2020-08-26 03:11:38 |
++----+-------------------------+-----------+----------------------------------------------------------------------------------+
+3 rows in set (0.000 sec)

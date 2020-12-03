@@ -1,0 +1,85 @@
+- melakukan insert data sekaligus
+> db.matkul.insertMany(
+... [
+... {
+... matkul : "Algoritma & Pemrograman", kode_matkul : "1234567", nama_dosen : "Jamal Kosasih" },{
+... matkul : "Rekayasa Perangkat Lunak", kode_matkul : "1234568", nama_dosen : "Ivan Bagus" },{
+... matkul : "Sistem Basis Data", kode_matkul : "1234569", nama_dosen : "Anida Nur Afika" },{
+... matkul : "Pengantar Ilmu Komputer", kode_matkul : "1234561", nama_dosen : "Nico Ariestio" },{ 
+... matkul : "Bahasa Indonesia", kode_matkul : "1234562", nama_dosen : "Fifi Meilani" }]);
+{
+	"acknowledged" : true,
+	"insertedIds" : [
+		ObjectId("5f542ea1da12c0af9e29198c"),
+		ObjectId("5f542ea1da12c0af9e29198d"),
+		ObjectId("5f542ea1da12c0af9e29198e"),
+		ObjectId("5f542ea1da12c0af9e29198f"),
+		ObjectId("5f542ea1da12c0af9e291990")
+	]
+}
+
+- menampilkan data yang baru saja diinsert
+> db.matkul.find().pretty()
+
+{
+	"_id" : ObjectId("5f542cbfda12c0af9e29198b"),
+	"matkul" : "Algoritma & Pemrograman",
+	"kode_matkul" : "1234567",
+	"nama_dosen" : "Jamal Kosasih"
+}
+{
+	"_id" : ObjectId("5f542ea1da12c0af9e29198c"),
+	"matkul" : "Algoritma & Pemrograman",
+	"kode_matkul" : "1234567",
+	"nama_dosen" : "Jamal Kosasih"
+}
+{
+	"_id" : ObjectId("5f542ea1da12c0af9e29198d"),
+	"matkul" : "Rekayasa Perangkat Lunak",
+	"kode_matkul" : "1234568",
+	"nama_dosen" : "Ivan Bagus"
+}
+{
+	"_id" : ObjectId("5f542ea1da12c0af9e29198e"),
+	"matkul" : "Sistem Basis Data",
+	"kode_matkul" : "1234569",
+	"nama_dosen" : "Anida Nur Afika"
+}
+{
+	"_id" : ObjectId("5f542ea1da12c0af9e29198f"),
+	"matkul" : "Pengantar Ilmu Komputer",
+	"kode_matkul" : "1234561",
+	"nama_dosen" : "Nico Ariestio"
+}
+{
+	"_id" : ObjectId("5f542ea1da12c0af9e291990"),
+	"matkul" : "Bahasa Indonesia",
+	"kode_matkul" : "1234562",
+	"nama_dosen" : "Fifi Meilani"
+}
+
+- update db matkul
+> db.matkul.update(
+... {
+... kode_matkul : "1234562"
+... },
+... {$set: {nama_dosen : "Sekar Wulandari"}}
+... );
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+
+- menghapus data 
+
+> db.matkul.remove(
+... {
+... kode_matkul : "1234568"
+... });
+WriteResult({ "nRemoved" : 1 })
+
+> db.matkul.remove( { kode_matkul : "1234567" });
+WriteResult({ "nRemoved" : 2 })
+
+> db.matkul.find().pretty()
+
+> db.matkul.drop()
+true
+> db.matkul.find().pretty()

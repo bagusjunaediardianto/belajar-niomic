@@ -1,0 +1,22 @@
+*membuat tabel asal*
+create table contoh_tabel_asal( 
+    -> a int auto_increment primary key, 
+    -> b varchar(10), 
+    -> c date);
+
+*melakukan insert pada tabel asal*
+insert into contoh_tabel_asal values 
+    -> (null,"merah",20190101), 
+    -> (null,"Biru",20190102), 
+    -> (null,"Kuning",20190103);
+
+*menampilkan isi table asal*
+select * from contoh_tabel_asal;
+
+*membuat tabel dengan like*
+create table copy_contoh_tabel_asal like contoh_tabel_asal;
+
+*menampilkan *struktur tabel yang telah di copy 
+desc copy_contoh_tabel_asal
+
+*tetapi ketika menggunakan like kita hanya dapat mengcopy strukturnya saja*

@@ -1,0 +1,28 @@
+PhpMyAdmin adalah sebuah aplikasi manajemen database MySQL dan MariaDB yang berbasis web. 
+Dapat digunakan untuk membuat database, tabel, export dan import data, menulis trigger, 
+serta berbagai hal lain. Semuanya dilakukan menggunakan interface grafis yang sangat praktis.  
+
+Saat ini phpMyAdmin menjadi aplikasi standar pengelolaan database di dalam web hosting (menggunakan cPanel), 
+yakni ketika ingin meng-onlinekan sebuah website. 
+Aplikasi XAMPP sendiri juga menyertakan phpMyAdmin yang bisa langsung digunakan.  
+
+PhpMyAdmin dibuat pada tahun 1998 oleh Tobias Ratschiller, 
+namun pada tahun 2001 menjadi project open source yang dikembangkan oleh banyak programmer dari seluruh dunia
+
+Tidak dapat dipungkiri membuat database dan tabel dengan phpMyAdmin jauh lebih mudah daripada menggunakan cmd Windows, 
+terutama untuk database yang sederhana.
+
+Dengan phpMyAdmin, 
+kita disajikan tampilan grafis serta fitur tambahan seperti men-export database dalam bentuk zip dan pdf. 
+Semua ini bisa dilakukan tanpa harus mengetahui perintah SQL apapun.
+
+Hanya saja, 
+saya berpendapat bahwa phpMyAdmin kurang cocok untuk proses belajar. 
+phpMyAdmin baru pas dipakai untuk proses produksi, 
+yakni setelah kita paham apa yang sebenarnya dijalankan oleh phpMyAdmin. 
+Untuk web developer, skill menulis query SQL secara manual sangat penting, 
+karena query inilah yang harus ditulis ke dalam kode program PHP.
+
+Idealnya, kita mesti paham query dasar MySQL, 
+serta juga bisa menggunakan phpMyAdmin untuk mempercepat proses pembuatan database, 
+terlebih untuk website online. 

@@ -1,0 +1,110 @@
+*hak akses with grant option, berguna untuk memberikan akses kepada user 
+  terpilih untuk dapat memberi akses kepada user lainnya*
+
+sebagai contoh
+- user root akan memberikan akses GRANT ALL pada user Andi@localhost
+
+MariaDB [mysql]> GRANT ALL ON *.* TO Andi@localhost WITH GRANT OPTION;
+Query OK, 0 rows affected (0.000 sec)
+
+MariaDB [mysql]> FLUSH PRIVILEGES;
+Query OK, 0 rows affected (0.001 sec)
+
+2. membuat user baru bernama Alex@localhost;
+MariaDB [mysql]> CREATE USER 'Alex'@'localhost';
+Query OK, 0 rows affected (0.004 sec)
+
+3. melihat hasil create user alex
+SELECT User, Host, Password FROM User;
++-------+-----------+----------+
+| User  | Host      | Password |
++-------+-----------+----------+
+| root  | localhost |          |
+| Alex  | localhost |          |
+| root  | 127.0.0.1 |          |
+| root  | ::1       |          |
+|       | localhost |          |
+| Bagus | %         |          |
+| pma   | localhost |          |
+| Andi  | localhost |          |
+| Andi  | 127.0.0.1 |          |
++-------+-----------+----------+
+9 rows in set (0.001 sec)
+
+4. lakukan exit dan login dengan user yang telah diberi WITH GRANT OPTION
+MariaDB [(none)]> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| belajar            |
+| importdata         |
+| indonesia          |
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| test               |
++--------------------+
+8 rows in set (0.000 sec)
+
+MariaDB [(none)]> SHOW GRANTS;
++---------------------------------------------------------------------+
+| Grants for Andi@localhost                                           |
++---------------------------------------------------------------------+
+| GRANT ALL PRIVILEGES ON *.* TO `Andi`@`localhost` WITH GRANT OPTION |
++---------------------------------------------------------------------+
+
+5.memberikan hak akses pada user alex@localhost dan lakukan exit serta login dengan user alex
+MariaDB [(none)]> use mysql;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+MariaDB [mysql]> GRANT SELECT ON belajar.provinsi TO Alex@localhost;
+Query OK, 0 rows affected (0.001 sec)
+
+MariaDB [mysql]> FLUSH PRIVILEGES;
+Query OK, 0 rows affected (0.001 sec)
+
+6. melakukan dan mengecek grant akses yang telah diberikan dari user Andi
+bagus@bagus-ThinkPad-T430:~$ /opt/lampp/bin/mysql -u Alex -p
+Enter password: 
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 18
+Server version: 10.4.13-MariaDB Source distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| belajar            |
+| information_schema |
+| test               |
++--------------------+
+3 rows in set (0.001 sec)
+
+MariaDB [(none)]> use belajar;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+MariaDB [belajar]> SHOW TABLES;
++-------------------+
+| Tables_in_belajar |
++-------------------+
+| provinsi          |
++-------------------+
+1 row in set (0.001 sec)
+
+MariaDB [belajar]> SHOW GRANTS;
++------------------------------------------------------------+
+| Grants for Alex@localhost                                  |
++------------------------------------------------------------+
+| GRANT USAGE ON *.* TO `Alex`@`localhost`                   |
+| GRANT SELECT ON `belajar`.`provinsi` TO `Alex`@`localhost` |
++------------------------------------------------------------+
+2 rows in set (0.000 sec)

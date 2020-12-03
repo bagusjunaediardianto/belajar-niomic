@@ -1,0 +1,59 @@
+- SELECT * FROM products WHERE category in("handphone,laptop") AND price > 10000000;
+> db.products.find({
+... $and : [
+...         {
+...             category : {
+...                 $in : ["handphone","laptop"],
+...             }
+...         },{
+...             price : {
+...                 $gt:10000000,
+...             }
+...         }]
+... })
+{ "_id" : 5, "name" : "Acer Precator XXI", "price" : NumberLong(25000000), "category" : "laptop" }
+
+- SELECT * FROM products WHERE category in("handphone,laptop") AND price >= 10000000;
+> db.products.find({
+... $and : [
+...         {
+...             category : {
+...                 $in : ["handphone","laptop"],
+...                 }
+...         },{
+...             price : {
+...                 $gte : 10000000,
+...             }
+...         }]
+...})
+{ "_id" : 4, "name" : "Samsung Galaxy S9+", "price" : NumberLong(10000000), "category" : "handphone" }
+{ "_id" : 5, "name" : "Acer Precator XXI", "price" : NumberLong(25000000), "category" : "laptop" }
+
+- SELECT * FROM products WHERE category NOT in ("handphone","laptop");
+> db.products.find({
+...   category : {
+...     $not : {
+...         $in : ["handphone","laptop"],
+...         }
+...     }
+... })
+{ "_id" : 1, "name" : "Indomie Ayam Bawang", "price" : NumberLong(2000) }
+{ "_id" : 2, "name" : "Mie Sedap", "price" : NumberLong(2000) }
+{ "_id" : 3, "name" : "Pop Mie rasa bakso", "price" : NumberLong(2500), "category" : "food" }
+
+- SELECT * FROM products WHERE price between 10000000 AND 20000000 and category != "food";
+> db.products.find({
+...     $and : [
+...             {
+...                 price : {
+...                     $gte : 10000000,
+...                     $lte : 20000000,
+...                 }
+...             },{
+...                 category : {
+...                     $ne : "food",
+...                 }
+...             }
+...             ]
+... })
+{ "_id" : 4, "name" : "Samsung Galaxy S9+", "price" : NumberLong(10000000), "category" : "handphone" }

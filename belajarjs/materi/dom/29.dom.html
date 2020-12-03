@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>BELAJAR DOM - error event</title>
+    </head>
+    <body>
+        <img src="gambar.jpg" onerror="error_load()">
+        <p>Gambar ini akan terdapat error</p>
+
+        <script type="text/javascript">
+            function error_load(){
+                alert("error saat load gambar")
+            }
+        
+        </script>
+    </body>
+</html>

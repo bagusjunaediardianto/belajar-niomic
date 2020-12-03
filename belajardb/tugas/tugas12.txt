@@ -1,0 +1,102 @@
+1. menghapus table nilai_mahasiswa apabila ada
+MariaDB [belajar]> DROP TABLE IF EXISTS nilai_mahasiswa;
+Query OK, 0 rows affected, 1 warning (0.005 sec)
+
+MariaDB [belajar]> SHOW WARNINGS;
++-------+------+-----------------------------------------+
+| Level | Code | Message                                 |
++-------+------+-----------------------------------------+
+| Note  | 1051 | Unknown table 'belajar.nilai_mahasiswa' |
++-------+------+-----------------------------------------+
+1 row in set (0.000 sec)
+
+2. membuat table nilai_mahasiswa
+MariaDB [belajar]> CREATE TABLE nilai_mahasiswa (
+    -> nim CHAR(8) PRIMARY KEY,
+    -> nama VARCHAR(50),
+    -> semester_1 DEC(4,2),
+    -> semester_2 DEC(4,2),
+    -> semester_3 DEC(4,2))
+    -> ENGINE = INNODB;
+Query OK, 0 rows affected (0.040 sec)
+
+3. menginputkan data kedalam table nilai_mahasiswa
+MariaDB [belajar]> INSERT INTO nilai_mahasiswa VALUES
+    -> ('17090113','Riana Putria' ,3.12 , 2.98, 3.45),
+    -> ('17140143','Rudi Permana',2.56, 3.14, 3.22),
+    -> ('17080305','Rina Kumala Sari', 3.45, 2.56, 3.67),
+    -> ('17140119','Sandri Fatmala', 2.12, 2.78, 2.56),
+    -> ('17090308','Christine Wijaya', 3.78, 3.23, 3.11);
+Query OK, 5 rows affected (0.006 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+4. menampilkan data nilai_mahasiswa
+MariaDB [belajar]> SELECT * FROM nilai_mahasiswa;
++----------+------------------+------------+------------+------------+
+| nim      | nama             | semester_1 | semester_2 | semester_3 |
++----------+------------------+------------+------------+------------+
+| 17080305 | Rina Kumala Sari |       3.45 |       2.56 |       3.67 |
+| 17090113 | Riana Putria     |       3.12 |       2.98 |       3.45 |
+| 17090308 | Christine Wijaya |       3.78 |       3.23 |       3.11 |
+| 17140119 | Sandri Fatmala   |       2.12 |       2.78 |       2.56 |
+| 17140143 | Rudi Permana     |       2.56 |       3.14 |       3.22 |
++----------+------------------+------------+------------+------------+
+5 rows in set (0.001 sec)
+
+5. membuat tabel view nilai_ipk
+MariaDB [belajar]> CREATE OR REPLACE VIEW nilai_ipk AS
+    -> SELECT
+    -> nim, nama, ROUND(((semester_1+semester_2+semester_3)/3),2) AS 'IPK'
+    -> FROM nilai_mahasiswa;
+Query OK, 0 rows affected (0.006 sec)
+
+6. menampilkan table view nilai_ipk
+MariaDB [belajar]> SELECT * FROM nilai_ipk;
++----------+------------------+------+
+| nim      | nama             | IPK  |
++----------+------------------+------+
+| 17080305 | Rina Kumala Sari | 3.23 |
+| 17090113 | Riana Putria     | 3.18 |
+| 17090308 | Christine Wijaya | 3.37 |
+| 17140119 | Sandri Fatmala   | 2.49 |
+| 17140143 | Rudi Permana     | 2.97 |
++----------+------------------+------+
+
+7.menampilkan table view nilai_ipk_format
+MariaDB [belajar]> CREATE OR REPLACE VIEW nilai_ipk_format AS
+    -> SELECT
+    -> concat(nama,'(',IPK,')') AS 'Nama dan IPK'
+    -> FROM nilai_ipk ORDER BY nama ASC;
+Query OK, 0 rows affected (0.007 sec)
+
+8. menampilkan table view nilai_ipk_format
+MariaDB [belajar]> SELECT * FROM nilai_ipk_format;
++------------------------+
+| Nama dan IPK           |
++------------------------+
+| Christine Wijaya(3.37) |
+| Riana Putria(3.18)     |
+| Rina Kumala Sari(3.23) |
+| Rudi Permana(2.97)     |
+| Sandri Fatmala(2.49)   |
++------------------------+
+5 rows in set (0.001 sec)
+
+9.mengubah struktur table nilai_ipk_format
+MariaDB [belajar]> ALTER VIEW nilai_ipk_format AS
+    -> SELECT
+    -> CONCAT(nama,'(',IPK,')') AS 'Nama dan IPK'
+    -> FROM nilai_ipk WHERE nama LIKE "R%"
+    -> ORDER BY nama ASC;
+Query OK, 0 rows affected (0.006 sec)
+
+10. menampilkan table view nilai_ipk_format
+MariaDB [belajar]> SELECT * FROM nilai_ipk_format;
++------------------------+
+| Nama dan IPK           |
++------------------------+
+| Riana Putria(3.18)     |
+| Rina Kumala Sari(3.23) |
+| Rudi Permana(2.97)     |
++------------------------+
+3 rows in set (0.001 sec)

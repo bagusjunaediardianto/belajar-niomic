@@ -1,0 +1,86 @@
+DELETE FROM mahasiswa WHERE no=11;
+Query OK, 1 row affected (0.005 sec)
+
+MariaDB [belajar]> SELECT * FROM mahasiswa;
++----+--------------------+------------+------+--------+-----------------+-----------+
+| no | nama               | asal       | kel  | tinggi | jurusan         | nilai_uan |
++----+--------------------+------------+------+--------+-----------------+-----------+
+|  1 | Rianna Putria      | Padang     | P    |    155 | Kimia           |    339.20 |
+|  2 | Rudi Permana       | Bandung    | L    |    163 | Ilmu Komputer   |    290.44 |
+|  3 | Sari Citra Lestari | Jakarta    | P    |    161 | Manajemen       |    310.60 |
+|  4 | Rina Kumala Sari   | Jakarta    | P    |    158 | Akuntansi       |    337.99 |
+|  5 | Jerry Fernando     | Medan      | L    |    168 | Kedokteran Gigi |    341.10 |
+|  6 | Sinta Nurhasanah   | Yogyakarta | P    |    155 | Ilmu Komputer   |    352.33 |
+|  7 | Husli Khairan      | Jakarta    | L    |    170 | Akuntansi       |    288.55 |
+|  8 | Christine Wijaya   | Medan      | P    |    157 | Manajemen       |    321.74 |
+|  9 | Iksan Prayoga      | Jakarta    | L    |    172 | Ilmu Komputer   |    300.16 |
+| 10 | Bobby Permana      | Medan      | L    |    161 | Ilmu Komputer   |    280.82 |
++----+--------------------+------------+------+--------+-----------------+-----------+
+10 rows in set (0.001 sec)
+
+SELECT * FROM mahasiswa;
++----+--------------------+------------+------+--------+-----------------+-----------+
+| no | nama               | asal       | kel  | tinggi | jurusan         | nilai_uan |
++----+--------------------+------------+------+--------+-----------------+-----------+
+|  1 | Rianna Putria      | Padang     | P    |    155 | Kimia           |    339.20 |
+|  2 | Rudi Permana       | Bandung    | L    |    163 | Ilmu Komputer   |    290.44 |
+|  3 | Sari Citra Lestari | Jakarta    | P    |    161 | Manajemen       |    310.60 |
+|  4 | Rina Kumala Sari   | Jakarta    | P    |    158 | Akuntansi       |    337.99 |
+|  5 | Jerry Fernando     | Medan      | L    |    168 | Kedokteran Gigi |    341.10 |
+|  6 | Sinta Nurhasanah   | Yogyakarta | P    |    155 | Ilmu Komputer   |    352.33 |
+|  7 | Husli Khairan      | Jakarta    | L    |    170 | Akuntansi       |    288.55 |
+|  8 | Christine Wijaya   | Medan      | P    |    157 | Manajemen       |    321.74 |
++----+--------------------+------------+------+--------+-----------------+-----------+
+
+
+*menghapus data lebih dari 1, berdasarkan kata kunci yang dipanggil
+ dan diurutkan dari angka atau huruf yang paling kecil / awal dan 
+ ditentukan limit data yang akan dihapus*
+
+DELETE FROM mahasiswa
+    -> WHERE jurusan="Ilmu Komputer"
+    -> ORDER BY nama ASC limit 2;
+Query OK, 2 rows affected (0.013 sec)
+
+MariaDB [belajar]> SELECT * FROM mahasiswa;
++----+--------------------+------------+------+--------+-----------------+-----------+
+| no | nama               | asal       | kel  | tinggi | jurusan         | nilai_uan |
++----+--------------------+------------+------+--------+-----------------+-----------+
+|  1 | Rianna Putria      | Padang     | P    |    155 | Kimia           |    339.20 |
+|  2 | Rudi Permana       | Bandung    | L    |    163 | Ilmu Komputer   |    290.44 |
+|  3 | Sari Citra Lestari | Jakarta    | P    |    161 | Manajemen       |    310.60 |
+|  4 | Rina Kumala Sari   | Jakarta    | P    |    158 | Akuntansi       |    337.99 |
+|  5 | Jerry Fernando     | Medan      | L    |    168 | Kedokteran Gigi |    341.10 |
+|  6 | Sinta Nurhasanah   | Yogyakarta | P    |    155 | Ilmu Komputer   |    352.33 |
+|  7 | Husli Khairan      | Jakarta    | L    |    170 | Akuntansi       |    288.55 |
+|  8 | Christine Wijaya   | Medan      | P    |    157 | Manajemen       |    321.74 |
++----+--------------------+------------+------+--------+-----------------+-----------+
+
+DELETE FROM mahasiswa
+    -> WHERE asal="Medan" OR jurusan="Manajemen";
+Query OK, 3 rows affected (0.006 sec)
+
+MariaDB [belajar]> SELECT * FROM mahasiswa;
++----+------------------+------------+------+--------+---------------+-----------+
+| no | nama             | asal       | kel  | tinggi | jurusan       | nilai_uan |
++----+------------------+------------+------+--------+---------------+-----------+
+|  1 | Rianna Putria    | Padang     | P    |    155 | Kimia         |    339.20 |
+|  2 | Rudi Permana     | Bandung    | L    |    163 | Ilmu Komputer |    290.44 |
+|  4 | Rina Kumala Sari | Jakarta    | P    |    158 | Akuntansi     |    337.99 |
+|  6 | Sinta Nurhasanah | Yogyakarta | P    |    155 | Ilmu Komputer |    352.33 |
+|  7 | Husli Khairan    | Jakarta    | L    |    170 | Akuntansi     |    288.55 |
++----+------------------+------------+------+--------+---------------+-----------+
+
+SELECT upper(mahasiswa.nama) as `Nama Mahasiswa`,
+    -> upper(mahasiswa.jurusan) as `Program Studi`,
+    -> upper(universitas.nama_dekan) as `Nama Dekan`
+    -> FROM mahasiswa JOIN universitas
+    -> WHERE mahasiswa.jurusan = universitas.jurusan
+    -> AND
+    -> universitas.nama_dekan = "Maya Fitriani, M.M.";
++------------------+---------------+---------------------+
+| Nama Mahasiswa   | Program Studi | Nama Dekan          |
++------------------+---------------+---------------------+
+| RINA KUMALA SARI | AKUNTANSI     | MAYA FITRIANI, M.M. |
+| HUSLI KHAIRAN    | AKUNTANSI     | MAYA FITRIANI, M.M. |
++------------------+---------------+---------------------+

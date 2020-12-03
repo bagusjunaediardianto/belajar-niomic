@@ -1,0 +1,9 @@
+Keunggulan Node JS
+- mudah untuk dipelajari
+- kebebasan untuk membuat apk sesuai keinginan anda
+- Fullstack JS
+- Komunitas aktif dan dinamis
+- memproses permintaan secara serentak
+
+Kelemahan NodeJS
+- membutuhkan waktu untuk pengembangan 

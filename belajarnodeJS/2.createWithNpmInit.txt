@@ -1,0 +1,46 @@
+langkah langkah dalam membuat node Project
+ - pastikan sudah terinstal node JS
+   * jika belum instal node JS terlebih dahulu
+ - jika sudah, buat folder di direktori yang anda inginkan
+   anda dapat membuat direktori dengan 2 cara
+   * melalui cmd / terminal
+   * melalui gui (create new folder)
+ - setelah itu anda masuk kedalam folder yang sudah anda buat
+   dan membuat sebuah package.json dengan perintah npm init
+ - tunggu beberapa saat hingga selesai, jika berhasil maka akan
+   tampil sebuah file package.json 
+ - langkah selanjutnya adalah anda menambahkan package express
+   (express adalah framework JS yang dikhususkan untuk pengembangan apk dari sisi server)
+   caranya dengan melakukan npm install express --save
+   (perlu diketahui, kita juga dapat melakukannya dengan
+    npm install express --no-save agar tidak menyimpan dependency listnya)
+ - jika berhasil maka tampil folder node_modules dan package-lock.json
+ - langkah selanjutnya membuat file index.js
+ - (penting) -> perlu diketahui, ketika server sudah berjalan biasanya kita perlu melakukan update data 
+                atau perubahan data, tetapi masalahnya ketika server sudah berjalan perubahan tidak dapat 
+                terdeteksi dan tetap berjalan sesuai dengan update kita yang terakhir.
+                solusinya agar dapat mengupdate setiap adanya perubahan, maka perlu dilakukan instalasi
+                nodemon secara global dan hanya perlu diinstal sekali saja, tidak perlu berulang - ulang
+                nodemon bekerja mirip - mirip dengan fitur hot - reload pada react JS,
+                yang mana setiap ada perubahan dan disimpan akan langsung terdeteksi
+
+
+ konfigurasi awal index.js
+
+ * import library express
+ let express = require("express");
+
+ * melakukan inisialisasi pada app
+ let app = express();
+
+ * melakukan konfigurasi port server
+ var port = process.env.PORT || 8080;
+
+ * melakukan running app dengan port
+ app.listen(port,function(){
+     console.log("Running app di Port : "+port);
+ });
+
+
+
+

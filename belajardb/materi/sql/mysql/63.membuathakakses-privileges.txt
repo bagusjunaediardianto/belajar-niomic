@@ -1,0 +1,80 @@
+*melakukan set password untuk user Andi@localhost*
+MariaDB [mysql]> SET PASSWORD for 'Andi'@'localhost' = password('');
+Query OK, 0 rows affected (0.000 sec)
+
+*melakukan set password untuk user Andi@127.0.0.1*
+MariaDB [mysql]> SET PASSWORD for 'Andi'@'127.0.0.1' = password('');
+Query OK, 0 rows affected (0.000 sec)
+
+*melakukan refresh dengan flush privileges*
+MariaDB [mysql]> FLUSH PRIVILEGES;
+Query OK, 0 rows affected (0.001 sec)
+
+*merubah hak akses dapat dilakukan dengan 2 cara*
+1. cara memberi semua akses secara general, tidak pada database atau tabel yang spesifik
+
+  a. MariaDB [mysql]> GRANT ALL PRIVILEGES ON *.* TO 'Andi'@'localhost';
+     Query OK, 0 rows affected (0.000 sec)
+
+  b. MariaDB [mysql]> GRANT ALL PRIVILEGES ON *.* TO 'Andi'@'127.0.0.1';
+     Query OK, 0 rows affected (0.000 sec)
+
+2. cara memberi semua akses pada database atau tabel yang spesifik
+   MariaDB [mysql]> GRANT ALL ON belajar.provinsi TO Andi@127.0.0.1;
+   Query OK, 0 rows affected (0.000 sec)
+
+MariaDB [mysql]> FLUSH PRIVILEGES;
+Query OK, 0 rows affected (0.001 sec)
+
+MariaDB [mysql]> exit
+Bye
+
+*dapat melakukan login pada tabel yang telah user yang telah dibuat dan diberi akses*
+bagus@bagus-ThinkPad-T430:~$ /opt/lampp/bin/mysql -u Andi -p
+Enter password: 
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 19
+Server version: 10.4.13-MariaDB Source distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| belajar            |
+| importdata         |
+| indonesia          |
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| test               |
++--------------------+
+8 rows in set (0.000 sec)
+
+MariaDB [(none)]> exit
+Bye
+bagus@bagus-ThinkPad-T430:~$ /opt/lampp/bin/mysql -u Andi -p -h127.0.0.1
+Enter password: 
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 20
+Server version: 10.4.13-MariaDB Source distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> exit
+Bye
+bagus@bagus-ThinkPad-T430:~$ /opt/lampp/bin/mysql -u Bagus -p 
+Enter password: 
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 21
+Server version: 10.4.13-MariaDB Source distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.

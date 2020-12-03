@@ -1,0 +1,34 @@
+*melakukan select data tertentu*
+
+select kota from populasi;
++-----------+
+| kota      |
++-----------+
+| Jakarta   |
+| Surabaya  |
+| Medan     |
+| Bekasi    |
+| Bandung   |
+| Makassar  |
+| Depok     |
+| Semarang  |
+| Tangerang |
+| Palembang |
++-----------+
+
+*melakukan select berulang*
+select kota,kec,kota,penduduk from populasi;
++-----------+------+-----------+----------+
+| kota      | kec  | kota      | penduduk |
++-----------+------+-----------+----------+
+| Jakarta   |   44 | Jakarta   |  9988495 |
+| Surabaya  |   31 | Surabaya  |  2805906 |
+| Medan     |   21 | Medan     |  2465469 |
+| Bekasi    |   12 | Bekasi    |  2381053 |
+| Bandung   |   30 | Bandung   |  2339463 |
+| Makassar  |   14 | Makassar  |  1651146 |
+| Depok     |   11 | Depok     |  1631951 |
+| Semarang  |   16 | Semarang  |  1621384 |
+| Tangerang |   13 | Tangerang |  1566190 |
+| Palembang |   14 | Palembang |  1548064 |
++-----------+------+-----------+----------+

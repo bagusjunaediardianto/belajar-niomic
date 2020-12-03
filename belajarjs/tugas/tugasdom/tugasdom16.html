@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>BELAJAR DOM - Prompt Window</title>
+    </head>
+    <body>
+        <p>Klik Untuk Merubah Warna</p>
+        <button onclick="promptWindow(this)">Ubah Warna</button>
+        <script type="text/javascript">
+            function promptWindow(x){
+                x = prompt("Masukkan warna yang ingin kamu ubah (dalam bahasa inggris(contoh : Yellow))")
+                if(x != null){
+                    document.body.style.backgroundColor = x
+                }
+            }
+        
+        </script>
+    </body>
+</html>

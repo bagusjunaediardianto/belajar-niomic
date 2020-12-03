@@ -1,0 +1,72 @@
+*melakukan select dengan alias/ as*
+select kota as nama_kota from populasi;
++-----------+
+| nama_kota |
++-----------+
+| Jakarta   |
+| Surabaya  |
+| Medan     |
+| Bekasi    |
+| Bandung   |
+| Makassar  |
+| Depok     |
+| Semarang  |
+| Tangerang |
+| Palembang |
++-----------+
+
+select kota as `Nama Kota` from populasi;
++-----------+
+| Nama Kota |
++-----------+
+| Jakarta   |
+| Surabaya  |
+| Medan     |
+| Bekasi    |
+| Bandung   |
+| Makassar  |
+| Depok     |
+| Semarang  |
+| Tangerang |
+| Palembang |
++-----------+
+
+SELECT
+    -> kota as `Nama Kota`,
+    -> luas as `Luas Wilayah`,
+    -> kec as Kecamatan,
+    -> kel as Kelurahan
+    -> from populasi;
++-----------+--------------+-----------+-----------+
+| Nama Kota | Luas Wilayah | Kecamatan | Kelurahan |
++-----------+--------------+-----------+-----------+
+| Jakarta   |       664.01 |        44 |       267 |
+| Surabaya  |       350.54 |        31 |       154 |
+| Medan     |       265.00 |        21 |       151 |
+| Bekasi    |       206.61 |        12 |        56 |
+| Bandung   |       167.67 |        30 |       151 |
+| Makassar  |       199.26 |        14 |       143 |
+| Depok     |       200.29 |        11 |        63 |
+| Semarang  |       373.78 |        16 |       177 |
+| Tangerang |       153.93 |        13 |       104 |
+| Palembang |       369.22 |        14 |       107 |
++-----------+--------------+-----------+-----------+
+
+SELECT
+    -> upper(kota) as `Nama Kota`,
+    -> kec + kel as `Total Kecamatan dan Kelurahan`
+    -> from populasi;
++-----------+-------------------------------+
+| Nama Kota | Total Kecamatan dan Kelurahan |
++-----------+-------------------------------+
+| JAKARTA   |                           311 |
+| SURABAYA  |                           185 |
+| MEDAN     |                           172 |
+| BEKASI    |                            68 |
+| BANDUNG   |                           181 |
+| MAKASSAR  |                           157 |
+| DEPOK     |                            74 |
+| SEMARANG  |                           193 |
+| TANGERANG |                           117 |
+| PALEMBANG |                           121 |
++-----------+-------------------------------+

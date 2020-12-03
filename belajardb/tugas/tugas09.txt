@@ -1,0 +1,128 @@
+*membuat table mahasiswa_niomic*
+1. CREATE table IF NOT EXISTS mahasiswa_niomic(
+    -> nim smallint(10) unsigned PRIMARY KEY NOT NULL auto_increment, 
+    -> nama varchar(50),
+    -> asal varchar(20),
+    -> jurusan varchar(30),
+    -> nilai_uan decimal(6,2))
+    -> auto_increment=17000000;
+Query OK, 0 rows affected (0.047 sec)
+
+*melakukan alter table pada kolom nim karena data smallint memberi error out of range, 
+atau diluar jangkauan daripada tipe data smallint*
+
+ALTER TABLE mahasiswa_niomic modify 
+    -> nim int(10) NOT NULL auto_increment;
+
+Query OK, 0 rows affected (0.047 sec)              
+Records: 0  Duplicates: 0  Warnings: 0
+
+*Melakukan INSERT kembali kedalam table mahasiswa_niomic*
+INSERT mahasiswa_niomic 
+    -> (nama,asal,jurusan,nilai_uan) 
+    -> VALUES ("James Situmorang","Medan","Kedokteran Gigi",341.10), 
+    -> ("Husli Khairan","Jakarta","Akuntansi",288.55), 
+    -> ("Rina Kumala Sari","Jakarta","Akuntansi",337.99), 
+    -> ("Riana Putria","Padang","Kimia",339.20), 
+    -> ("Sari Citra Lestari","Jakarta","Manajemen",310.60), 
+    -> ("Christine Wijaya","Medan","Manajemen",321.74), 
+    -> ("Sandri Fatmala","Bandung","Ilmu Komputer",322.91), 
+    -> ("Bobby Permana","Medan","Ilmu Komputer",280.82), 
+    -> ("Iksan Prayoga","Jakarta","Ilmu Komputer",300.16), 
+    -> ("Rudi Permana","Bandung","Ilmu Komputer",290.44);
+Query OK, 10 rows affected (0.034 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+*Output daripada hasil INSERT table mahasiswa_niomic*
+SELECT * FROM mahasiswa_niomic;
+SELECT * FROM mahasiswa_niomic;
++----------+--------------------+---------+-----------------+-----------+
+| nim      | nama               | asal    | jurusan         | nilai_uan |
++----------+--------------------+---------+-----------------+-----------+
+| 17000000 | James Situmorang   | Medan   | Kedokteran Gigi |    341.10 |
+| 17000001 | Husli Khairan      | Jakarta | Akuntansi       |    288.55 |
+| 17000002 | Rina Kumala Sari   | Jakarta | Akuntansi       |    337.99 |
+| 17000003 | Riana Putria       | Padang  | Kimia           |    339.20 |
+| 17000004 | Sari Citra Lestari | Jakarta | Manajemen       |    310.60 |
+| 17000005 | Christine Wijaya   | Medan   | Manajemen       |    321.74 |
+| 17000006 | Sandri Fatmala     | Bandung | Ilmu Komputer   |    322.91 |
+| 17000007 | Bobby Permana      | Medan   | Ilmu Komputer   |    280.82 |
+| 17000008 | Iksan Prayoga      | Jakarta | Ilmu Komputer   |    300.16 |
+| 17000009 | Rudi Permana       | Bandung | Ilmu Komputer   |    290.44 |
++----------+--------------------+---------+-----------------+-----------+
+
+2. UPDATE mahasiswa_niomic
+    -> SET nama="Irfan Arifin",
+    -> asal="Lampung"
+    -> WHERE nim=17000000;
+Query OK, 1 row affected (0.038 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [belajar]> SELECT * FROM mahasiswa_niomic;
++----------+--------------------+---------+-----------------+-----------+
+| nim      | nama               | asal    | jurusan         | nilai_uan |
++----------+--------------------+---------+-----------------+-----------+
+| 17000000 | Irfan Arifin       | Lampung | Kedokteran Gigi |    341.10 |
+| 17000001 | Husli Khairan      | Jakarta | Akuntansi       |    288.55 |
+| 17000002 | Rina Kumala Sari   | Jakarta | Akuntansi       |    337.99 |
+| 17000003 | Riana Putria       | Padang  | Kimia           |    339.20 |
+| 17000004 | Sari Citra Lestari | Jakarta | Manajemen       |    310.60 |
+| 17000005 | Christine Wijaya   | Medan   | Manajemen       |    321.74 |
+| 17000006 | Sandri Fatmala     | Bandung | Ilmu Komputer   |    322.91 |
+| 17000007 | Bobby Permana      | Medan   | Ilmu Komputer   |    280.82 |
+| 17000008 | Iksan Prayoga      | Jakarta | Ilmu Komputer   |    300.16 |
+| 17000009 | Rudi Permana       | Bandung | Ilmu Komputer   |    290.44 |
++----------+--------------------+---------+-----------------+-----------+
+
+3. UPDATE IGNORE mahasiswa_niomic
+    -> SET nilai_uan=5000
+    -> WHERE nama="Husli Khairan"
+    -> ;
+Query OK, 1 row affected (0.044 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+SELECT * FROM mahasiswa_niomic;
++----------+--------------------+---------+-----------------+-----------+
+| nim      | nama               | asal    | jurusan         | nilai_uan |
++----------+--------------------+---------+-----------------+-----------+
+| 17000000 | Irfan Arifin       | Lampung | Kedokteran Gigi |    341.10 |
+| 17000001 | Husli Khairan      | Jakarta | Akuntansi       |   5000.00 |
+| 17000002 | Rina Kumala Sari   | Jakarta | Akuntansi       |    337.99 |
+| 17000003 | Riana Putria       | Padang  | Kimia           |    339.20 |
+| 17000004 | Sari Citra Lestari | Jakarta | Manajemen       |    310.60 |
+| 17000005 | Christine Wijaya   | Medan   | Manajemen       |    321.74 |
+| 17000006 | Sandri Fatmala     | Bandung | Ilmu Komputer   |    322.91 |
+| 17000007 | Bobby Permana      | Medan   | Ilmu Komputer   |    280.82 |
+| 17000008 | Iksan Prayoga      | Jakarta | Ilmu Komputer   |    300.16 |
+| 17000009 | Rudi Permana       | Bandung | Ilmu Komputer   |    290.44 |
++----------+--------------------+---------+-----------------+-----------+
+
+4.
+REPLACE mahasiswa_niomic VALUES
+    -> (17000012,"Lidya Fitriana","Surabaya","Kimia",290.54);
+Query OK, 1 row affected (0.046 sec)
+ 
+atau 
+
+REPLACE INTO mahasiswa_niomic VALUES
+    -> (17000012,"Lidya Fitriana","Surabaya","Kimia",290.54);
+Query OK, 1 row affected (0.046 sec)
+
+
+SELECT * FROM mahasiswa_niomic;
++----------+--------------------+----------+-----------------+-----------+
+| nim      | nama               | asal     | jurusan         | nilai_uan |
++----------+--------------------+----------+-----------------+-----------+
+| 17000000 | Irfan Arifin       | Lampung  | Kedokteran Gigi |    341.10 |
+| 17000001 | Husli Khairan      | Jakarta  | Akuntansi       |   5000.00 |
+| 17000002 | Rina Kumala Sari   | Jakarta  | Akuntansi       |    337.99 |
+| 17000003 | Riana Putria       | Padang   | Kimia           |    339.20 |
+| 17000004 | Sari Citra Lestari | Jakarta  | Manajemen       |    310.60 |
+| 17000005 | Christine Wijaya   | Medan    | Manajemen       |    321.74 |
+| 17000006 | Sandri Fatmala     | Bandung  | Ilmu Komputer   |    322.91 |
+| 17000007 | Bobby Permana      | Medan    | Ilmu Komputer   |    280.82 |
+| 17000008 | Iksan Prayoga      | Jakarta  | Ilmu Komputer   |    300.16 |
+| 17000009 | Rudi Permana       | Bandung  | Ilmu Komputer   |    290.44 |
+| 17000012 | Lidya Fitriana     | Surabaya | Kimia           |    290.54 |
++----------+--------------------+----------+-----------------+-----------+
+11 rows in set (0.001 sec)

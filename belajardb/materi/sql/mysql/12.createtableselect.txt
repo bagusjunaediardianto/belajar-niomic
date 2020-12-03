@@ -1,0 +1,5 @@
+*membuat tabel duplikat*  
+create table contoh_copy_2 select * from contoh_tabel_asal;
+
+*membuat table duplikat dengan hanya memilih kolom tertentu*
+create table contoh_copy_3 select a,c from contoh_tabel_asal;

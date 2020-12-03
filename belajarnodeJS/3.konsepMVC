@@ -1,0 +1,8 @@
+- membuat aplikasi modern didasarkan pada 3 
+  komponen utama, yaitu : 
+  * Model
+  * View
+  * Controller
+atau lumrah disebut dengan MVC
+- controller bertugas untuk mengatur apa yang akan dilakukan Model 
+  dan view mana serta apa saja yang harus ditampilkan 

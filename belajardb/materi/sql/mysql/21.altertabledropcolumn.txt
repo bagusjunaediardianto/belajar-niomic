@@ -1,0 +1,31 @@
+*menampilkan table*
+desc contoh_tabel_1;
+
+*melakukan penghapusan kolom*
+alter table contoh_tabel_1 drop column g;
+atau
+alter table contoh_tabel_1 drop g;
+
+*melakukan penghapusan banyak kolom*
+alter table contoh_tabel_1
+    -> drop c,
+    -> drop d,
+    -> drop e,
+    -> drop f;
+
+atau
+
+alter table contoh_tabel_1
+    -> drop column c,
+    -> drop column d,
+    -> drop column e,
+    -> drop column f;
+
+*hasil dari penghapusan kolom*
+desc contoh_tabel_1;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| a     | int(11)     | NO   | PRI | NULL    | auto_increment |
+| b     | varchar(20) | YES  |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+

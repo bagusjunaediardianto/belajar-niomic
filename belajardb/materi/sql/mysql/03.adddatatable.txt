@@ -1,0 +1,29 @@
+*Menambahkan data ke Table*
+
+*membuat struktur Table*
+CREATE TABLE IF NOT EXISTS provinsi
+    -> (id_prov INT, nama_prov VARCHAR(100),ibu_kota VARCHAR(100),populasi INT,tanggal_diresmikan DATE);
+
+*Memasukkan data ke dalam table*
+INSERT INTO provinsi values
+    -> (1,"Jakarta","Jakarta",20000000,'1997-08-28');
+
+*Memasukkan data banyak baris ke dalam table*
+INSERT INTO provinsi values
+    -> (
+    -> 3,"JABAR","Bandung",2000000,'1945-12-19'),
+    -> (4,"Banten","Serang",2000000,'1999-05-04'),
+    -> (5,"Jateng","Semarang",1500000,'2000-07-01');
+
+*Memasukkan data banyak baris ke dalam table dengan menyebutkan kolom terlebih dahulu*
+INSERT INTO provinsi (nama_prov,tanggal_diresmikan,ibu_kota,populasi,id_prov) VALUES ( "Kepulauan Riau",'1998-01-28',"Tanjung Pinang",1250000,6);
+
+*dengan data null*
+INSERT INTO provinsi
+    -> (nama_prov,ibu_kota,id_prov)
+    -> VALUES (
+    -> "Papua BARAT","MANOKWARI",5);
+
+
+*menampilkan keseluruhan isi table*
+SELECT * FROM provinsi

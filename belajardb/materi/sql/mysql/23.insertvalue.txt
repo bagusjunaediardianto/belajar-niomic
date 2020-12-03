@@ -1,0 +1,82 @@
+*INSERT diikuti INTO merupakan perintah yang bersifat Optional
+ artinya boleh dipakai, boleh juga tidak
+*
+
+*membuat table*
+CREATE TABLE IF NOT EXISTS contoh_insert_1(
+    -> a int,
+    -> b varchar(10),
+    -> c date
+    -> );
+
+*melakukan insert tanpa perintah INTO*
+INSERT contoh_insert_1 VALUES (10,"merah",20180101);
+atau 
+INSERT INTO contoh_insert_1 VALUES (11,"biru",20190101);
+
+*menampilkan hasil insert*
+SELECT * FROM contoh_insert_1;
++------+-------+------------+
+| a    | b     | c          |
++------+-------+------------+
+|   10 | merah | 2018-01-01 |
+|   11 | biru  | 2019-01-01 |
++------+-------+------------+
+
+*melakukan insert banyak baris*
+INSERT contoh_insert_1 VALUES
+    -> (12,"putih",20200101),
+    -> (13,"hitam",20190102),
+    -> (14,"hijau",20180629);
+
+atau
+
+INSERT INTO contoh_insert_1 VAlUES
+    -> (15,"jingga",20180702),
+    -> (16,"kuning",20170208),
+    -> (17,"ungu",20180803);
+
+*menampilkan hasil insert*
+SELECT * FROM contoh_insert_1;
++------+--------+------------+
+| a    | b      | c          |
++------+--------+------------+
+|   10 | merah  | 2018-01-01 |
+|   11 | biru   | 2019-01-01 |
+|   12 | putih  | 2020-01-01 |
+|   13 | hitam  | 2019-01-02 |
+|   14 | hijau  | 2018-06-29 |
+|   15 | jingga | 2018-07-02 |
+|   16 | kuning | 2017-02-08 |
+|   17 | ungu   | 2018-08-03 |
++------+--------+------------+
+
+*melakukan insert ke dalam kolom tertentu*
+INSERT contoh_insert_1 (a) VALUES (18);
+
+atau
+
+INSERT INTO contoh_insert_1 (a) VALUES (18);
+
+*menampilkan hasil insert*
+SELECT * FROM contoh_insert_1;
+
+atau
+menampilkan hasil dari kolom tertentu
+SELECT a,b FROM contoh_insert_1;
++------+--------+
+| a    | b      |
++------+--------+
+|   10 | merah  |
+|   11 | biru   |
+|   12 | putih  |
+|   13 | hitam  |
+|   14 | hijau  |
+|   15 | jingga |
+|   16 | kuning |
+|   17 | ungu   |
+|   18 | NULL   |
++------+--------+
+
+
+

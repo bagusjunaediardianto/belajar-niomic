@@ -1,0 +1,33 @@
+MySQL Stored Procedure dan Stored Function
+
+Stored procedure dan stored function adalah kode program bahasa SQL yang disimpan ke dalam database. 
+Keduanya berfungsi sebagaimana prosedur dan function pada bahasa pemrograman umum.  
+
+Di dalam teori bahasa pemrograman komputer, 
+procedure dan function adalah kumpulan kode program yang terpisah dari program utama. 
+Procedure dan function disebut juga sebagai subroutine, 
+yang dalam bahasa indonesia di translate sebagai subrutin.  
+
+Berbagai subroutine nantinya digabung untuk menjadi program akhir. 
+Inilah konsep dari apa yang dikenal sebagai pemrograman prosedural. 
+Jenis lain adalah pemrograman berbasis object, 
+dimana berbagai object saling bergabung menjadi program utama.  
+
+Berikut perbedaan antara procedure dan function di dalam bahasa SQL:
+
+    a. Procedure tidak harus mengembalikan sebuah nilai, sedangkan function harus mengembalikan nilai (melalui perintah RETURN).  
+    b. Procedure harus dipanggil menggunakan perintah CALL, sedangkan function bisa dipakai di dalam query seperti SELECT atau dalam kondisi WHERE.  
+    c. Procedure memiliki input/output parameter, sedangkan function hanya memiliki input parameter saja.  
+
+Berikut kekurangan jika menggunakan stored procedure dan stored function:  
+
+    a. Pengelolaan aplikasi menjadi lebih rumit  
+    b. Programming di SQL sangat terbatas  
+    c. Butuh resources yang besar  
+
+Di lain pihak, berikut keunggulan jika menggunakan stored procedure dan stored function:  
+
+    a. Untuk jenis aplikasi tertentu, bisa lebih efisien  
+    b. Mengurangi beban kerja dari web server  
+    c. Akan berguna jika menggunakan trigger  
+

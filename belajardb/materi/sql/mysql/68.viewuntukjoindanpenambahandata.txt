@@ -1,0 +1,79 @@
+**
+1.membuat View detail_mhs
+MariaDB [belajar]> CREATE OR REPLACE VIEW detail_mhs AS
+    -> SELECT nama,nim,mahasiswa.jurusan,nama_dekan
+    -> FROM mahasiswa
+    -> INNER JOIN universitas
+    -> WHERE mahasiswa.jurusan = universitas.jurusan
+    -> ORDER BY nama ASC;
+Query OK, 0 rows affected (0.007 sec)
+
+MariaDB [belajar]> SELECT * FROM detail_mhs;
++------------------+----------+---------------+----------------------+
+| nama             | nim      | jurusan       | nama_dekan           |
++------------------+----------+---------------+----------------------+
+| Bobby Permana    | 17140120 | Ilmu Komputer | Dr. Syahrial, M.Kom. |
+| Husli Khairan    | 17080225 | Akuntansi     | Maya Fitrianti, M.M. |
+| Ikhsan Prayoga   | 17140133 | Ilmu Komputer | Dr. Syahrial, M.Kom. |
+| Riana Putria     | 17090113 | Kimia         | Prof. Mulyono, M.Sc. |
+| Rina Kumala Sari | 17080305 | Akuntansi     | Maya Fitrianti, M.M. |
+| Rudi Permana     | 17140143 | Ilmu Komputer | Dr. Syahrial, M.Kom. |
+| Sandri Fatmala   | 17140119 | Ilmu Komputer | Dr. Syahrial, M.Kom. |
++------------------+----------+---------------+----------------------+
+7 rows in set (0.001 sec)
+
+*membuat view detail_mhs_format dari table view detail_mhs
+MariaDB [belajar]> CREATE OR REPLACE VIEW detail_mhs_format AS
+    -> SELECT
+    -> ucase(nama) as 'Nama Mahasiswa'
+    -> ,concat(jurusan,'(',nama_dekan,')') as 'Nama Jurusan dan Dekan'
+    -> FROM detail_mhs;
+Query OK, 0 rows affected (0.026 sec)
+
+*tampilan pada view detail_mhs_format*
+MariaDB [belajar]> SELECT * FROM detail_mhs_format;
++------------------+-------------------------------------+
+| Nama Mahasiswa   | Nama Jurusan dan Dekan              |
++------------------+-------------------------------------+
+| HUSLI KHAIRAN    | Akuntansi(Maya Fitrianti, M.M.)     |
+| RINA KUMALA SARI | Akuntansi(Maya Fitrianti, M.M.)     |
+| RIANA PUTRIA     | Kimia(Prof. Mulyono, M.Sc.)         |
+| SANDRI FATMALA   | Ilmu Komputer(Dr. Syahrial, M.Kom.) |
+| BOBBY PERMANA    | Ilmu Komputer(Dr. Syahrial, M.Kom.) |
+| IKHSAN PRAYOGA   | Ilmu Komputer(Dr. Syahrial, M.Kom.) |
+| RUDI PERMANA     | Ilmu Komputer(Dr. Syahrial, M.Kom.) |
++------------------+-------------------------------------+
+7 rows in set (0.001 sec)
+
+*mengubah isi table origin dan melihat hasil perubahannya di tabel origin dan view*
+MariaDB [belajar]> UPDATE universitas SET nama_dekan = 'Prof.Rika Susilawati M.Kom' WHERE jurusan = 'Ilmu Komputer';
+Query OK, 1 row affected (0.006 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [belajar]> SELECT * FROM detail_mhs;
++------------------+----------+---------------+----------------------------+
+| nama             | nim      | jurusan       | nama_dekan                 |
++------------------+----------+---------------+----------------------------+
+| Bobby Permana    | 17140120 | Ilmu Komputer | Prof.Rika Susilawati M.Kom |
+| Husli Khairan    | 17080225 | Akuntansi     | Maya Fitrianti, M.M.       |
+| Ikhsan Prayoga   | 17140133 | Ilmu Komputer | Prof.Rika Susilawati M.Kom |
+| Riana Putria     | 17090113 | Kimia         | Prof. Mulyono, M.Sc.       |
+| Rina Kumala Sari | 17080305 | Akuntansi     | Maya Fitrianti, M.M.       |
+| Rudi Permana     | 17140143 | Ilmu Komputer | Prof.Rika Susilawati M.Kom |
+| Sandri Fatmala   | 17140119 | Ilmu Komputer | Prof.Rika Susilawati M.Kom |
++------------------+----------+---------------+----------------------------+
+7 rows in set (0.001 sec)
+
+MariaDB [belajar]> SELECT * FROM detail_mhs_format;
++------------------+-------------------------------------------+
+| Nama Mahasiswa   | Nama Jurusan dan Dekan                    |
++------------------+-------------------------------------------+
+| HUSLI KHAIRAN    | Akuntansi(Maya Fitrianti, M.M.)           |
+| RINA KUMALA SARI | Akuntansi(Maya Fitrianti, M.M.)           |
+| RIANA PUTRIA     | Kimia(Prof. Mulyono, M.Sc.)               |
+| SANDRI FATMALA   | Ilmu Komputer(Prof.Rika Susilawati M.Kom) |
+| BOBBY PERMANA    | Ilmu Komputer(Prof.Rika Susilawati M.Kom) |
+| IKHSAN PRAYOGA   | Ilmu Komputer(Prof.Rika Susilawati M.Kom) |
+| RUDI PERMANA     | Ilmu Komputer(Prof.Rika Susilawati M.Kom) |
++------------------+-------------------------------------------+
+7 rows in set (0.001 sec)

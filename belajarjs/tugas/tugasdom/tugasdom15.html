@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>TUGAS DOM</title>
+    </head>
+    <body>
+        <p id="href"></p>
+
+        <button type="button" onclick="hrefLocation(this)">Show Location</button>
+        <script type="text/javascript">
+            function hrefLocation(x){
+                x = location.href
+                document.getElementById("href").innerHTML = x
+            }
+        </script>
+    </body>
+</html>

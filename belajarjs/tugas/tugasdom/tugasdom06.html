@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>BELAJAR DOM</title>
+    </head>
+    <body>
+        <h2>Login</h2>
+        <p class="departement">- Departement Of Finance -</p>
+        <input type="email" id="email" value="email"/> <br/>
+        <input type="text" id="user" value="username"/> <br/>
+        <input type="password" class="passForm" value="password"/> <br/>
+        <button type="button" name="button" onclick="jalanScript()">Jalan</button>
+        <script type="text/javascript">
+            var jalanScript = ()=> {
+                console.log(document.getElementById('email'))
+                console.log(document.getElementsByClassName('passForm'))
+                console.log(document.getElementsByTagName('h2'))
+                console.log(document.querySelector('.passForm'))
+                
+            }
+        </script>
+    </body>
+</html>

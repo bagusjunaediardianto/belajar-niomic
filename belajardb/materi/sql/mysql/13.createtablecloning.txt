@@ -1,0 +1,12 @@
+*membuat table dengan like*
+create table contoh_copy_4 like contoh_tabel_asal;
+
+*melakukan insert dengan select ke tabel asal*
+insert into contoh_copy_4 select * from contoh_tabel_asal;
+
+*menampilkan data dari tabel hasil kloningan*
+select * from contoh_copy_4;
+
+*menginsert ke tabel hasil kloningan*
+INSERT into contoh_copy_4 VALUES (
+    -> 0,"ungu",20190104);  

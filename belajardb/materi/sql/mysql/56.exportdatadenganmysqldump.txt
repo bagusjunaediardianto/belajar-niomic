@@ -1,0 +1,7 @@
+pada materi sebelumnya kita telah belajar melakukan export data dengan select into outfile dengan 
+query select into outfile, nah sekarang kita lakukan dengan mysqldump
+
+*lakukan perintah berikut, atau menyesuaikan pada dimana direktori mysqldump disimpan*
+/opt/lampp/bin/mysqldump -u root belajar provinsi > backup_provinsi_b.sql
+
+*hasilnya dapat dilihat pada /data/backup_provinsi_b.sql*

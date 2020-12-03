@@ -1,0 +1,91 @@
+1.membuat db importdata
+CREATE DATABASE IF NOT EXISTS importdata;
+Query OK, 1 row affected (0.004 sec)
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| belajar            |
+| importdata         |
+| indonesia          |
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| test               |
++--------------------+
+8 rows in set (0.001 sec)
+
+2. menggunakan db importdata
+MariaDB [(none)]> use importdata
+Database changed
+MariaDB [importdata]> SOURCE /home/bagus/Documents/1.belajar-niomic/belajardb/tugas/data/buahbuahan.sql
+Query OK, 0 rows affected (0.000 sec)
+
+Query OK, 0 rows affected (0.000 sec)
+
+Query OK, 0 rows affected (0.000 sec)
+
+Query OK, 0 rows affected (0.000 sec)
+
+Query OK, 0 rows affected (0.000 sec)
+
+Query OK, 0 rows affected (0.000 sec)
+
+Query OK, 0 rows affected (0.000 sec)
+
+Query OK, 0 rows affected (0.000 sec)
+
+Query OK, 0 rows affected (0.050 sec)
+
+Query OK, 12 rows affected (0.006 sec)
+Records: 12  Duplicates: 0  Warnings: 0
+
+Query OK, 0 rows affected (0.044 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+Query OK, 12 rows affected (0.045 sec)             
+Records: 12  Duplicates: 0  Warnings: 0
+
+Query OK, 0 rows affected (0.000 sec)
+
+Query OK, 0 rows affected (0.000 sec)
+
+Query OK, 0 rows affected (0.000 sec)
+
+Query OK, 0 rows affected (0.000 sec)
+
+3. mengecek apakah table tersebut sudah sukses diimport
+SELECT * FROM buahbuahan;
+SELECT * FROM buahbuahan;
++---------+-----------+---------------------+
+| id_buah | nama_buah | varietas            |
++---------+-----------+---------------------+
+|       1 | Apple     | Red Delicious       |
+|       2 | Pear      | Comice              |
+|       3 | Orange    | Navel               |
+|       4 | Pear      | Bartlett            |
+|       5 | Orange    | Blood               |
+|       6 | Apple     | Cox's Orange Pippin |
+|       7 | Apple     | Granny Smith        |
+|       8 | Pear      | Anjou               |
+|       9 | Orange    | Valencia            |
+|      10 | Banana    | Plantain            |
+|      11 | Banana    | Burro               |
+|      12 | Banana    | Cavendish           |
++---------+-----------+---------------------+
+
+4. mengecek struktur table
+SHOW CREATE TABLE buahbuahan;
++------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table      | Create Table                                                                                                                                                                                                                                |
++------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| buahbuahan | CREATE TABLE `buahbuahan` (
+  `id_buah` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `nama_buah` varchar(50) NOT NULL,
+  `varietas` varchar(50) NOT NULL,
+  PRIMARY KEY (`id_buah`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1 |
++------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.000 sec)

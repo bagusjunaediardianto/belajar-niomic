@@ -1,0 +1,9 @@
+*membuat tabel dengan charset dan collation*
+create table contoh_charset_3 ( 
+    -> a int, 
+    -> b varchar(10)
+    -> ) character set utf8 collate utf8_german2_ci;
+
+*menampilkan struktur tabel yang telah dibuat*
+show create table contoh_charset_3;
+

@@ -1,0 +1,87 @@
+*membuat mysql view*
+-mysqlview dibuat dari query SELECT, apabila query berubah, maka tampilan juga akan berubah
+
+kegunaan dari query VIEW adalah : 
+- menyederhanakan query yang kompleks
+- menyembunyikan struktur asli tabel
+- membuat kolom komputasi
+- menjaga backward kompatibility
+
+*membuat view*
+
+MariaDB [belajar]> CREATE VIEW detail_mhs AS
+    -> SELECT nama,nim,jurusan FROM mahasiswa ORDER BY nama ASC;
+Query OK, 0 rows affected (0.006 sec)
+
+MariaDB [belajar]> SELECT * FROM detail_mhs;
++------------------+----------+---------------+
+| nama             | nim      | jurusan       |
++------------------+----------+---------------+
+| Bobby Permana    | 17140120 | Ilmu Komputer |
+| Husli Khairan    | 17080225 | Akuntansi     |
+| Ikhsan Prayoga   | 17140133 | Ilmu Komputer |
+| Riana Putria     | 17090113 | Kimia         |
+| Rina Kumala Sari | 17080305 | Akuntansi     |
+| Rudi Permana     | 17140143 | Ilmu Komputer |
+| Sandri Fatmala   | 17140119 | Ilmu Komputer |
++------------------+----------+---------------+
+7 rows in set (0.001 sec)
+
+*mengubah struktur view*
+
+MariaDB [belajar]> ALTER VIEW detail_mhs AS
+    -> SELECT nim,nama,jurusan FROM mahasiswa ORDER BY nim ASC;
+Query OK, 0 rows affected (0.007 sec)
+
+MariaDB [belajar]> SELECT * FROM detail_mhs;
++----------+------------------+---------------+
+| nim      | nama             | jurusan       |
++----------+------------------+---------------+
+| 17080225 | Husli Khairan    | Akuntansi     |
+| 17080305 | Rina Kumala Sari | Akuntansi     |
+| 17090113 | Riana Putria     | Kimia         |
+| 17140119 | Sandri Fatmala   | Ilmu Komputer |
+| 17140120 | Bobby Permana    | Ilmu Komputer |
+| 17140133 | Ikhsan Prayoga   | Ilmu Komputer |
+| 17140143 | Rudi Permana     | Ilmu Komputer |
++----------+------------------+---------------+
+7 rows in set (0.001 sec)
+
+*mengubah atau membuat view dengan perintah CREATE or REPLACE*
+MariaDB [belajar]> CREATE OR REPLACE VIEW detail_mhs AS
+    -> SELECT nama,jurusan FROM mahasiswa;
+Query OK, 0 rows affected (0.006 sec)
+
+MariaDB [belajar]> SELECT * FROM detail_mhs;
++------------------+---------------+
+| nama             | jurusan       |
++------------------+---------------+
+| Husli Khairan    | Akuntansi     |
+| Rina Kumala Sari | Akuntansi     |
+| Riana Putria     | Kimia         |
+| Sandri Fatmala   | Ilmu Komputer |
+| Bobby Permana    | Ilmu Komputer |
+| Ikhsan Prayoga   | Ilmu Komputer |
+| Rudi Permana     | Ilmu Komputer |
++------------------+---------------+
+7 rows in set (0.001 sec)
+
+*menghapus view*
+MariaDB [belajar]> DROP VIEW IF EXISTS detail_mhs;
+Query OK, 0 rows affected (0.000 sec)
+
+MariaDB [belajar]> DROP VIEW IF EXISTS detail_mhs;
+Query OK, 0 rows affected, 1 warning (0.000 sec)
+
+MariaDB [belajar]> show warnings;
++-------+------+------------------------------------+
+| Level | Code | Message                            |
++-------+------+------------------------------------+
+| Note  | 4092 | Unknown VIEW: 'belajar.detail_mhs' |
++-------+------+------------------------------------+
+1 row in set (0.000 sec)
+
+*tidak dapat membuat view dengan nama table yang sama*
+MariaDB [belajar]> CREATE OR REPLACE VIEW universitas AS
+    -> SELECT nama,nim,jurusan FROM universitas;
+ERROR 1054 (42S22): Unknown column 'nama' in 'field list'

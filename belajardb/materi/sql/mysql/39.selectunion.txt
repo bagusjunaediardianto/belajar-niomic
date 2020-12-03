@@ -1,0 +1,102 @@
+*menggabungan data ke dalam union*
+SELECT kota from populasi
+    -> UNION
+    -> SELECT ibu_kota FROM provinsi;
++----------------+
+| kota           |
++----------------+
+| Jakarta        |
+| Surabaya       |
+| Medan          |
+| Bekasi         |
+| Bandung        |
+| Makassar       |
+| Depok          |
+| Semarang       |
+| Tangerang      |
+| Palembang      |
+| Serang         |
+| Tanjung Pinang |
+| Manokwari      |
++----------------+
+
+penjelasan diatas adalah sebagai berikut :
+kolom kota dalam tabel populasi     kolom ibu_kota dalam tabel provinsi
+1. Jakarta x                        1. Jakarta x
+2. Surabaya x                       2. SURABAYA x
+3. Medan                            3. Bandung x
+4. Bekasi                           4. Serang
+5. Bandung x                        5. Semarang x
+6. Makassar                         6. Tanjung Pinang
+7. Depok                            7. Manokwari   
+8. Semarang x
+9. Tangerang
+10. Palembang
+
+Pada UNION terlihat, data yang memiliki isi sama akan tampil sekali, jika data berbeda, maka akan tampil seluruhnya
+
+*nama kolom diambil dari query baris pertama, bisa juga diubah dengan AS*
+SELECT upper(kota) as `Kota Besar` FROM populasi
+    -> UNION
+    -> SELECT upper(ibu_kota) FROM provinsi;
++----------------+
+| Kota Besar     |
++----------------+
+| JAKARTA        |
+| SURABAYA       |
+| MEDAN          |
+| BEKASI         |
+| BANDUNG        |
+| MAKASSAR       |
+| DEPOK          |
+| SEMARANG       |
+| TANGERANG      |
+| PALEMBANG      |
+| SERANG         |
+| TANJUNG PINANG |
+| MANOKWARI      |
++----------------+
+
+SELECT kota FROM populasi
+    -> UNION DISTINCT
+    -> SELECT ibu_kota FROM provinsi;
++----------------+
+| kota           |
++----------------+
+| Jakarta        |
+| Surabaya       |
+| Medan          |
+| Bekasi         |
+| Bandung        |
+| Makassar       |
+| Depok          |
+| Semarang       |
+| Tangerang      |
+| Palembang      |
+| Serang         |
+| Tanjung Pinang |
+| Manokwari      |
++----------------+
+
+*mengurutkan nama kota secara ascending*
+SELECT kota FROM populasi
+    -> UNION DISTINCT
+    -> SELECT ibu_kota FROM provinsi
+    -> ORDER BY kota ASC;
++----------------+
+| kota           |
++----------------+
+| Bandung        |
+| Bekasi         |
+| Depok          |
+| Jakarta        |
+| Makassar       |
+| Manokwari      |
+| Medan          |
+| Palembang      |
+| Semarang       |
+| Serang         |
+| Surabaya       |
+| Tangerang      |
+| Tanjung Pinang |
++----------------+

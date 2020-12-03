@@ -1,0 +1,17 @@
+Query LOAD DATA INFILE yang dijalankan sebelum ini akan mencari file di sistem Server,
+yakni di komputer dimana file mysqld.exe dijalankan. 
+MySQL menyediakan query opsional LOAD DATA LOCAL INFILE untuk mencari file di komputer client. 
+File ini nantinya dikirim ke
+server baru kemudian diinput ke dalam tabel.  
+Karena kita menjalankan MySQL server dan MySQL client di komputer yang sama, 
+perbedaan antara perintah LOAD DATA INFILE dengan LOAD DATA LOCAL INFILE tidak begitu berpengaruh.
+Bedanya baru terlihat jika kita menggunakan alamat relatif pada saat pembacaan file. 
+Query LOAD DATA INFILE berpatokan dari tempat folder database berada. 
+Sedangkan query LOAD DATA LOCAL INFILE berpatokan dari folder dimana mysql.exe berada. 
+Karena saya menggunakan MariaDB bawaan XAMPP, 
+lokasi dari mysql.exe ada di: C:\xampp\mysql\bin.
+
+
+Sebagai praktek, buat file teks bernama nama_provinsi_c.txt yang disimpan ke dalam folder
+
+LOAD DATA LOCAL INFILE "nama_provinsi_c.txt" INTO TABLE provinsi;

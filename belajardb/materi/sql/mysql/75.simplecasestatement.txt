@@ -1,0 +1,76 @@
+CASE statement adalah bentuk lain dari percabangan kondisi IF ELSEIF ELSE. 
+Biasanya, struktur percabangan CASE hanya cocok untuk kondisi yang sederhana. 
+Akan tetapi bahasa SQL juga mendukung kondisi CASE kompleks dengan format yang sedikit berbeda.
+
+1. membuat prosedur baru
+MariaDB [belajar]> DELIMITER $$
+MariaDB [belajar]> CREATE PROCEDURE penilaian (nilai_ip INT)
+    -> BEGIN
+    -> CASE nilai_ip
+    -> WHEN 1 THEN
+    -> SELECT 'anda tidak niat kuliah';
+    -> WHEN 2 THEN
+    -> SELECT 'anda masih tidak fokus';
+    -> WHEN 3 THEN
+    -> SELECT 'anda harus berusaha lebih baik lagi';
+    -> WHEN 4 THEN
+    -> SELECT 'mantap bosku, membanggakan';
+    -> ELSE
+    -> SELECT 'undefined';
+    -> END CASE;
+    -> END$$
+Query OK, 0 rows affected (0.006 sec)
+
+2. memanggil prosedur dengan parameter
+MariaDB [belajar]> DELIMITER ;
+MariaDB [belajar]> CALL penilaian(1);
++------------------------+
+| anda tidak niat kuliah |
++------------------------+
+| anda tidak niat kuliah |
++------------------------+
+1 row in set (0.001 sec)
+
+Query OK, 0 rows affected (0.001 sec)
+
+MariaDB [belajar]> CALL penilaian(2);
++------------------------+
+| anda masih tidak fokus |
++------------------------+
+| anda masih tidak fokus |
++------------------------+
+1 row in set (0.000 sec)
+
+Query OK, 0 rows affected (0.000 sec)
+
+MariaDB [belajar]> CALL penilaian(3)
+    -> ;
++-------------------------------------+
+| anda harus berusaha lebih baik lagi |
++-------------------------------------+
+| anda harus berusaha lebih baik lagi |
++-------------------------------------+
+1 row in set (0.000 sec)
+
+Query OK, 0 rows affected (0.000 sec)
+
+MariaDB [belajar]> CALL penilaian(4);
++----------------------------+
+| mantap bosku, membanggakan |
++----------------------------+
+| mantap bosku, membanggakan |
++----------------------------+
+1 row in set (0.000 sec)
+
+Query OK, 0 rows affected (0.000 sec)
+
+3. mengembalikan nilai else apabila nilai diluar jangkauan parameter
+MariaDB [belajar]> CALL penilaian(5);
++-----------+
+| undefined |
++-----------+
+| undefined |
++-----------+
+1 row in set (0.000 sec)
+
+Query OK, 0 rows affected (0.000 sec)

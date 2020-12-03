@@ -1,0 +1,61 @@
+
+1. mengecek User, Host, Password yang terdaftar
+SELECT User, Host, Password from user;
++------+-----------+----------+
+| User | Host      | Password |
++------+-----------+----------+
+| root | localhost |          |
+| root | 127.0.0.1 |          |
+| root | ::1       |          |
+|      | localhost |          |
+| pma  | localhost |          |
++------+-----------+----------+
+5 rows in set (0.001 sec)
+
+2. membuat user baru
+MariaDB [mysql]> CREATE USER 'Bagus';
+Query OK, 0 rows affected (0.004 sec)
+
+3. mengecek kembali User, Host, Password yang terdaftar
+MariaDB [mysql]> SELECT User, Host, Password from user;
++-------+-----------+----------+
+| User  | Host      | Password |
++-------+-----------+----------+
+| root  | localhost |          |
+| Bagus | %         |          |
+| root  | 127.0.0.1 |          |
+| root  | ::1       |          |
+|       | localhost |          |
+| pma   | localhost |          |
++-------+-----------+----------+
+6 rows in set (0.001 sec)
+
+4. menghapus user dapat dilakukan dengan 2 cara
+- DROP USER 'Bagus';
+- DELETE FROM user where User = 'Bagus';
+
+*Bedanya dari kedua cara tsb *, 
+ - jika dilakukan create user baru dengan user yang sama setelah dilakukan perintah pertama,
+   maka perintah tsb dapat di eksekusi, 
+ - sedangkan jika dilakukan create user baru dengan user yang sama setelah dilakukan perintah kedua,
+   maka perintah tsb tidak dapat di eksekusi (Operation Failed). 
+   Agar query kedua dapat membuat user baru dengan user yang sama, perlu dilakukan perintah FLUSH PRIVILEGES
+
+5. mengubah nama user
+   RENAME USER 'Budi' TO 'Andi';
+Query OK, 0 rows affected (0.001 sec)
+
+MariaDB [mysql]> SELECT User,Host,Password from user;
++-------+-----------+----------+
+| User  | Host      | Password |
++-------+-----------+----------+
+| root  | localhost |          |
+| Andi  | %         |          |
+| root  | 127.0.0.1 |          |
+| root  | ::1       |          |
+|       | localhost |          |
+| Bagus | %         |          |
+| pma   | localhost |          |
++-------+-----------+----------+
+7 rows in set (0.001 sec)
+

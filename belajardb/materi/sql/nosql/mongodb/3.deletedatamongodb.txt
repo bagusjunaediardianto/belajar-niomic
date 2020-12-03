@@ -1,0 +1,36 @@
+Proses delete data pada mongoDB pun juga sangat mudah. 
+Tentukan data yang dihapus berdasarkan key apa dengan nilai apa. 
+Contoh syntax yang digunakan untuk menghapus data dalam koleksi (collection) 
+mongoDB adalah sebagai berikut :
+
+> db.mahasiswa.find().pretty()
+{
+	"_id" : ObjectId("5f53bbdd3dc860c88a60aa2f"),
+	"nama" : "Bagus Junaedi Ardianto",
+	"nrp" : "090411100096",
+    "nilai" : 100
+}
+{
+	"_id" : ObjectId("5f54226b2694295c1cd6a4a9"),
+	"nama" : "Hasan Sadikin",
+	"nrp" : "090411100097",
+    "nilai" : 95
+}
+
+> db.mahasiswa.remove(
+... {nrp:"090411100097"}
+... );
+WriteResult({ "nRemoved" : 1 })
+> db.mahasiswa.find().pretty()
+{
+	"_id" : ObjectId("5f53bbdd3dc860c88a60aa2f"),
+	"nama" : "Bagus Junaedi Ardianto",
+	"nrp" : "090411100096",
+	"nilai" : 100
+}
+> 
+
+- terlihat, data dengan key nrp:"090411100097" berhasil dihapus
+
+Maksud dari syntax di atas adalah akan dihapus data dalam koleksi (collection) 
+mahasiswa dimana key yang bernama nrp bernilai “090411100097".

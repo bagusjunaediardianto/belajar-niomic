@@ -1,0 +1,69 @@
+Di dalam MySQL, sebuah trigger “melekat” ke dalam tabel tempat trigger itu dibuat. 
+Ketiga trigger yang sudah kita rancang sebelum ini menggunakan perintah seperti AFTER UPDATE ON mahasiswa, 
+artinya trigger ini adalah milik tabel mahasiswa.
+
+Ketika tabel mahasiswa di hapus, ketiga trigger tersebut juga akan terhapus. 
+Untuk melihat apa saja trigger yang tersedia di dalam tabel mahasiswa, 
+bisa menggunakan query berikut:  
+
+- SHOW TRIGGERS FROM belajar WHERE `table` = 'mahasiswa' \G 
+*************************** 1. row ***************************
+             Trigger: before_mahasiswa_insert
+               Event: INSERT
+               Table: mahasiswa
+           Statement: BEGIN
+INSERT INTO mahasiswa_log VALUES
+(0,NEW.nama,NOW(),'Ada Penambahan Mahasiswa Baru');
+END
+              Timing: BEFORE
+             Created: 2020-08-25 17:34:58.06
+            sql_mode: STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION
+             Definer: root@localhost
+character_set_client: utf8mb4
+collation_connection: utf8mb4_general_ci
+  Database Collation: utf8mb4_general_ci
+*************************** 2. row ***************************
+             Trigger: after_mahasiswa_update
+               Event: UPDATE
+               Table: mahasiswa
+           Statement: BEGIN
+DECLARE keterangan TEXT;
+SET keterangan = CONCAT(OLD.nama,' -> ',NEW.nama);
+INSERT INTO mahasiswa_log VALUES
+(0,New.nama,NOW(),keterangan);
+END
+              Timing: AFTER
+             Created: 2020-08-25 18:00:25.69
+            sql_mode: STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION
+             Definer: root@localhost
+character_set_client: utf8mb4
+collation_connection: utf8mb4_general_ci
+  Database Collation: utf8mb4_general_ci
+*************************** 3. row ***************************
+             Trigger: after_mahasiswa_delete
+               Event: DELETE
+               Table: mahasiswa
+           Statement: BEGIN
+INSERT INTO mahasiswa_log VALUES
+(0, OLD.nama,NOW(),'Ada Penghapusan data mahasiswa');
+END
+              Timing: AFTER
+             Created: 2020-08-25 17:48:37.79
+            sql_mode: STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION
+             Definer: root@localhost
+character_set_client: utf8mb4
+collation_connection: utf8mb4_general_ci
+  Database Collation: utf8mb4_general_ci
+3 rows in set (0.002 sec)
+
+
+- cara menghapus trigger
+
+MariaDB [belajar]> DROP TRIGGER IF EXISTS before_mahasiswa_insert;
+Query OK, 0 rows affected (0.006 sec)
+
+MariaDB [belajar]> DROP TRIGGER IF EXISTS after_mahasiswa_update;
+Query OK, 0 rows affected, 1 warning (0.000 sec)
+
+MariaDB [belajar]> DROP TRIGGER IF EXISTS after_mahasiswa_delete;
+Query OK, 0 rows affected (0.001 sec

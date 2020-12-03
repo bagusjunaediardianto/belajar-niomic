@@ -1,0 +1,60 @@
+Dari penjelasan sebelumnya, disebutkan bahwa trigger hanya bisa berjalan untuk 3 event, atau3 query, 
+yakni INSERT, UPDATE dan DELETE. 
+Hanya saja, terdapat beberapa query yang secara implisit (tidak langsung), 
+akan menjalankan salah satu query tersebut.
+
+Sebagai contoh, query REPLACE akan menjalankan query INSERT atau UPDATE tergantung situasi. 
+Jika data yang sama belum ada di dalam database, query REPLACE akan memproses INSERT. 
+Namun jika ditemukan data yang sama, query REPLACE akan menggunakan DELETE UPDATE
+
+
+- menjalankan query REPLACE
+MariaDB [belajar]> REPLACE INTO mahasiswa VALUES ('17080226','Sugito Makaryo','Boyolali','Teknik Informatika',321.33);
+Query OK, 2 rows affected (0.006 sec)
+
+MariaDB [belajar]> SELECT * FROM mahasiswa;
++----------+----------------+----------+--------------------+-----------+
+| nim      | nama           | asal     | jurusan            | nilai_uan |
++----------+----------------+----------+--------------------+-----------+
+| 17080225 | Hasan Sadikin  | Jakarta  | Akuntansi          |    288.55 |
+| 17080226 | Sugito Makaryo | Boyolali | Teknik Informatika |    321.33 |
++----------+----------------+----------+--------------------+-----------+
+2 rows in set (0.000 sec)
+
+MariaDB [belajar]> SELECT * FROM mahasiswa_log;
++----+----------------+---------------------+--------------------------------+
+| no | nama           | waktu               | keterangan                     |
++----+----------------+---------------------+--------------------------------+
+|  1 | Riana Putria   | 2020-08-25 17:41:15 | Ada Penambahan Mahasiswa Baru  |
+|  2 | Riana Putria   | 2020-08-25 17:50:56 | Ada Penghapusan data mahasiswa |
+|  3 | Husli Khairan  | 2020-08-25 18:04:02 | Ada Penambahan Mahasiswa Baru  |
+|  4 | Hasan Sadikin  | 2020-08-25 18:05:27 | Husli Khairan -> Hasan Sadikin |
+|  5 | Sugito Makaryo | 2020-08-25 22:49:50 | Ada Penambahan Mahasiswa Baru  |
+|  6 | Sugito Makaryo | 2020-08-25 22:50:35 | Ada Penambahan Mahasiswa Baru  |
+|  7 | Sugito Makaryo | 2020-08-25 22:50:35 | Ada Penghapusan data mahasiswa |
++----+----------------+---------------------+--------------------------------+
+7 rows in set (0.001 sec)
+
+
+- menjalankan QUERY DELETE untuk semua data
+MariaDB [belajar]> DELETE FROM mahasiswa;
+Query OK, 2 rows affected (0.005 sec)
+
+MariaDB [belajar]> SELECT * FROM mahasiswa_log;
++----+----------------+---------------------+--------------------------------+
+| no | nama           | waktu               | keterangan                     |
++----+----------------+---------------------+--------------------------------+
+|  1 | Riana Putria   | 2020-08-25 17:41:15 | Ada Penambahan Mahasiswa Baru  |
+|  2 | Riana Putria   | 2020-08-25 17:50:56 | Ada Penghapusan data mahasiswa |
+|  3 | Husli Khairan  | 2020-08-25 18:04:02 | Ada Penambahan Mahasiswa Baru  |
+|  4 | Hasan Sadikin  | 2020-08-25 18:05:27 | Husli Khairan -> Hasan Sadikin |
+|  5 | Sugito Makaryo | 2020-08-25 22:49:50 | Ada Penambahan Mahasiswa Baru  |
+|  6 | Sugito Makaryo | 2020-08-25 22:50:35 | Ada Penambahan Mahasiswa Baru  |
+|  7 | Sugito Makaryo | 2020-08-25 22:50:35 | Ada Penghapusan data mahasiswa |
+|  8 | Hasan Sadikin  | 2020-08-25 22:52:45 | Ada Penghapusan data mahasiswa |
+|  9 | Sugito Makaryo | 2020-08-25 22:52:45 | Ada Penghapusan data mahasiswa |
++----+----------------+---------------------+--------------------------------+
+9 rows in set (0.001 sec)
+
+MariaDB [belajar]> SELECT * FROM mahasiswa;
+Empty set (0.000 sec)

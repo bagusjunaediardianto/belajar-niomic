@@ -1,0 +1,73 @@
+Proses update data pada mongoDB pun juga sangat mudah. 
+Kita tinggal menentukan saja key dengan nama apa yang diubah dan berdasarkan apa. 
+Contoh syntax yang digunakan untuk mengupdate data dalam koleksi (collection) mongoDB 
+adalah sebagai berikut :  
+
+> db.mahasiswa.update (
+... {
+... nrp : "090411100096"
+... },
+... {
+... $set:{nilai:100}
+... },
+... false,true
+... );
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+
+> db.mahasiswa.update (
+... {
+... nrp : "090411100097"
+... }
+... ,{$set:{nilai:95}},
+... false,true
+... );
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+
+
+- menampilkan hasil update (semacam SELECT * FROM)
+> db.mahasiswa.find()
+
+hasilnya : 
+{ "_id" : ObjectId("5f53bbdd3dc860c88a60aa2f"), "nama" : "Bagus Junaedi Ardianto", "nrp" : "090411100096", "nilai" : 100 }
+{ "_id" : ObjectId("5f54226b2694295c1cd6a4a9"), "nama" : "Hasan Sadikin", "nrp" : "090411100097", "nilai" : 95 }
+
+atau 
+
+> db.mahasiswa.find().pretty()
+
+{
+	"_id" : ObjectId("5f53bbdd3dc860c88a60aa2f"),
+	"nama" : "Bagus Junaedi Ardianto",
+	"nrp" : "090411100096",
+	"nilai" : 100
+}
+{
+	"_id" : ObjectId("5f54226b2694295c1cd6a4a9"),
+	"nama" : "Hasan Sadikin",
+	"nrp" : "090411100097",
+	"nilai" : 95
+}
+
+Maksud dari syntax diatas adalah akan diupdate/ditambahkan suatu key bernama nilai dengan nilai 100, 
+dimana key bernama nrp mempunyai data “090411100096” yang berada dalam koleksi (collection) mahasiswa. 
+
+- atau dapat juga mencari dengan key
+> db.mahasiswa.find({},{nama:1,nrp:1})
+{ "_id" : ObjectId("5f53bbdd3dc860c88a60aa2f"), "nama" : "Bagus Junaedi Ardianto", "nrp" : "090411100096" }
+{ "_id" : ObjectId("5f54226b2694295c1cd6a4a9"), "nama" : "Hasan Sadikin", "nrp" : "090411100097" }
+
+> db.mahasiswa.find({},{nama:1,nrp:1}).pretty()
+{
+	"_id" : ObjectId("5f53bbdd3dc860c88a60aa2f"),
+	"nama" : "Bagus Junaedi Ardianto",
+	"nrp" : "090411100096"
+}
+{
+	"_id" : ObjectId("5f54226b2694295c1cd6a4a9"),
+	"nama" : "Hasan Sadikin",
+	"nrp" : "090411100097"
+}
+
+- menampilkan jumlah banyak data
+> db.mahasiswa.count()
+2

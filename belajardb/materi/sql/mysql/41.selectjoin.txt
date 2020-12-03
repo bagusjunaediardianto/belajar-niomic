@@ -1,0 +1,127 @@
+*SELECT JOIN merupakan query untuk mengambil data secara kompleks
+ dan dalam bahasa SQL, ini merupakan hal yg paling popular dalam penggunaannya
+ ada 3 jenis JOIN, antara lain INNER JOIN, LEFT JOIN, RIGHT JOIN*
+
+ mari mulai
+
+ *membuat table universitas*
+ desc universitas;
++-------------+-------------------------+------+-----+---------+-------+
+| Field       | Type                    | Null | Key | Default | Extra |
++-------------+-------------------------+------+-----+---------+-------+
+| jurusan     | varchar(20)             | YES  |     | NULL    |       |
+| tgl_berdiri | date                    | YES  |     | NULL    |       |
+| nama_dekan  | varchar(50)             | YES  |     | NULL    |       |
+| jum_mhs     | smallint(5) unsigned    | YES  |     | NULL    |       |
+| akr         | enum('A','B','C','N/A') | YES  |     | NULL    |       |
++-------------+-------------------------+------+-----+---------+-------+
+
+MariaDB [belajar]> SELECT * FROM universitas;
++---------------+-------------+---------------------------+---------+------+
+| jurusan       | tgl_berdiri | nama_dekan                | jum_mhs | akr  |
++---------------+-------------+---------------------------+---------+------+
+| Kimia         | 1987-07-12  | Prof.Mulyono, M.Sc.       |     662 | B    |
+| Ilmu Komputer | 2003-02-23  | Dr Syahrial, M.Kom.       |     412 | A    |
+| Akuntansi     | 1985-03-19  | Maya Fitriani, M.M.       |     895 | B    |
+| Farmasi       | 1997-05-30  | Prof. Silvia Nst, M.Farm. |     312 | C    |
+| Fisika        | 1989-12-10  | Dr Umar Agustinus, M.Sc.  |     275 | A    |
+| Hukum         | 1983-08-08  | Prof Gunarto, M.H.        |     754 | B    |
++---------------+-------------+---------------------------+---------+------+
+
+SELECT mahasiswa.nama, mahasiswa.jurusan, universitas.nama_dekan
+    -> FROM mahasiswa, universitas
+    -> WHERE mahasiswa.jurusan = universitas.jurusan;
++------------------+---------------+---------------------+
+| nama             | jurusan       | nama_dekan          |
++------------------+---------------+---------------------+
+| Rianna Putria    | Kimia         | Prof.Mulyono, M.Sc. |
+| Rudi Permana     | Ilmu Komputer | Dr Syahrial, M.Kom. |
+| Rina Kumala Sari | Akuntansi     | Maya Fitriani, M.M. |
+| Sandri Fatmala   | Ilmu Komputer | Dr Syahrial, M.Kom. |
+| Husli Khairan    | Akuntansi     | Maya Fitriani, M.M. |
+| Iksan Prayoga    | Ilmu Komputer | Dr Syahrial, M.Kom. |
+| Bobby Permana    | Ilmu Komputer | Dr Syahrial, M.Kom. |
++------------------+---------------+---------------------+
+
+SELECT mahasiswa.nama, mahasiswa.jurusan, universitas.nama_dekan
+    -> FROM mahasiswa INNER JOIN universitas
+    -> ON mahasiswa.jurusan = universitas.jurusan;
++------------------+---------------+---------------------+
+| nama             | jurusan       | nama_dekan          |
++------------------+---------------+---------------------+
+| Rianna Putria    | Kimia         | Prof.Mulyono, M.Sc. |
+| Rudi Permana     | Ilmu Komputer | Dr Syahrial, M.Kom. |
+| Rina Kumala Sari | Akuntansi     | Maya Fitriani, M.M. |
+| Sandri Fatmala   | Ilmu Komputer | Dr Syahrial, M.Kom. |
+| Husli Khairan    | Akuntansi     | Maya Fitriani, M.M. |
+| Iksan Prayoga    | Ilmu Komputer | Dr Syahrial, M.Kom. |
+| Bobby Permana    | Ilmu Komputer | Dr Syahrial, M.Kom. |
++------------------+---------------+---------------------+
+
+SELECT mahasiswa.nama, mahasiswa.jurusan, universitas.nama_dekan
+    -> FROM mahasiswa JOIN universitas
+    -> ON mahasiswa.jurusan = universitas.jurusan;
++------------------+---------------+---------------------+
+| nama             | jurusan       | nama_dekan          |
++------------------+---------------+---------------------+
+| Rianna Putria    | Kimia         | Prof.Mulyono, M.Sc. |
+| Rudi Permana     | Ilmu Komputer | Dr Syahrial, M.Kom. |
+| Rina Kumala Sari | Akuntansi     | Maya Fitriani, M.M. |
+| Sandri Fatmala   | Ilmu Komputer | Dr Syahrial, M.Kom. |
+| Husli Khairan    | Akuntansi     | Maya Fitriani, M.M. |
+| Iksan Prayoga    | Ilmu Komputer | Dr Syahrial, M.Kom. |
+| Bobby Permana    | Ilmu Komputer | Dr Syahrial, M.Kom. |
++------------------+---------------+---------------------+
+
+- hasil dari INNER JOIN sama dengan WHERE yang mana kata kunci ada data/nilai 
+  yang sama pada kolom tersebut di masing-masing table yang di joinkan
+
+SELECT mahasiswa.nama , mahasiswa.jurusan, universitas.nama_dekan
+    -> FROM mahasiswa LEFT JOIN universitas
+    -> ON mahasiswa.jurusan = universitas.jurusan;
++--------------------+-----------------+---------------------+
+| nama               | jurusan         | nama_dekan          |
++--------------------+-----------------+---------------------+
+| Rianna Putria      | Kimia           | Prof.Mulyono, M.Sc. |
+| Rudi Permana       | Ilmu Komputer   | Dr Syahrial, M.Kom. |
+| Sandri Fatmala     | Ilmu Komputer   | Dr Syahrial, M.Kom. |
+| Iksan Prayoga      | Ilmu Komputer   | Dr Syahrial, M.Kom. |
+| Bobby Permana      | Ilmu Komputer   | Dr Syahrial, M.Kom. |
+| Rina Kumala Sari   | Akuntansi       | Maya Fitriani, M.M. |
+| Husli Khairan      | Akuntansi       | Maya Fitriani, M.M. |
+| Sari Citra Lestari | Manajemen       | NULL                |
+| James Situmorang   | Kedokteran Gigi | NULL                |
+| Christine Wijaya   | Manajemen       | NULL                |
++--------------------+-----------------+---------------------+
+
+SELECT mahasiswa.nama , mahasiswa.jurusan, universitas.nama_dekan
+    -> FROM mahasiswa RIGHT JOIN universitas
+    -> ON mahasiswa.jurusan = universitas.jurusan;
++------------------+---------------+---------------------------+
+| nama             | jurusan       | nama_dekan                |
++------------------+---------------+---------------------------+
+| Rianna Putria    | Kimia         | Prof.Mulyono, M.Sc.       |
+| Rudi Permana     | Ilmu Komputer | Dr Syahrial, M.Kom.       |
+| Rina Kumala Sari | Akuntansi     | Maya Fitriani, M.M.       |
+| Sandri Fatmala   | Ilmu Komputer | Dr Syahrial, M.Kom.       |
+| Husli Khairan    | Akuntansi     | Maya Fitriani, M.M.       |
+| Iksan Prayoga    | Ilmu Komputer | Dr Syahrial, M.Kom.       |
+| Bobby Permana    | Ilmu Komputer | Dr Syahrial, M.Kom.       |
+| NULL             | NULL          | Prof. Silvia Nst, M.Farm. |
+| NULL             | NULL          | Dr Umar Agustinus, M.Sc.  |
+| NULL             | NULL          | Prof Gunarto, M.H.        |
++------------------+---------------+---------------------------+
+- hasil dari LEFT JOIN atau RIGHT JOIN akan memaksa salah satu tabel untuk ditampilkan nilainya
+  meskipun datanya tidak berpasangan atau NULL
+
+- perbedaan RIGHT JOIN dan LEFT JOIN hanya pada QUERY yang menjadi acuannya
+  jika pada LEFT JOIN, bila data disebelah kanan tidak terpenuhi syaratnya dari tabel kiri, 
+  maka ketika tampil data sebelah kanan ada yang kosong
+
+  sedangkan 
+  jika pada RIGHT JOIN, bila data disebelah kiri tidak terpenuhi syaratnya dari tabel kanan, 
+  maka ketika tampil data sebelah kiri ada yang kosong
+
+
+
+

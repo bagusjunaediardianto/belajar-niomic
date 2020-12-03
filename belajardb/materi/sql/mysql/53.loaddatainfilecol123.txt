@@ -1,0 +1,46 @@
+select * from provinsi;
++---------------------+----------+----------+----------+----------+---------+
+| nama_prov           | kode_iso | ibukota  | populasi | luas     | apbd    |
++---------------------+----------+----------+----------+----------+---------+
+| Maluku              | MA       | Ambon    |  1657409 | 49350.00 | 2013.83 |
+| Maluku Utara        | MU       | Sofifi   |  1138667 | 42960.00 | 1599.66 |
+| Nusa Tenggara Barat | NB       | Mataram  |  4773795 | 19950.00 | 2884.89 |
+| Nusa Tenggara Timur | NT       | Kupang   |  5036897 | 47676.00 | 2916.88 |
+| Sulawesi Utara      | SA       | Manado   |  2386604 | 13931.00 | 2625.93 |
+| Sulawesi Selatan    | SN       | Makassar |  8432163 | 46116.00 | 6186.39 |
+| Sulawesi Barat      | SR       | Mamuju   |  1258090 | 16787.00 | 1388.27 |
+| Sulawesi Tengah     | ST       | Palu     |  2831283 | 68090.00 | 2514.84 |
++---------------------+----------+----------+----------+----------+---------+
+
+
+*melakukan load data infile dengan hanya mengisi kolom tertentu dan mengabaikan 2 baris paling atas*
+
+LOAD DATA INFILE 
+    -> '/home/bagus/Documents/1.belajar-niomic/belajardb/materi/data/nama_provinsi_k.txt'
+    -> INTO TABLE provinsi
+    -> FIELDS TERMINATED BY ','
+    -> LINES TERMINATED BY '\n'
+    -> IGNORE 2 LINES (nama_prov,kode_iso,ibukota,apbd);
+Query OK, 3 rows affected (0.006 sec)                
+Records: 3  Deleted: 0  Skipped: 0  Warnings: 0
+
+
+*hasil dari load data infile kolom tertentu*
+MariaDB [belajar]> SELECT * FROM provinsi;
++---------------------+----------+-----------+----------+----------+---------+
+| nama_prov           | kode_iso | ibukota   | populasi | luas     | apbd    |
++---------------------+----------+-----------+----------+----------+---------+
+| Sumatera Barat      | 50       | Padang    |     NULL |     NULL | 3887.84 |
+| Maluku              | MA       | Ambon     |  1657409 | 49350.00 | 2013.83 |
+| Maluku Utara        | MU       | Sofifi    |  1138667 | 42960.00 | 1599.66 |
+| Nusa Tenggara Barat | NB       | Mataram   |  4773795 | 19950.00 | 2884.89 |
+| Nusa Tenggara Timur | NT       | Kupang    |  5036897 | 47676.00 | 2916.88 |
+| Sulawesi Utara      | SA       | Manado    |  2386604 | 13931.00 | 2625.93 |
+| Sulawesi Selatan    | SN       | Makassar  |  8432163 | 46116.00 | 6186.39 |
+| Sulawesi Barat      | SR       | Mamuju    |  1258090 | 16787.00 | 1388.27 |
+| Sumatera Selatan    | SS       | Palembang |     NULL |     NULL | 7697.99 |
+| Sulawesi Tengah     | ST       | Palu      |  2831283 | 68090.00 | 2514.84 |
+| Sumatera Utara      | Su       | Medan     |     NULL |     NULL | 8565.53 |
++---------------------+----------+-----------+----------+----------+---------+
+
+*dapat terlihat data berhasil terisi, tetapi ada data yang kosong / NULL*

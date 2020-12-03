@@ -1,0 +1,81 @@
+Sepanjang operasional database, 
+ada kalanya kita butuh input data dalam jumlah banyak dari sebuah file external, 
+atau kita perlu membuat backup database sebagai cadangan jika terjadi sesuatu.
+
+Semua ini butuh mekanisme import dan export data dari dan ke database MySQL. 
+Dalam materi ini kita akan belajar cara menginput data dari file external ke dalam tabel MySQL, 
+serta cara menulis hasil database ke file khusus. 
+Akan dibahas juga trik singkat untuk import data dari file CSV ke dalam MySQL.  
+
+Import Data dengan LOAD DATA INFILE  
+
+
+*Query LOAD DATA INFILE berfungsi untuk menginput file teks external ke dalam tabel MySQL.* 
+Berikut format dasar penulisan query LOAD DATA INFILE:  
+
+LOAD DATA [LOW_PRIORITY | CONCURRENT] [LOCAL] INFILE 'file_name'
+         [REPLACE | IGNORE]
+         INTO TABLE tbl_name
+         [PARTITION (partition_name [, partition_name] ...)]
+         [CHARACTER SET charset_name]
+         [{FIELDS | COLUMNS}
+              [TERMINATED BY 'string']
+              [[OPTIONALLY] ENCLOSED BY 'char']
+              [ESCAPED BY 'char']
+         ]
+         [LINES
+               [STARTING BY 'string']
+               [TERMINATED BY 'string']
+         ] [
+         IGNORE number {LINES | ROWS}]
+         [(col_name_or_user_var
+         [, col_name_or_user_var] ...)]
+         [SET col_name={expr | DEFAULT},
+         [, col_name={expr | DEFAULT}] ...] 
+
+*mulai dengan menghapus table*
+DROP TABLE IF EXISTS provinsi;
+Query OK, 0 rows affected (0.013 sec)
+
+MariaDB [belajar]> SELECT * FROM provinsi;
+ERROR 1146 (42S02): Table 'belajar.provinsi' doesn't exist
+
+*membuat ulang tabel provinsi*
+CREATE TABLE IF NOT EXISTS provinsi(
+    -> nama_prov varchar(50),
+    -> kode_iso CHAR(2),
+    -> ibukota VARCHAR(50),
+    -> populasi INT,
+    -> luas DEC(8,2),
+    -> apbd DEC(8,2)
+    -> );
+
+*melakukan insert dengan perintah LOAD*
+LOAD DATA INFILE "nama_provinsi_a.txt" INTO TABLE provinsi;
+Query OK, 1 row affected, 1 warning (0.005 sec)      
+Records: 1  Deleted: 0  Skipped: 0  Warnings: 1
+
+MariaDB [belajar]> show warnings;
++-------+------+-------------------------------------------+
+| Level | Code | Message                                   |
++-------+------+-------------------------------------------+
+| Note  | 1265 | Data truncated for column 'apbd' at row 1 |
++-------+------+-------------------------------------------+
+1 row in set (0.000 sec)
+
+MariaDB [belajar]> SELECT * FROM provinsi;
++-----------+----------+------------+----------+----------+----------+
+| nama_prov | kode_iso | ibukota    | populasi | luas     | apbd     |
++-----------+----------+------------+----------+----------+----------+
+| Aceh      | AC       | Banda Aceh |  4906835 | 57365.00 | 15572.50 |
++-----------+----------+------------+----------+----------+----------+
+1 row in set (0.001 sec)
+
+*melakukan load data ulang dan hasilnya tidak ada warning*
+LOAD DATA INFILE "nama_provinsi_a.txt" INTO TABLE provinsi;
+Query OK, 1 row affected (0.004 sec)                 
+Records: 1  Deleted: 0  Skipped: 0  Warnings: 0
+
+terlihat warning saat load data sebelumnya dikarenakan data paling kanan / apbd memiliki spasi,
+maka secara otomatis spasi tersebut akan di truncate dan menjadi data baru,
+maka solusinya adalah data paling kanan dan kiri jangan sampai ada spasi

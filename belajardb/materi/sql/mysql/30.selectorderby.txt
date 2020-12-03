@@ -1,0 +1,40 @@
+*mengurutkan secara ascending berdasarkan jumlah penduduk*
+
+SELECT * FROM populasi ORDER BY penduduk  asc;
++-----------+------+------+--------+----------+
+| kota      | kec  | kel  | luas   | penduduk |
++-----------+------+------+--------+----------+
+| Palembang |   14 |  107 | 369.22 |  1548064 |
+| Tangerang |   13 |  104 | 153.93 |  1566190 |
+| Semarang  |   16 |  177 | 373.78 |  1621384 |
+| Depok     |   11 |   63 | 200.29 |  1631951 |
+| Makassar  |   14 |  143 | 199.26 |  1651146 |
+| Bandung   |   30 |  151 | 167.67 |  2339463 |
+| Bekasi    |   12 |   56 | 206.61 |  2381053 |
+| Medan     |   21 |  151 | 265.00 |  2465469 |
+| Surabaya  |   31 |  154 | 350.54 |  2805906 |
+| Jakarta   |   44 |  267 | 664.01 |  9988495 |
++-----------+------+------+--------+----------+
+
+SELECT
+    -> upper(kota) as `Nama Kota`,
+    -> kec as Kecamatan,
+    -> kel as Kelurahan,
+    -> penduduk as `Jumlah Penduduk`
+    -> FROM populasi
+    -> ORDER BY penduduk ASC;
++-----------+-----------+-----------+-----------------+
+| Nama Kota | Kecamatan | Kelurahan | Jumlah Penduduk |
++-----------+-----------+-----------+-----------------+
+| PALEMBANG |        14 |       107 |         1548064 |
+| TANGERANG |        13 |       104 |         1566190 |
+| SEMARANG  |        16 |       177 |         1621384 |
+| DEPOK     |        11 |        63 |         1631951 |
+| MAKASSAR  |        14 |       143 |         1651146 |
+| BANDUNG   |        30 |       151 |         2339463 |
+| BEKASI    |        12 |        56 |         2381053 |
+| MEDAN     |        21 |       151 |         2465469 |
+| SURABAYA  |        31 |       154 |         2805906 |
+| JAKARTA   |        44 |       267 |         9988495 |
++-----------+-----------+-----------+-----------------+
+

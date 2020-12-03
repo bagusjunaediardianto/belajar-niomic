@@ -1,0 +1,73 @@
+*melakukan data dari view*
+Fitur lain dari view adalah kita bisa mengupdate data ke dalam view. Efeknya, tabel yang menjadi bagian dari view juga ikut diupdate. Update ini mencakup penambahan data baru, menghapus data, hingga mengubah data yang ada.
+
+Akan tetapi, tidak semua view bisa diupdate. Jika view tersebut dibuat dari query dibawah ini, maka tidak bisa diupdate:
+
+    - Aggregate function seperti MIN(), MAX(), SUM(), AVG(), COUNT(), dll.
+    - DISTINCT
+    - GROUP BY
+    - HAVING
+    - UNION atau UNION ALL
+    - LEFT JOIN atau OUTER JOIN
+    - Subquery  
+
+*sebagai contoh*
+1. membuat table view mahasiswa_ilkom
+
+CREATE OR REPLACE VIEW mahasiswa_ilkom AS
+    -> SELECT 
+    -> nim,nama,jurusan FROM mahasiswa
+    -> WHERE jurusan = 'Ilmu Komputer';
+Query OK, 0 rows affected (0.005 sec)
+
+2.menampilkan isi dari table mahasiswa_ilkom
+MariaDB [belajar]> SELECT * FROM mahasiswa_ilkom;
++----------+----------------+---------------+
+| nim      | nama           | jurusan       |
++----------+----------------+---------------+
+| 17140119 | Sandri Fatmala | Ilmu Komputer |
+| 17140120 | Bobby Permana  | Ilmu Komputer |
+| 17140133 | Ikhsan Prayoga | Ilmu Komputer |
+| 17140143 | Rudi Permana   | Ilmu Komputer |
++----------+----------------+---------------+
+4 rows in set (0.001 sec)
+
+3. melakukan insert dan menampilkan data mahasiswa yang berasal dari inputan mahasiswa_ilkom
+MariaDB [belajar]> INSERT INTO mahasiswa_ilkom VALUES
+    -> ('17140155','Tika Herina','Ilmu Komputer');
+Query OK, 1 row affected (0.006 sec)
+
+MariaDB [belajar]> SELECT * FROM mahasiswa;
++----------+------------------+---------+---------------+-----------+
+| nim      | nama             | asal    | jurusan       | nilai_uan |
++----------+------------------+---------+---------------+-----------+
+| 17080225 | Husli Khairan    | Jakarta | Akuntansi     |    288.55 |
+| 17080305 | Rina Kumala Sari | Jakarta | Akuntansi     |    337.99 |
+| 17090113 | Riana Putria     | Padang  | Kimia         |    339.20 |
+| 17140119 | Sandri Fatmala   | Bandung | Ilmu Komputer |    322.91 |
+| 17140120 | Bobby Permana    | Medan   | Ilmu Komputer |    280.82 |
+| 17140133 | Ikhsan Prayoga   | Jakarta | Ilmu Komputer |    300.16 |
+| 17140143 | Rudi Permana     | Bandung | Ilmu Komputer |    290.44 |
+| 17140145 | Johana Aryabima  | Aceh    | Kimia         |    285.22 |
+| 17140155 | Tika Herina      | NULL    | Ilmu Komputer |      NULL |
++----------+------------------+---------+---------------+-----------+
+9 rows in set (0.001 sec)
+
+4. menghapus dan menampilkan data mahasiswa yang berasal dari delete mahasiswa_ilkom
+MariaDB [belajar]> DELETE FROM mahasiswa_ilkom WHERE nama = 'Bobby Permana';
+Query OK, 1 row affected (0.030 sec)
+
+MariaDB [belajar]> SELECT * FROM mahasiswa;
++----------+------------------+---------+---------------+-----------+
+| nim      | nama             | asal    | jurusan       | nilai_uan |
++----------+------------------+---------+---------------+-----------+
+| 17080225 | Husli Khairan    | Jakarta | Akuntansi     |    288.55 |
+| 17080305 | Rina Kumala Sari | Jakarta | Akuntansi     |    337.99 |
+| 17090113 | Riana Putria     | Padang  | Kimia         |    339.20 |
+| 17140119 | Sandri Fatmala   | Bandung | Ilmu Komputer |    322.91 |
+| 17140133 | Ikhsan Prayoga   | Jakarta | Ilmu Komputer |    300.16 |
+| 17140143 | Rudi Permana     | Bandung | Ilmu Komputer |    290.44 |
+| 17140145 | Johana Aryabima  | Aceh    | Kimia         |    285.22 |
+| 17140155 | Tika Herina      | NULL    | Ilmu Komputer |      NULL |
++----------+------------------+---------+---------------+-----------+
+8 rows in set (0.001 sec)

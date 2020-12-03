@@ -1,0 +1,30 @@
+*melakukan update nama mahasiswa berdasarkan no*
+
++----+----------------+-------+------+--------+-----------------+-----------+
+| no | nama           | asal  | kel  | tinggi | jurusan         | nilai_uan |
++----+----------------+-------+------+--------+-----------------+-----------+
+|  5 |Jerry Situmorang| Medan | L    |    168 | Kedokteran Gigi |    341.10 |
++----+----------------+-------+------+--------+-----------------+-----------+
+UPDATE mahasiswa set nama="Jerry Fernando" WHERE no=5;
+
+*Ketika data berhasil di update*
+SELECT * FROM mahasiswa WHERE no=5;
++----+----------------+-------+------+--------+-----------------+-----------+
+| no | nama           | asal  | kel  | tinggi | jurusan         | nilai_uan |
++----+----------------+-------+------+--------+-----------------+-----------+
+|  5 | Jerry Fernando | Medan | L    |    168 | Kedokteran Gigi |    341.10 |
++----+----------------+-------+------+--------+-----------------+-----------+
+
+UPDATE mahasiswa
+    -> SET
+    -> nama="Ranti Widowati",
+    -> asal="Yogyakarta",
+    -> nilai_uan=351.28
+    -> WHERE no=6;
+    
+SELECT * FROM mahasiswa WHERE no=6;
++----+----------------+------------+------+--------+---------------+-----------+
+| no | nama           | asal       | kel  | tinggi | jurusan       | nilai_uan |
++----+----------------+------------+------+--------+---------------+-----------+
+|  6 | Ranti Widowati | Yogyakarta | P    |    165 | Ilmu Komputer |    351.28 |
++----+----------------+------------+------+--------+---------------+-----------+

@@ -1,0 +1,19 @@
+*Membuat dan menghapus database*
+
+*membuat database*
+CREATE DATABASE indonesia;
+
+*pada saat membuat database, jika tidak ada db yang dimaksud akan dieksekusi*
+CREATE DATABASE IF NOT EXISTS indonesia;
+
+*menampilkan database*
+SHOW DATABASES;
+
+*menghapus database*
+DROP DATABASE indonesia
+
+*pada saat menghapus database, jika ada db yang dimaksud akan dieksekusi*
+DROP DATABASE IF EXISTS indonesia
+
+*menggunakan database*
+USE DATABASE indonesia

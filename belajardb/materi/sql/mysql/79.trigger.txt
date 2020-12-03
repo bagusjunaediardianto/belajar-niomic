@@ -1,0 +1,44 @@
+Trigger adalah kumpulan kode program SQL yang dijalankan secara otomatis ketika sebuah event terjadi. 
+Event yang dimaksud yakni saat perintah INSERT, UPDATE atau DELETE diproses ke dalam sebuah tabel.
+
+Trigger sebenarnya merupakan tipe khusus dari stored procedure. 
+Isi dari trigger itu sendiri tidak berbeda dengan stored procedure yang sudah kita bahas dalam materi sebelumnya.
+
+Di dalam trigger, kita juga bisa membuat variabel, kondisi if else, perulangan, hingga parameter. 
+Namun berbeda dengan stored procedure yang harus dipanggil secara eksplisit menggunakan perintah CALL, trigger berjalan secara otomatis.
+
+Keunggulan dan kekurangan trigger juga sama seperti stored procedure. 
+Ada yang berpendapat bahwa programming seperti trigger seharusnya tidak dibuat di database, 
+tapi di bahasa pemrograman tempat data nantinya akan diolah (misalnya menggunakan PHP).
+
+Trigger adalah tipe khusus dari stored procedure, sehingga cara penulisannya juga hampir sama. 
+Berikut format dasar penulisan trigger di dalam MySQL:
+
+CREATE TRIGGER trigger_name trigger_time trigger_event
+ON table_name
+FOR EACH ROW
+BEGIN
+...
+END;
+
+Setelah penulisan CREATE TRIGGER, diikuti dengan trigger_name yang berfungsi sebagai nama trigger. Aturan penulisan nama trigger ini sama seperti identifier lainnya di dalam MySQL, yakni sama seperti aturan penulisan nama tabel dan nama database.
+
+Berikutnya adalah trigger_time, yakni kapan waktu trigger ini akan dijalankan. Pilihan untuk trigger_time ada 2 buah: BEFORE atau AFTER. 
+Kedua pilihan ini akan berkaitan dengan perintah berikutnya, yakni trigger_event.
+
+Trigger_event adalah event atau query yang menjadi patokan kapan sebuah trigger akan dijalankan. Terdapat 3 event penentu trigger : INSERT, UPDATE dan DELETE.
+
+Dengan mengkombinasikan trigger_time dan trigger_event, terdapat 6 kondisi event dimana sebuah trigger akan diproses:
+
+    - BEFORE INSERT
+    - AFTER INSERT
+    - BEFORE UPDATE
+    - AFTER UPDATE
+    - BEFORE DELETE
+    - AFTER DELETE
+
+Sebagai contoh, jika saya menggunakan BEFORE INSERT, artinya trigger akan diproses tepat sebelum proses input data ke dalam tabel berlangsung. Jika saya menggunakan AFTER DELETE, artinya trigger akan diproses setelah sebuah data dihapus dari dalam tabel.
+
+Setelah menentukan trigger_name, trigger_time dan trigger_event. Perintah selanjutnya berupa nama tabel tempat dimana trigger akan berjalan. Setiap trigger nantinya akan “melekat” ke dalam tabel ini. Jika tabel dihapus, trigger juga akan terhapus.
+
+Isi dari trigger itu sendiri berada diantara perintah BEGIN dan END. Disini kita bisa menggunakan semua konsep programming SQL yang sudah dibahas di dalam bab tentang stored procedure.  

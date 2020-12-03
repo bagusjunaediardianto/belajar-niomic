@@ -1,0 +1,8 @@
+*membuat tabel dengan menyisipkan komentar*
+create table contoh_comment_1 (
+    -> a int auto_increment primary key,
+    -> b varchar(10))
+    -> comment = "ini adalah tabel untuk belajar membuat komentar";
+
+*menampilkan struktur tabel yang telah dibuat*
+show create table contoh_comment_1;

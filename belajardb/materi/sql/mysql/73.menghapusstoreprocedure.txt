@@ -1,0 +1,42 @@
+*menghapus prosedur*
+MariaDB [belajar]> DROP PROCEDURE IF EXISTS hitung_ipk;
+Query OK, 0 rows affected (0.009 sec)
+
+MariaDB [belajar]> DROP PROCEDURE IF EXISTS tampil_mhs;
+Query OK, 0 rows affected (0.007 sec)
+
+MariaDB [belajar]> SHOW TABLES;
++-------------------------+
+| Tables_in_belajar       |
++-------------------------+
+| contoh dengan spasi     |
+| contoh_auto_increment_3 |
+| contoh_charset_3        |
+| contoh_comment_1        |
+| contoh_copy_2           |
+| contoh_copy_3           |
+| contoh_copy_4           |
+| contoh_insert_1         |
+| contoh_insert_2         |
+| contoh_insert_3         |
+| contoh_insert_4         |
+| contoh_tabel_1          |
+| contoh_tabel_2          |
+| contoh_tabel_3          |
+| contoh_tabel_asal       |
+| contoh_truncate         |
+| copy_contoh_tabel_asal  |
+| detail_mhs              |
+| detail_mhs_format       |
+| mahasiswa               |
+| mahasiswa_ilkom         |
+| mahasiswa_niomic        |
+| nilai_mahasiswa         |
+| populasi                |
+| populasi_2              |
+| provinsi                |
+| tugas_daftar_provinsi   |
+| tugas_populasi          |
+| universitas             |
++-------------------------+
+29 rows in set (0.001 sec)

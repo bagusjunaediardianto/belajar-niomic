@@ -1,0 +1,56 @@
+Terdapat 2 pengaturan waktu mengenai kapan sebuah trigger dijalankan, 
+yakni sebelum query (BEFORE) dan sesudah query (AFTER). Yang mana sebaiknya dipakai?
+
+ - Ini tergantung dari fungsi trigger itu sendiri. 
+   Sebagai contoh, jika sebuah trigger ditulis BEFORE INSERT ON mahasiswa artinya trigger itu akan diproses sebelum data ditambahkan ke dalam tabel mahasiswa.
+ - Waktu BEFORE cocok dipakai untuk membuat sebuah proses validasi. 
+   Jika data yang diinput tidak sesuai kita bisa membatalkan transaksi. 
+   Ini tidak bisa dilakukan dengan AFTER karena data itu telah berhasil diinput ke dalam tabel.
+
+Sebagai contoh, saya ingin membuat sebuah trigger untuk tabel mahasiswa yang akan memeriksa nilai_uan. 
+Jika nilai_uan mahasiswa kurang dari 250, maka transaksi dibatalkan. 
+Berikut kode program untuk membuat trigger ini:  
+
+MariaDB [belajar]> CREATE TRIGGER before_mahasiswa_insert 
+        -> BEFORE INSERT ON mahasiswa 
+        -> FOR EACH ROW 
+        -> BEGIN 
+        -> IF(NEW.nilai_uan < 250) THEN 
+        -> SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Nilai UAN dibawah Minimum!'; 
+        -> END IF; 
+        END$$
+Query OK, 0 rows affected (0.010 sec)
+MariaDB [belajar]> DELIMITER ;
+
+- mari kita coba untuk menginputkan data mahasiswa
+MariaDB [belajar]> INSERT INTO mahasiswa VALUES
+    -> ('17141033','Ikhsan Prayoga','Jakarta','Ilmu Komputer',200.99);
+ERROR 1644 (45000): Nilai UAN dibawah Minimum!
+MariaDB [belajar]> INSERT INTO mahasiswa VALUES ('17080305','Rina Kumalasari','Jakarta','Akuntansi',249.99);
+ERROR 1644 (45000): Nilai UAN dibawah Minimum!
+MariaDB [belajar]> INSERT INTO mahasiswa VALUES ('17080225','Rusli Khairan','Jakarta','Akuntansi',288.55);
+Query OK, 1 row affected (0.006 sec)
+
+MariaDB [belajar]> SELECT * FROM mahasiswa;
++----------+---------------+---------+-----------+-----------+
+| nim      | nama          | asal    | jurusan   | nilai_uan |
++----------+---------------+---------+-----------+-----------+
+| 17080225 | Rusli Khairan | Jakarta | Akuntansi |    288.55 |
++----------+---------------+---------+-----------+-----------+
+1 row in set (0.000 sec)
+
+
+Dua query INSERT pertama akan menghasilkan pesan ERROR 1644 (45000): Nilai UAN dibawah minimum!, 
+inilah pesan dari trigger karena nilai_uan untuk mahasiswa dibawah 250. 
+Query INSERT ketiga lolos validasi karena Husli Khairan memiliki nilai uan 288.55, 
+sehingga tidak memenuhi syarat kondisi NEW.nilai_uan < 250.  
+
+Proses validasi seperti ini kurang cocok jika menggunakan AFTER INSERT, 
+karena proses INSERT sudah terjadi. 
+Waktu proses AFTER lebih cocok untuk proses pembuatan log, 
+atau suatu proses yang melibatkan tabel lain.
+
+Sebagai contoh, proses untuk mahasiswa_log sebenarnya lebih pas jika menggunakan AFTER INSERT, 
+AFTER DELETE, atau AFTER UPDATE. 
+Hanya saja untuk trigger yang sederhana seperti tabel mahasiswa_log, 
+perbedaan waktu antara AFTER atau BEFORE tidak akan banyak berpengaruh .

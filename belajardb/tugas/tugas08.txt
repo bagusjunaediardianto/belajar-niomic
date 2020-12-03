@@ -1,0 +1,205 @@
+*membuat tabel dan mengisi tabel tugas_populasi*
+CREATE TABLE IF NOT EXISTS tugas_populasi(
+    -> kota varchar(50),
+    -> kec tinyint(3) unsigned,
+    -> kel smallint(5) unsigned,
+    -> luas decimal(6,2),
+    -> penduduk int(10) unsigned);
+Query OK, 0 rows affected (0.020 sec)
+
+MariaDB [belajar]> DESC tugas_populasi;
++----------+----------------------+------+-----+---------+-------+
+| Field    | Type                 | Null | Key | Default | Extra |
++----------+----------------------+------+-----+---------+-------+
+| kota     | varchar(50)          | YES  |     | NULL    |       |
+| kec      | tinyint(3) unsigned  | YES  |     | NULL    |       |
+| kel      | smallint(5) unsigned | YES  |     | NULL    |       |
+| luas     | decimal(6,2)         | YES  |     | NULL    |       |
+| penduduk | int(10) unsigned     | YES  |     | NULL    |       |
++----------+----------------------+------+-----+---------+-------+
+
+INSERT tugas_populasi VALUES
+    -> ("Jakarta",44,267,664.01,9988495),
+    -> ("Surabaya",31,154,350.54,2805905),
+    -> ("Medan",21,151,265.00,2465469),
+    -> ("Bekasi",12,56,206.61,2381053),
+    -> ("Bandung",30,151,167.67,2339463),
+    -> ("Makassar",14,143,199.26,1651146),
+    -> ("Depok",11,63,200.29,1631951),
+    -> ("Semarang",16,177,373.78,1621384),
+    -> ("Tangerang",13,104,153.93,1566190),
+    -> ("Palembang",14,107,369.22,1548064);
+Query OK, 10 rows affected (0.053 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+MariaDB [belajar]> SELECT * FROM tugas_populasi;
++-----------+------+------+--------+----------+
+| kota      | kec  | kel  | luas   | penduduk |
++-----------+------+------+--------+----------+
+| Jakarta   |   44 |  267 | 664.01 |  9988495 |
+| Surabaya  |   31 |  154 | 350.54 |  2805905 |
+| Medan     |   21 |  151 | 265.00 |  2465469 |
+| Bekasi    |   12 |   56 | 206.61 |  2381053 |
+| Bandung   |   30 |  151 | 167.67 |  2339463 |
+| Makassar  |   14 |  143 | 199.26 |  1651146 |
+| Depok     |   11 |   63 | 200.29 |  1631951 |
+| Semarang  |   16 |  177 | 373.78 |  1621384 |
+| Tangerang |   13 |  104 | 153.93 |  1566190 |
+| Palembang |   14 |  107 | 369.22 |  1548064 |
++-----------+------+------+--------+----------+
+
+DESC tugas_daftar_provinsi;
++--------------------+-------------+------+-----+---------+-------+
+| Field              | Type        | Null | Key | Default | Extra |
++--------------------+-------------+------+-----+---------+-------+
+| prov               | varchar(50) | YES  |     | NULL    |       |
+| ibukota            | varchar(50) | YES  |     | NULL    |       |
+| luas               | int(11)     | YES  |     | NULL    |       |
+| tanggal_diresmikan | date        | YES  |     | NULL    |       |
++--------------------+-------------+------+-----+---------+-------+
+
+INSERT tugas_daftar_provinsi VALUES (
+    -> "Sumatera Utara","Medan",72891,'19561129'),
+    -> ("Sumatera Barat","Padang",42297,'19570809'),
+    -> ("Jawa Barat","Bandung",35245,'19500704'),
+    -> ("Jawa Tengah","Semarang",33987,'19500704'),
+    -> ("Sulawesi Selatan","Makassar",46116,'19601213'),
+    -> ("Bali","Denpasar",5561,'19580814'),
+    -> ("Sumatera Selatan","Palembang",85679,'19500814'),
+    -> ("Papua Barat","Manokwari",114566,'19991004');
+Query OK, 8 rows affected (0.041 sec)
+Records: 8  Duplicates: 0  Warnings: 0
+
+MariaDB [belajar]> SELECT * FROM tugas_daftar_provinsi;
++------------------+-----------+--------+--------------------+
+| prov             | ibukota   | luas   | tanggal_diresmikan |
++------------------+-----------+--------+--------------------+
+| Sumatera Utara   | Medan     |  72891 | 1956-11-29         |
+| Sumatera Barat   | Padang    |  42297 | 1957-08-09         |
+| Jawa Barat       | Bandung   |  35245 | 1950-07-04         |
+| Jawa Tengah      | Semarang  |  33987 | 1950-07-04         |
+| Sulawesi Selatan | Makassar  |  46116 | 1960-12-13         |
+| Bali             | Denpasar  |   5561 | 1958-08-14         |
+| Sumatera Selatan | Palembang |  85679 | 1950-08-14         |
+| Papua Barat      | Manokwari | 114566 | 1999-10-04         |
++------------------+-----------+--------+--------------------+
+
+
+1. Tampilkan kolom kota, kec, luas dan penduduk pada tugas_populasi!
+2. Tampilkan kolom kota kemudian ubah namanya menjadi Nama Kota, kolom kec menjadi Jumlah Kecamatan dan kolom kel menjadi Jumlah Kelurahan!
+3. Tampilkan data dari table tugas_populasi berdasarkan Kecamatan dari jumlah terbesar!
+4. Urutkan berdasarkan kolom kel lalu diambil 5 data setelah baris ke-2!
+5. Tampilkan data dimana kolom kota berisi string Depok!
+6. Tuliskan query untuk menampilkan hasil berikut
+Note: Gunakan query SELECT… WHERE table tugas_provinsi = tugas_daftar_provinsi
+7. Tampilkan isi tabel populasi dimana nilai kolom kecamatan antara 20 dan 30!
+
+*Jawaban*
+1. SELECT
+    -> kota,kec,luas,penduduk FROM tugas_populasi;
++-----------+------+--------+----------+
+| kota      | kec  | luas   | penduduk |
++-----------+------+--------+----------+
+| Jakarta   |   44 | 664.01 |  9988495 |
+| Surabaya  |   31 | 350.54 |  2805905 |
+| Medan     |   21 | 265.00 |  2465469 |
+| Bekasi    |   12 | 206.61 |  2381053 |
+| Bandung   |   30 | 167.67 |  2339463 |
+| Makassar  |   14 | 199.26 |  1651146 |
+| Depok     |   11 | 200.29 |  1631951 |
+| Semarang  |   16 | 373.78 |  1621384 |
+| Tangerang |   13 | 153.93 |  1566190 |
+| Palembang |   14 | 369.22 |  1548064 |
++-----------+------+--------+----------+
+
+2. SELECT
+    -> kota as `Nama Kota`,
+    -> kec as `Jumlah Kecamatan`,
+    -> kel as `Jumlah Kelurahan`
+    -> FROM tugas_populasi;
++-----------+------------------+------------------+
+| Nama Kota | Jumlah Kecamatan | Jumlah Kelurahan |
++-----------+------------------+------------------+
+| Jakarta   |               44 |              267 |
+| Surabaya  |               31 |              154 |
+| Medan     |               21 |              151 |
+| Bekasi    |               12 |               56 |
+| Bandung   |               30 |              151 |
+| Makassar  |               14 |              143 |
+| Depok     |               11 |               63 |
+| Semarang  |               16 |              177 |
+| Tangerang |               13 |              104 |
+| Palembang |               14 |              107 |
++-----------+------------------+------------------+
+
+3. SELECT * FROM tugas_populasi ORDER BY kec DESC;
++-----------+------+------+--------+----------+
+| kota      | kec  | kel  | luas   | penduduk |
++-----------+------+------+--------+----------+
+| Jakarta   |   44 |  267 | 664.01 |  9988495 |
+| Surabaya  |   31 |  154 | 350.54 |  2805905 |
+| Bandung   |   30 |  151 | 167.67 |  2339463 |
+| Medan     |   21 |  151 | 265.00 |  2465469 |
+| Semarang  |   16 |  177 | 373.78 |  1621384 |
+| Makassar  |   14 |  143 | 199.26 |  1651146 |
+| Palembang |   14 |  107 | 369.22 |  1548064 |
+| Tangerang |   13 |  104 | 153.93 |  1566190 |
+| Bekasi    |   12 |   56 | 206.61 |  2381053 |
+| Depok     |   11 |   63 | 200.29 |  1631951 |
++-----------+------+------+--------+----------+
+
+4. SELECT * FROM tugas_populasi ORDER BY kel limit 2,5;
++-----------+------+------+--------+----------+
+| kota      | kec  | kel  | luas   | penduduk |
++-----------+------+------+--------+----------+
+| Tangerang |   13 |  104 | 153.93 |  1566190 |
+| Palembang |   14 |  107 | 369.22 |  1548064 |
+| Makassar  |   14 |  143 | 199.26 |  1651146 |
+| Medan     |   21 |  151 | 265.00 |  2465469 |
+| Bandung   |   30 |  151 | 167.67 |  2339463 |
++-----------+------+------+--------+----------+
+SELECT * FROM tugas_populasi
+    -> ORDER BY kel DESC limit 2,5;
++-----------+------+------+--------+----------+
+| kota      | kec  | kel  | luas   | penduduk |
++-----------+------+------+--------+----------+
+| Surabaya  |   31 |  154 | 350.54 |  2805905 |
+| Medan     |   21 |  151 | 265.00 |  2465469 |
+| Bandung   |   30 |  151 | 167.67 |  2339463 |
+| Makassar  |   14 |  143 | 199.26 |  1651146 |
+| Palembang |   14 |  107 | 369.22 |  1548064 |
++-----------+------+------+--------+----------+
+
+5. SELECT * FROM tugas_populasi
+    -> WHERE kota="Depok";
++-------+------+------+--------+----------+
+| kota  | kec  | kel  | luas   | penduduk |
++-------+------+------+--------+----------+
+| Depok |   11 |   63 | 200.29 |  1631951 |
++-------+------+------+--------+----------+
+
+6. SELECT
+    -> upper(tugas_daftar_provinsi.prov),
+    -> upper(tugas_populasi.kota),
+    -> tugas_populasi.penduduk
+    -> FROM tugas_daftar_provinsi,tugas_populasi
+    -> WHERE tugas_daftar_provinsi.ibukota = tugas_populasi.kota;
++-----------------------------------+----------------------------+----------+
+| upper(tugas_daftar_provinsi.prov) | upper(tugas_populasi.kota) | penduduk |
++-----------------------------------+----------------------------+----------+
+| SUMATERA UTARA                    | MEDAN                      |  2465469 |
+| JAWA BARAT                        | BANDUNG                    |  2339463 |
+| SULAWESI SELATAN                  | MAKASSAR                   |  1651146 |
+| JAWA TENGAH                       | SEMARANG                   |  1621384 |
+| SUMATERA SELATAN                  | PALEMBANG                  |  1548064 |
++-----------------------------------+----------------------------+----------+
+
+7. SELECT * FROM populasi
+    -> WHERE kec
+    -> BETWEEN 20 AND 30;
++---------+---------+------+------+--------+----------+
+| id_kota | kota    | kec  | kel  | luas   | penduduk |
++---------+---------+------+------+--------+----------+
+|       3 | Medan   |   21 |  151 | 265.00 |  2465469 |
+|       5 | Bandung |   30 |  151 | 167.67 |  2339463 |
++---------+---------+------+------+--------+----------+

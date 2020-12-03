@@ -1,0 +1,28 @@
+{
+  "posts": [
+    {
+      "id": 1589913947654,
+      "title": "React JS",
+      "body": "Sebuah Library Javascript"
+    },
+    {
+      "id": 1589914174404,
+      "title": "Angular JS",
+      "body": "Sebuah kerangka kerja dari javascript"
+    },
+    {
+      "id": 1590069389192,
+      "title": "Dart",
+      "body": "Sebuah bahasa pemrograman yang dikembangkan oleh Google"
+    },
+    {
+      "id": 1590072568173,
+      "title": "Meteor JS",
+      "body": "Sebuah Kerangka Kerja dari javascript"
+    }
+  ],
+  "comments": [],
+  "profile": {
+    "name": "typicode"
+  }
+}

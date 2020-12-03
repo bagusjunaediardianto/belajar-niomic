@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>TUGAS DOM</title>
+        <style>
+            .contohcss {
+                font-style: italic;
+                color: red;
+            }
+        </style>
+    </head>
+    <body>
+        <button type="button" name="button" onclick="Tombol()">Jalankan</button>
+        <br/>
+        <br/>
+        <hr/>
+        Atrribute <b>removeNamedItem()</b> :
+        <br/>
+        <input type="submit" value="SIAP"/>
+        <hr/>
+        Attribute <b>setNamedItem()</b> :
+        <p id="contoh">contoh</p>
+        <hr/>
+        Attribute <b>value()</b> :
+        <p id="contoh2">contoh</p>
+
+        <script type="text/javascript">
+            function Tombol(){
+                var a = document.getElementsByTagName("input")[0]
+                a.attributes.removeNamedItem("type")
+                a.attributes.removeNamedItem("value")
+
+                var b1 = document.getElementById("contoh")
+                var b2 = document.createAttribute("class")
+                b2.value = "contohcss"
+                b1.attributes.setNamedItem(b2)
+
+                var c1 = document.getElementById("contoh2")
+                var c2 = document.getElementsByTagName("button")[0].attributes[0].value
+                c1.innerHTML = c2
+                
+                
+
+                
+            }
+        </script>
+    </body>
+</html>

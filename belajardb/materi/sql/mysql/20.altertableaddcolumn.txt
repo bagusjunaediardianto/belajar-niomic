@@ -1,0 +1,56 @@
+*menambahkan column dengan alter table*
+desc contoh_tabel_1;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| a     | int(11)     | NO   | PRI | NULL    | auto_increment |
+| b     | varchar(20) | YES  |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+
+**
+alter table contoh_tabel_1 add c decimal(4,2) not null;
+
+*menampilkan hasil kolom yang berhasil di add*
+desc contoh_tabel_1;
++-------+--------------+------+-----+---------+----------------+
+| Field | Type         | Null | Key | Default | Extra          |
++-------+--------------+------+-----+---------+----------------+
+| a     | int(11)      | NO   | PRI | NULL    | auto_increment |
+| b     | varchar(20)  | YES  |     | NULL    |                |
+| c     | decimal(4,2) | NO   |     | NULL    |                |
++-------+--------------+------+-----+---------+----------------+
+
+*menambahkan kolom pada posisi pertama*
+alter table contoh_tabel_1 add d binary first;
+desc contoh_tabel_1;
++-------+--------------+------+-----+---------+----------------+
+| Field | Type         | Null | Key | Default | Extra          |
++-------+--------------+------+-----+---------+----------------+
+| d     | binary(1)    | YES  |     | NULL    |                |
+| a     | int(11)      | NO   | PRI | NULL    | auto_increment |
+| b     | varchar(20)  | YES  |     | NULL    |                |
+| c     | decimal(4,2) | NO   |     | NULL    |                |
++-------+--------------+------+-----+---------+----------------+
+
+*menambahkan kolom pada posisi tertentu*
+alter table contoh_tabel_1 add e bigint unsigned after b;
+
+*menambahkan banyak kolom dan menempatkan pada posisi tertentu*
+alter table contoh_tabel_1 
+    -> add column f char(2) first,
+    -> add column g time(4) after c;
+
+*menampilkan hasil kolom yang berhasil di add*
+desc contoh_tabel_1;
++-------+---------------------+------+-----+---------+----------------+
+| Field | Type                | Null | Key | Default | Extra          |
++-------+---------------------+------+-----+---------+----------------+
+| f     | char(2)             | YES  |     | NULL    |                |
+| d     | binary(1)           | YES  |     | NULL    |                |
+| a     | int(11)             | NO   | PRI | NULL    | auto_increment |
+| b     | varchar(20)         | YES  |     | NULL    |                |
+| e     | bigint(20) unsigned | YES  |     | NULL    |                |
+| c     | decimal(4,2)        | NO   |     | NULL    |                |
+| g     | time(4)             | YES  |     | NULL    |                |
++-------+---------------------+------+-----+---------+----------------+
+

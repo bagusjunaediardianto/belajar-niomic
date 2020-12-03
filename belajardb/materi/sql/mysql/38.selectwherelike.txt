@@ -1,0 +1,50 @@
+Query SELECT...WHERE...LIKE digunakan untuk proses pencarian dengan pola (pattern). Berikut format dasar penulisannya:  
+
+
+SELECT nama_kolom FROM nama_tabel WHERE nama_kolom LIKE pola  
+
+
+MySQL menyediakan 2 karakter khusus untuk pola pencarian LIKE, yakni karakter underscore ( _ ) dan karakter persen (%). Berikut penjelasannya:  
+
+_ : karakter ganti yang cocok untuk satu karakter apa saja.  
+% : karakter ganti yang cocok untuk karakter apa saja dengan panjang karakter tidak terbatas, termasuk tidak ada karakter.  
+
+Sebagai contoh, saya ingin menampilkan tabel populasi dimana nama kota diawali dengan huruf B. Proses pencarian ini bisa bersifat case insensitif (tidak membedakan huruf besar dan kecil). Karena tabel populasi menggunakan character set default latin1.
+
+*mencari data kota berawalan B dengan like*
+SELECT * FROM populasi WHERE
+    -> kota like "B%";
++---------+---------+------+------+--------+----------+
+| id_kota | kota    | kec  | kel  | luas   | penduduk |
++---------+---------+------+------+--------+----------+
+|       4 | Bekasi  |   12 |   56 | 206.61 |  2381053 |
+|       5 | Bandung |   30 |  151 | 167.67 |  2339463 |
++---------+---------+------+------+--------+----------+
+
+*mencari data kota berawalan B dengan like*
+SELECT * FROM populasi 
+    -> WHERE kota LIKE "b%";
++---------+---------+------+------+--------+----------+
+| id_kota | kota    | kec  | kel  | luas   | penduduk |
++---------+---------+------+------+--------+----------+
+|       4 | Bekasi  |   12 |   56 | 206.61 |  2381053 |
+|       5 | Bandung |   30 |  151 | 167.67 |  2339463 |
++---------+---------+------+------+--------+----------+
+
+*mencari data kota berisi B dengan like*
+SELECT * FROM provinsi WHERE nama_prov LIKE "Banten%";
++---------+-----------+----------+----------+--------------------+
+| id_prov | nama_prov | ibu_kota | populasi | tanggal_diresmikan |
++---------+-----------+----------+----------+--------------------+
+|       4 | Banten    | Serang   |  2000000 | 1999-05-04         |
++---------+-----------+----------+----------+--------------------+
+
+*mencari data kota yang ada kata te dengan like*
+SELECT * FROM provinsi WHERE
+    -> nama_prov LIKE "%te%";
++---------+-----------+----------+----------+--------------------+
+| id_prov | nama_prov | ibu_kota | populasi | tanggal_diresmikan |
++---------+-----------+----------+----------+--------------------+
+|       4 | Banten    | Serang   |  2000000 | 1999-05-04         |
+|       5 | Jateng    | Semarang |  1500000 | 2000-07-01         |
++---------+-----------+----------+----------+--------------------+

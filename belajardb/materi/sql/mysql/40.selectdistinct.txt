@@ -1,0 +1,89 @@
+*perintah distinct untuk menghapus data yang sama*
+
+*membuat Table mahasiswa*
+CREATE TABLE IF NOT EXISTS mahasiswa(
+    -> nama VARCHAR(50),
+    -> asal VARCHAR(50),
+    -> kel ENUM("L","P"),
+    -> tinggi tinyint(3) unsigned,
+    -> jurusan VARCHAR(20),
+    -> nilai_uan decimal(5,2));
+Query OK, 0 rows affected (0.051 sec)
+
+MariaDB [belajar]> DESC mahasiswa;
++-----------+---------------------+------+-----+---------+-------+
+| Field     | Type                | Null | Key | Default | Extra |
++-----------+---------------------+------+-----+---------+-------+
+| nama      | varchar(50)         | YES  |     | NULL    |       |
+| asal      | varchar(50)         | YES  |     | NULL    |       |
+| kel       | enum('L','P')       | YES  |     | NULL    |       |
+| tinggi    | tinyint(3) unsigned | YES  |     | NULL    |       |
+| jurusan   | varchar(20)         | YES  |     | NULL    |       |
+| nilai_uan | decimal(5,2)        | YES  |     | NULL    |       |
++-----------+---------------------+------+-----+---------+-------+
+
+*mengisi nilai pada table mahasiswa*
+INSERT mahasiswa VALUES 
+("Rianna Putria","Padang","P",155,"Kimia",339.20), 
+("Rudi Permana","Bandung","L",163,"Ilmu Komputer",290.44), 
+("Sari Citra Lestari","Jakarta","P",161,"Manajemen",310.60), 
+("Rina Kumala Sari","Jakarta","P",158,"Akuntansi",337.99), 
+("James Situmorang","Medan","L",168,"Kedokteran Gigi",341.10), 
+("Sandri Fatmala","Bandung","P",165,"Ilmu Komputer",322.91), 
+("Husli Khairan","Jakarta","L",170,"Akuntansi",288.55), 
+("Christine Wijaya","Medan","P",157,"Manajemen",321.74), 
+("Iksan Prayoga","Jakarta","L",172,"Ilmu Komputer",300.16), 
+("Bobby Permana","Medan","L",161,"Ilmu Komputer",280.82);
+
+*menampilkan data*
+SELECT asal FROM mahasiswa
+    -> ORDER BY asal;
++---------+
+| asal    |
++---------+
+| Bandung |
+| Bandung |
+| Jakarta |
+| Jakarta |
+| Jakarta |
+| Jakarta |
+| Medan   |
+| Medan   |
+| Medan   |
+| Padang  |
++---------+
+
+*menampilkan data dengan distinct / agar data yang tampil tidak double*
+SELECT DISTINCT
+    -> asal FROM mahasiswa
+    -> ORDER BY asal ASC;
++---------+
+| asal    |
++---------+
+| Bandung |
+| Jakarta |
+| Medan   |
+| Padang  |
++---------+
+
+*menampilkan distinct 2 kolom*
+SELECT DISTINCT
+    -> upper(asal), upper(jurusan) FROM mahasiswa
+    -> ORDER BY asal ASC;
++-------------+-----------------+
+| upper(asal) | upper(jurusan)  |
++-------------+-----------------+
+| BANDUNG     | ILMU KOMPUTER   |
+| JAKARTA     | ILMU KOMPUTER   |
+| JAKARTA     | AKUNTANSI       |
+| JAKARTA     | MANAJEMEN       |
+| MEDAN       | ILMU KOMPUTER   |
+| MEDAN       | MANAJEMEN       |
+| MEDAN       | KEDOKTERAN GIGI |
+| PADANG      | KIMIA           |
++-------------+-----------------+
+
+Terlihat data diatas tampil lebih dari 1 di masing - masing kolom,
+tetapi kalau di lihat secara 2 kolom, tidak ada data yang sama, data tetap bersifat unik
+BANDUNG - ILMU KOMPUTER
+JAKARTA - ILMU KOMPUTER

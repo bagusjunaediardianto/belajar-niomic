@@ -1,0 +1,39 @@
+*digunakan apabila dalam setiap barisnya tidak menyisakan space tab di akhir barisnya*
+LOAD DATA INFILE
+    -> '/home/bagus/Documents/1.belajar-niomic/belajardb/materi/data/nama_provinsi_h.txt'
+    -> INTO TABLE provinsi
+    -> COLUMNS TERMINATED BY ','
+    -> LINES TERMINATED BY '\n'
+    -> IGNORE 1 LINES;
+Query OK, 4 rows affected (0.025 sec)                
+Records: 4  Deleted: 0  Skipped: 0  Warnings: 0
+
+atau
+
+*digunakan apabila dalam setiap barisnya menyisakan space tab di akhir barisnya*
+LOAD DATA INFILE
+    -> '/home/bagus/Documents/1.belajar-niomic/belajardb/materi/data/nama_provinsi_h.txt'
+    -> INTO TABLE provinsi
+    -> COLUMNS TERMINATED BY ','
+    -> LINES TERMINATED BY '\r\n'
+    -> IGNORE 1 LINES;
+Query OK, 4 rows affected (0.025 sec)                
+Records: 4  Deleted: 0  Skipped: 0  Warnings: 0
+
+
+MariaDB [belajar]> SELECT * FROM provinsi
+    -> ;
++---------------------+----------+--------------+----------+-----------+----------+
+| nama_prov           | kode_iso | ibukota      | populasi | luas      | apbd     |
++---------------------+----------+--------------+----------+-----------+----------+
+| Kalimantan Barat    | KB       | Pontianak    |  4716093 | 115114.00 |  3929.90 |
+| Kalimantan Selatan  | KS       | Banjarmasin  |  3922790 |  36805.00 |  6010.90 |
+| Kalimantan Tengah   | KT       | Palangkaraya |  2439858 | 153564.00 |  3510.90 |
+| Kalimantan Timur    | KI       | Samarinda    |  3351432 | 194849.00 | 15731.10 |
+| Kalimantan Utara    | KU       | Tanjungselor |   618384 |  71177.00 |  2299.60 |
+| Maluku              | MA       | Ambon        |  1657409 |  49350.00 |  2013.83 |
+| Maluku Utara        | MU       | Sofifi       |  1138667 |  42960.00 |  1599.66 |
+| Nusa Tenggara Barat | NB       | Mataram      |  4773795 |  19950.00 |  2884.89 |
+| Nusa Tenggara Timur | NT       | Kupang       |  5036897 |  47676.00 |  2916.88 |
++---------------------+----------+--------------+----------+-----------+----------+
+9 rows in set (0.001 sec)

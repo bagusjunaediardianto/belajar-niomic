@@ -1,0 +1,51 @@
+-  mengaktifkan server mongodb
+bagus@bagus-ThinkPad-T430:/$ mongod
+2020-09-05T23:19:12.869+0700 I CONTROL  [initandlisten] MongoDB starting : pid=31758 port=27017 dbpath=/data/db 64-bit host=bagus-ThinkPad-T430
+2020-09-05T23:19:12.869+0700 I CONTROL  [initandlisten] db version v3.6.3
+2020-09-05T23:19:12.869+0700 I CONTROL  [initandlisten] git version: 9586e557d54ef70f9ca4b43c26892cd55257e1a5
+2020-09-05T23:19:12.869+0700 I CONTROL  [initandlisten] OpenSSL version: OpenSSL 1.1.1  11 Sep 2018
+2020-09-05T23:19:12.869+0700 I CONTROL  [initandlisten] allocator: tcmalloc
+2020-09-05T23:19:12.869+0700 I CONTROL  [initandlisten] modules: none
+2020-09-05T23:19:12.869+0700 I CONTROL  [initandlisten] build environment:
+2020-09-05T23:19:12.869+0700 I CONTROL  [initandlisten]     distarch: x86_64
+2020-09-05T23:19:12.869+0700 I CONTROL  [initandlisten]     target_arch: x86_64
+2020-09-05T23:19:12.869+0700 I CONTROL  [initandlisten] options: {}
+2020-09-05T23:19:12.869+0700 I STORAGE  [initandlisten] exception in initAndListen: NonExistentPath: Data directory /data/db not found., terminating
+2020-09-05T23:19:12.869+0700 I CONTROL  [initandlisten] now exiting
+2020-09-05T23:19:12.869+0700 I CONTROL  [initandlisten] shutting down with code:100
+
+- membuka console dari mongo
+bagus@bagus-ThinkPad-T430:/$ mongo
+MongoDB shell version v3.6.3
+connecting to: mongodb://127.0.0.1:27017
+MongoDB server version: 3.6.3
+Server has startup warnings: 
+2020-09-05T23:10:59.535+0700 I STORAGE  [initandlisten] 
+2020-09-05T23:10:59.535+0700 I STORAGE  [initandlisten] ** WARNING: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine
+2020-09-05T23:10:59.535+0700 I STORAGE  [initandlisten] **          See http://dochub.mongodb.org/core/prodnotes-filesystem
+2020-09-05T23:11:00.231+0700 I CONTROL  [initandlisten] 
+2020-09-05T23:11:00.231+0700 I CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.
+2020-09-05T23:11:00.231+0700 I CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.
+2020-09-05T23:11:00.231+0700 I CONTROL  [initandlisten] 
+
+- membuat db / collection pada mongo
+> use mahasiswa
+switched to db mahasiswa
+
+- melakukan insert ke dalam collection 
+> db.mahasiswa.save(
+... {
+... nama: "Bagus Junaedi Ardianto",
+... nrp : "090411100096"
+... }
+... );
+WriteResult({ "nInserted" : 1 })
+
+
+Maksud dari syntax diatas adalah kita menyimpan data “Bagus Junaedi Ardianto” 
+ke dalam sebuah key nama dan data “090411100096” ke dalam sebuah key nrp dalam sebuah koleksi (collection) 
+yang bernama mahasiswa.
+
+Ketika ingin memasukkan data lagi, 
+bisa menyimpan data dengan nama key yang berbeda dari key yang telah diinputkan tadi. 
+Oleh karena itu, proses input data menggunakan mongoDB akan terasa sangat mudah.  

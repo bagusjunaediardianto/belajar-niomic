@@ -1,0 +1,32 @@
+*membuat db*
+CREATE DATABASE belajar;
+
+*menggunakan DATABASE*
+USE belajar;
+
+*membuat table*
+create table contoh_tabel_1( 
+    -> a int unsigned not null primary key auto_increment, 
+    -> b varchar(10) character set utf8 collate utf8_general_ci);
+
+*membuat table dengan nama angka atau simbol*
+create table contoh_tabel_2(
+    -> 123a int,
+    -> $aku123a varchar(5) );
+
+*membuat table dengan back tick*
+create table `contoh_tabel_3`(
+    -> `kolom_1` int unsigned,
+    -> `kolom_2` varchar(10));
+
+*menampilkan bagaimana tabel dibuat*
+show create table contoh_tabel_3;
+
+*membuat tabel dengan backtick*
+create table `contoh dengan spasi`(
+    -> `Nama Lengkap` varchar(50),
+    -> `tangg#l l@hir` date,
+    -> `12345` varchar(150),
+    -> `select` int);
+
+*manfaat penggunaan backtick adalah mengatasi identifier yang tidak valid menjadi valid*

@@ -1,0 +1,5 @@
+*menampilkan character set*
+SHOW CHARACTER SET;
+
+*menampilkan collation*
+SHOW COLLATION;

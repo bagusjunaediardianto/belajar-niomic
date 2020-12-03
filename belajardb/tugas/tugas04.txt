@@ -1,0 +1,17 @@
+*Membuat database permainan*
+CREATE DATABASE permainan;
+
+*membuat struktur table sepakbola*
+CREATE TABLE sepakbola (id_pemain int(11) primary key NOT NULL auto_increment, 
+                        nama_pemain varchar(100) NOT NULL, 
+                        usia_pemain int(2) NOT NULL, 
+                        posisi_pemain varchar(50) NOT NULL);
+
+*mengubah nama table*
+ALTER TABLE sepakbola RENAME TO sepakbola_indonesia;
+
+*menghapus table*
+DROP TABLE IF EXISTS sepakbola_indonesia;
+
+*menghapus database*
+DROP DATABASE IF EXISTS permainan;

@@ -1,0 +1,69 @@
+Struktur berikutnya masih bernama CASE statement. 
+Namun berbeda dengan simple CASE statement, 
+kita bisa membuat kondisi yang lebih kompleks, 
+misalnya menggunakan operator perbandingan atau perpaduan kondisi menggunakan AND dan OR.
+
+Dalam bahasa pemrograman umum, 
+kondisi yang kompleks seperti ini hanya bisa ditangani dengan kondisi IF ELSE.
+
+1. membuat prosedur baru
+MariaDB [belajar]> DELIMITER $$
+MariaDB [belajar]> CREATE PROCEDURE IF NOT EXISTS penilaian(nilai_ip DEC(4,2))
+    -> BEGIN
+    -> CASE
+    -> WHEN (nilai_ip <= 1.00) THEN
+    -> SELECT 'goblok, buang - buang waktu';
+    -> WHEN (nilai_ip <= 2.00) THEN
+    -> SELECT 'masih tidak fokus, keluar aja kalo ngga niat';
+    -> WHEN (nilai_ip <= 3.00) THEN
+    -> SELECT 'Berusaha lebih giat lagi';
+    -> WHEN (nilai_ip <= 4.00) THEN
+    -> SELECT 'Mantap, pertahankan';
+    -> ELSE
+    -> SELECT 'nilai tidak sesuai';
+    -> END CASE;
+    -> END$$;
+Query OK, 0 rows affected (0.008 sec)
+
+2. memanggil prosedur dengan parameter
+MariaDB [belajar]> DELIMITER ;
+MariaDB [belajar]> CALL penilaian(1.01);
++----------------------------------------------+
+| masih tidak fokus, keluar aja kalo ngga niat |
++----------------------------------------------+
+| masih tidak fokus, keluar aja kalo ngga niat |
++----------------------------------------------+
+1 row in set (0.001 sec)
+
+Query OK, 0 rows affected (0.001 sec)
+
+MariaDB [belajar]> CALL penilaian(3.56);
++---------------------+
+| Mantap, pertahankan |
++---------------------+
+| Mantap, pertahankan |
++---------------------+
+1 row in set (0.000 sec)
+
+Query OK, 0 rows affected (0.000 sec)
+
+MariaDB [belajar]> CALL penilaian(4.00);
++---------------------+
+| Mantap, pertahankan |
++---------------------+
+| Mantap, pertahankan |
++---------------------+
+1 row in set (0.000 sec)
+
+Query OK, 0 rows affected (0.000 sec)
+
+3. mengembalikan nilai else apabila nilai diluar jangkauan parameter
+MariaDB [belajar]> CALL penilaian(4.01);
++--------------------+
+| nilai tidak sesuai |
++--------------------+
+| nilai tidak sesuai |
++--------------------+
+1 row in set (0.000 sec)
+
+Query OK, 0 rows affected (0.000 sec)

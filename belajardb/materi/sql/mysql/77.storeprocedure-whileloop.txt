@@ -1,0 +1,47 @@
+Perulangan atau loop merupakan salah satu fitur yang selalu hadir di setiap bahasa pemrograman. 
+SQL juga menyediakan WHILE dan REPEAT loop. 
+Keduanya dipakai untuk menjalankan perintah secara berulang.
+
+MariaDB [belajar]> DELIMITER $$
+MariaDB [belajar]> CREATE PROCEDURE IF NOT EXISTS faktorial(nilai SMALLINT)
+    -> BEGIN
+    -> DECLARE i SMALLINT DEFAULT 1;
+    -> DECLARE hasil INT DEFAULT 1;
+    -> WHILE i <= 3 DO
+    -> SET hasil = hasil * i;
+    -> SET i = i + 1;
+    -> END WHILE;
+    -> SELECT hasil;
+    -> END$$
+Query OK, 0 rows affected (0.008 sec)
+
+MariaDB [belajar]> DELIMITER ;
+MariaDB [belajar]> CALL faktorial(3);
++-------+
+| hasil |
++-------+
+|     6 |
++-------+
+
+a. 1*1 = 1
+b. 1*2 = 2
+c. 1*3 = 3
+1 * 2 * 3 = 6
+
+MariaDB [belajar]> CALL faktorial(5);
++-------+
+| hasil |
++-------+
+|   120 |
++-------+
+1 row in set (0.000 sec)
+
+
+a. 1*1 = 1
+b. 1*2 = 2
+c. 1*3 = 3
+d. 1*4 = 4
+e. 1*5 = 5
+
+1 * 2 * 3 * 4 * 5 = 120
+kurang lebihnya seperti itu perhitungannya

@@ -1,0 +1,18 @@
+langkah untuk membuat database, 
+
+- klik menu Databases di bagian atas halaman home (1). 
+
+- Halaman ini dipakai untuk memanajemen database (2). 
+Di bawah kotak input pembuatan database, terdapat daftar seluruh database yang ada di dalam MySQL. Kita bisa menghapus database, 
+atau klik salah satu database untuk melihat tabel apa saja yang ada di dalamnya.
+
+- Untuk membuat database baru, ketik nama database di isian kotak input Create database. 
+Dalam contoh ini saya akan membuat database sekolah (3).
+
+- Disampingnya , terdapat menu pilihan untuk Collation (4). 
+Pilihan ini sebenarnya sudah gabungan antara charset dan collation. 
+Disini kita bisa menentukan apa charset dan collation yang akan dipakai. 
+Atau biarkan pilihan default (Collation) untuk menggunakan settingan bawaan phpMyAdmin.
+
+- Terakhir, klik tombol Create untuk membuat database sekolah (5).
+

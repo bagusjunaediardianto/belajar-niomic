@@ -1,0 +1,50 @@
+*menampilkan struktur tabel*
+desc contoh_alter_10;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| a     | int(11)     | NO   | PRI | NULL    | auto_increment |
+| b     | varchar(10) | YES  |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+
+*memodifikasi struktur tabel*
+show create table contoh_alter_10;
++-----------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table           | Create Table                                                                                                                                                     |
++-----------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| contoh_alter_10 | CREATE TABLE `contoh_alter_10` (
+  `a` tinyint(3) unsigned NOT NULL,
+  `b` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`a`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 |
++-----------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+*memodifikasi auto increment yang hilang*
+alter table contoh_alter_10 modify a tinyint unsigned auto_increment;
+
+*hasil dari memodifikasi*
+desc contoh_alter_10;
++-------+---------------------+------+-----+---------+----------------+
+| Field | Type                | Null | Key | Default | Extra          |
++-------+---------------------+------+-----+---------+----------------+
+| a     | tinyint(3) unsigned | NO   | PRI | NULL    | auto_increment |
+| b     | varchar(10)         | YES  |     | NULL    |                |
++-------+---------------------+------+-----+---------+----------------+
+
+*Mengubah 2 kolom sekaligus*
+alter table contoh_alter_10
+    -> modify 
+    -> a mediumint(3) zerofill,
+    -> modify 
+    -> b char(20);
+
+*hasil dari memodifikasi*
+desc contoh_alter_10;
++-------+--------------------------------+------+-----+---------+-------+
+| Field | Type                           | Null | Key | Default | Extra |
++-------+--------------------------------+------+-----+---------+-------+
+| a     | mediumint(3) unsigned zerofill | NO   | PRI | NULL    |       |
+| b     | char(20)                       | YES  |     | NULL    |       |
++-------+--------------------------------+------+-----+---------+-------+
+
+ 

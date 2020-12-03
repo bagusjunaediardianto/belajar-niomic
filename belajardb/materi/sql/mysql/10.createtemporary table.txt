@@ -1,0 +1,14 @@
+*membuat temporary table*
+create temporary table contoh_temp_table_1 ( a int, b varchar(10));
+
+*menampilkan struktur temporary table*
+desc contoh_temp_table_1;
+
+*melakukan insert kedalam temporary table*
+insert into contoh_temp_table_1 values (1,"biru");
+
+*menampilkan isi temporary table*
+select * from contoh_temp_table_1;
+
+*menghapus temporary table*
+drop table contoh_temp_table_1;

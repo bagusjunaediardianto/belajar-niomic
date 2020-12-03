@@ -1,0 +1,16 @@
+*membuat tabel baru*
+CREATE TABLE contoh_alter_1 (
+    -> a int auto_increment primary key,
+    -> b varchar(10));
+
+*menjalankan perintah alter rename, untuk mengubah nama tabel*
+ALTER TABLE contoh_alter_1 RENAME contoh_alter_99;
+
+atau
+ALTER TABLE contoh_alter_1 RENAME to contoh_alter_99;
+
+atau 
+ALTER TABLE contoh_alter_1 RENAME as contoh_alter_99;
+
+*memindahkan tabel dari satu db ke db lain*
+ALTER TABLE belajar.contoh_alter_99 RENAME to indonesia.contoh_alter_10;

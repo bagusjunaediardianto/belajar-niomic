@@ -1,0 +1,12 @@
+1. Apa yang dimaksud dengan database?
+2. Apa singkatan dan pengertian dari RDBMS?
+3. Sebutkan 5 cara apa saja yang dipakai dalam penyimpanan data pada database model!
+4. Sebutkan 6 aplikasi RDBMS selain MySQL!
+5. Sebutkan 5 keunggulan MySQL sebagai RDBMS!
+
+*Jawaban*
+1. Database adalah kumpulan data yang terorganisasi, dalam bahasa indonesia disebut juga basis data
+2. Kepanjangan dari RDBMS adalah relational database management system
+3. Hierarki Model, Flat Model, Network Model, Relational Model, Object Oriented Model
+4. MySQL, PostgreSQL, MariaDB, Percona Server DB, OracleDB, IBMDB2, MS SQL Server, 
+5. Portability, Speed, Realibility, User Friendly, Multiuser Support, Internationalization, Scalability

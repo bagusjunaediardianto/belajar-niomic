@@ -1,0 +1,45 @@
+*menampilkan tabel yang akan di ubah strukturnya*
+desc contoh_tabel_1;
++-------+------------------+------+-----+---------+----------------+
+| Field | Type             | Null | Key | Default | Extra          |
++-------+------------------+------+-----+---------+----------------+
+| a     | int(10) unsigned | NO   | PRI | NULL    | auto_increment |
+| b     | varchar(10)      | YES  |     | NULL    |                |
++-------+------------------+------+-----+---------+----------------+
+
+*merubah dengan alter table change*
+alter table contoh_tabel_1 change a c tinyint;
+
+*menampilkan kembali tabel yang strukturnya sudah diubah*
+desc contoh_tabel_1;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| c     | tinyint(4)  | NO   | PRI | NULL    |       |
+| b     | varchar(10) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+  
+
+*merubah dengan alter table change untuk kolom b*
+alter table contoh_tabel_1 change b d char(20) default null;
+
+*merubah struktur kolom tanpa mengganti nama kolom*
+alter table contoh_tabel_1 change d d varchar(50) 
+    -> character set utf8 collate utf8_general_ci;
+
+*hasil perubahan*
+show create table contoh_tabel_1;
++----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table          | Create Table                                                                                                                                                              |
++----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| contoh_tabel_1 | CREATE TABLE `contoh_tabel_1` (
+  `c` tinyint(4) NOT NULL,
+  `d` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
+  PRIMARY KEY (`c`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 |
++----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
+*merubah beberapa kolom sekaligus*
+alter table contoh_tabel_1
+    -> change c a int NOT NULL auto_increment,
+    -> change d b varchar(20) charset utf8 collate utf8_general_ci;

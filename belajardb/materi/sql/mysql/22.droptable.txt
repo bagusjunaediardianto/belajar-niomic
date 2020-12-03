@@ -1,0 +1,36 @@
+*membuat tabel*
+create table contoh_drop_1 (
+    -> a int
+    -> );
+
+*menghapus tabel*
+drop table contoh_drop_1;
+
+*menghapus beberapa tabel*
+drop table contoh_drop_1, contoh_drop_2;
+
+*drop table memiliki beberapa perintah tambahan, antara lain
+
+- drop table
+- drop temporary table
+- drop table if exists
+
+*
+
+*membuat dan menghapus temporary table*
+create temporary table contoh_temp_1(
+    -> a int auto_increment primary key,
+    -> b varchar(10)
+    -> );
+
+drop temporary table contoh_temp_1;
+
+*menghapus table dengan if exists*
+drop table if exists tidak_ada;
+Query OK, 0 rows affected, 1 warning (0.000 sec)
+
+- terlihat muncul warning
+
+untuk mengetahui warning tersebut, ketik dan jalankan perintah
+show warnings;
+

@@ -1,25 +1,115 @@
 {
   "data-karyawan": [
     {
-      "id": 1557298963816,
-      "nama_karyawan": "putra agung",
-      "jabatan": "Security",
-      "jenis_kelamin": "laki-laki",
-      "tanggal_lahir": "1991-12-12"
-    },
-    {
-      "id": 1557298993816,
-      "nama_karyawan": "gerysena",
-      "jabatan": "Marketing",
-      "jenis_kelamin": "laki-laki",
-      "tanggal_lahir": "2011-01-31"
-    },
-    {
       "id": 1591837942584,
-      "nama_karyawan": "Hasan",
+      "nama_karyawan": "Jonathan Felix Sihanto",
+      "jabatan": "Support",
+      "jenis_kelamin": "Laki-Laki",
+      "tanggal_lahir": "1990-05-28"
+    },
+    {
+      "id": 1592900943010,
+      "nama_karyawan": "Bagus",
+      "jabatan": "Support",
+      "jenis_kelamin": "Laki-Laki",
+      "tanggal_lahir": "1993-06-29"
+    },
+    {
+      "id": 1592901461217,
+      "nama_karyawan": "Hervina",
+      "jabatan": "Sekretaris",
+      "jenis_kelamin": "Perempuan",
+      "tanggal_lahir": "1933-06-29"
+    },
+    {
+      "id": 1592903422686,
+      "nama_karyawan": "Risty",
+      "jabatan": "Sekretaris",
+      "jenis_kelamin": "Perempuan",
+      "tanggal_lahir": "2000-06-11"
+    },
+    {
+      "id": 1592954388516,
+      "nama_karyawan": "Ardiansyah",
+      "jabatan": "Marketing",
+      "jenis_kelamin": "Laki-Laki",
+      "tanggal_lahir": "1988-05-20"
+    },
+    {
+      "id": 1591837942588,
+      "nama_karyawan": "Jonathan Felix Siahaan",
       "jabatan": "Marketing",
       "jenis_kelamin": "Laki-Laki",
       "tanggal_lahir": "1990-05-28"
+    },
+    {
+      "id": 1592900943012,
+      "nama_karyawan": "Bagus",
+      "jabatan": "Support",
+      "jenis_kelamin": "Laki-Laki",
+      "tanggal_lahir": "1993-06-29"
+    },
+    {
+      "id": 1592901461214,
+      "nama_karyawan": "Hervina",
+      "jabatan": "Sekretaris",
+      "jenis_kelamin": "Perempuan",
+      "tanggal_lahir": "1933-06-29"
+    },
+    {
+      "id": 1592903422687,
+      "nama_karyawan": "Risty",
+      "jabatan": "Sekretaris",
+      "jenis_kelamin": "Perempuan",
+      "tanggal_lahir": "2000-06-11"
+    },
+    {
+      "id": 1592954388516,
+      "nama_karyawan": "Ardiansyah",
+      "jabatan": "Marketing",
+      "jenis_kelamin": "Laki-Laki",
+      "tanggal_lahir": "1988-05-20"
+    },
+    {
+      "id": 1593158728566,
+      "nama_karyawan": "Ardianto ",
+      "jabatan": "Marketing",
+      "jenis_kelamin": "Laki-Laki",
+      "tanggal_lahir": "1999-06-29"
+    },
+    {
+      "id": 1593158787940,
+      "nama_karyawan": "Febrian",
+      "jabatan": "Sekretaris",
+      "jenis_kelamin": "Perempuan",
+      "tanggal_lahir": "1999-12-01"
+    },
+    {
+      "id": 1593158811430,
+      "nama_karyawan": "Johny",
+      "jabatan": "Security",
+      "jenis_kelamin": "Laki-Laki",
+      "tanggal_lahir": "1995-07-22"
+    },{
+      "id": 1592900943012,
+      "nama_karyawan": "Bagus",
+      "jabatan": "Support",
+      "jenis_kelamin": "Laki-Laki",
+      "tanggal_lahir": "1993-06-29"
+    },
+    {
+      "id": 1592901461214,
+      "nama_karyawan": "Hervina",
+      "jabatan": "Sekretaris",
+      "jenis_kelamin": "Perempuan",
+      "tanggal_lahir": "1933-06-29"
+    },
+    {
+      "id": 1592903422687,
+      "nama_karyawan": "Risty",
+      "jabatan": "Sekretaris",
+      "jenis_kelamin": "Perempuan",
+      "tanggal_lahir": "2000-06-11"
     }
   ],
   "comments": [

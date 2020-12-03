@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>BELAJAR DOM</title>
+    </head>
+    <body>
+        <button type="button" name="button" onclick="Tombol()">Jalan</button>
+        <p id="contoh">contoh</p>
+
+        <script type="text/javascript">
+            var Tombol = ()=> {
+                var a = document.getElementsByTagName('button')[0]
+                var b = a.attributes.item(0).name
+                document.getElementById('contoh').innerHTML = b
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>TUGAS DOM</title>
+    </head>
+    <body>
+        <button type="button" name="button" onclick="Tombol()">Jalankan</button>
+        <br/>
+        <br/>
+        <hr/>
+        <b>base URI</b> property : <br/>
+        <p id="contoh">contoh</p>
+        <hr/>
+        <b>Body</b> property : <br/>
+        <p id="contoh2">contoh</p>
+        <hr/>
+        <b>Create</b> Element <br/><br/>
+
+        <script type="text/javascript">
+            function Tombol(){
+                var a = document.baseURI
+                document.getElementById("contoh").innerHTML = a
+
+                var b = "green"
+                document.body.style.backgroundColor = b
+                document.getElementById("contoh2").innerHTML = b
+
+                var c = document.createElement("input")
+                c.innerHTML = "data"
+                document.body.appendChild(c)
+            }
+        </script>
+    </body>
+</html>

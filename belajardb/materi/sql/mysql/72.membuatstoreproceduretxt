@@ -1,0 +1,57 @@
+*membuat prosedur tampil_mahasiswa*
+
+1. membuat prosedur tampil_mhs
+MariaDB [belajar]> DELIMITER $$
+MariaDB [belajar]> CREATE PROCEDURE tampil_mhs()
+    -> BEGIN
+    -> SELECT * FROM nilai_mahasiswa;
+    -> END$$
+Query OK, 0 rows affected (0.006 sec)
+
+2. menampilkan prosedur tampil_mhs
+MariaDB [belajar]> DELIMITER ;
+MariaDB [belajar]> call tampil_mhs();
++----------+------------------+------------+------------+------------+
+| nim      | nama             | semester_1 | semester_2 | semester_3 |
++----------+------------------+------------+------------+------------+
+| 17080305 | Rina Kumala Sari |       3.45 |       2.56 |       3.67 |
+| 17090113 | Riana Putria     |       3.12 |       2.98 |       3.45 |
+| 17090308 | Christine Wijaya |       3.78 |       3.23 |       3.11 |
+| 17140119 | Sandri Fatmala   |       2.12 |       2.78 |       2.56 |
+| 17140143 | Rudi Permana     |       2.56 |       3.14 |       3.22 |
+| 17140354 | Hasan Al Jufri   |       2.87 |       2.87 |       3.12 |
++----------+------------------+------------+------------+------------+
+6 rows in set (0.001 sec)
+
+Query OK, 0 rows affected (0.001 sec)
+
+3. membuat prosedur hitung_ipk
+MariaDB [belajar]> DELIMITER $$
+MariaDB [belajar]> CREATE PROCEDURE hitung_ipk()
+    -> BEGIN
+    -> SELECT 
+    -> nim,
+    -> nama,
+    -> ROUND(((semester_1 + semester_2 + semester_3)/3),2) AS 'IPK'
+    -> FROM nilai_mahasiswa;
+    -> END$$
+Query OK, 0 rows affected (0.008 sec)
+
+4. menampilkan prosedur hitung_ipk
+MariaDB [belajar]> DELIMITER ;
+MariaDB [belajar]> call hitung_ipk()
+    -> ;
++----------+------------------+------+
+| nim      | nama             | IPK  |
++----------+------------------+------+
+| 17080305 | Rina Kumala Sari | 3.23 |
+| 17090113 | Riana Putria     | 3.18 |
+| 17090308 | Christine Wijaya | 3.37 |
+| 17140119 | Sandri Fatmala   | 2.49 |
+| 17140143 | Rudi Permana     | 2.97 |
+| 17140354 | Hasan Al Jufri   | 2.95 |
++----------+------------------+------+
+6 rows in set (0.001 sec)
+
+Query OK, 0 rows affected (0.001 sec)
+

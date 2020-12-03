@@ -1,0 +1,10 @@
+*membuat tabel dengan option auto increment*
+create table contoh_auto_increment_3 (
+    -> a int auto_increment primary key,
+    -> b varchar (10))
+    -> auto_increment = 500;
+
+*melakukan insert pada kolom b*
+insert into contoh_auto_increment_3 (b)  values ("merah"),
+    -> ("biru"),
+    -> ("kuning");

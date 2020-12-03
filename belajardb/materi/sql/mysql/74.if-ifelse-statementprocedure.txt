@@ -1,0 +1,51 @@
+MariaDB [belajar]> DELIMITER //
+MariaDB [belajar]> CREATE PROCEDURE salam(waktu TIME)
+    -> BEGIN
+    -> IF waktu < '10:00:00' THEN
+    -> SELECT 'selamat pagi';
+    -> END IF;
+    -> END//
+Query OK, 0 rows affected (0.008 sec)
+
+MariaDB [belajar]> DELIMITER ;
+MariaDB [belajar]> CALL salam('00:00:01');
++--------------+
+| selamat pagi |
++--------------+
+| selamat pagi |
++--------------+
+1 row in set (0.001 sec)
+
+MariaDB [belajar]> DELIMITER ;
+MariaDB [belajar]> call salam('10:00:01');
+Query OK, 0 rows affected (0.000 sec)
+
+
+MariaDB [belajar]> CREATE PROCEDURE salam(waktu TIME)
+    -> BEGIN
+    -> IF waktu < '10:00:00' THEN
+    -> SELECT 'selamat pagi';
+    -> ELSEIF waktu < '18:00:00' THEN
+    -> SELECT 'selamat siang';
+    -> ELSE
+    -> SELECT 'selamat menikmati hari';
+    -> END IF;
+    -> END//
+Query OK, 0 rows affected (0.008 sec)
+
+MariaDB [belajar]> DELIMITER ;
+MariaDB [belajar]> CALL salam('17:00:00');
++---------------+
+| selamat siang |
++---------------+
+| selamat siang |
++---------------+
+
+MariaDB [belajar]> DELIMITER ;
+MariaDB [belajar]> CALL salam('20:00:00');
++------------------------+
+| selamat menikmati hari |
++------------------------+
+| selamat menikmati hari |
++------------------------+
+

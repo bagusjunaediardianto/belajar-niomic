@@ -1,0 +1,9 @@
+*menampilkan data table secara spesifik*
+SELECT id_prov,nama_prov,ibu_kota FROM provinsi where nama_prov="Jateng";
+
+*menampilkan data secara descending berdasarkan angka terbesar*
+SELECT * FROM provinsi ORDER BY populasi desc;
+
+*menampilkan data dari abjad awal ke terakhir dengan menentukan limit*
+SELECT * FROM provinsi ORDER BY nama_prov limit 0,2;
+SELECT * FROM provinsi ORDER BY nama_prov limit 2;

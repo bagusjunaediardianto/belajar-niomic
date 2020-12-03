@@ -1,0 +1,60 @@
+MariaDB [belajar]> SELECt * FROM nilai_mahasiswa;
++----------+------------------+------------+------------+------------+
+| nim      | nama             | semester_1 | semester_2 | semester_3 |
++----------+------------------+------------+------------+------------+
+| 17080305 | Rina Kumala Sari |       3.45 |       2.56 |       3.67 |
+| 17090113 | Riana Putria     |       3.12 |       2.98 |       3.45 |
+| 17090308 | Christine Wijaya |       3.78 |       3.23 |       3.11 |
+| 17140119 | Sandri Fatmala   |       2.12 |       2.78 |       2.56 |
+| 17140143 | Rudi Permana     |       2.56 |       3.14 |       3.22 |
+| 17140354 | Hasan Al Jufri   |       2.87 |       2.87 |       3.12 |
++----------+------------------+------------+------------+------------+
+6 rows in set (0.000 sec)
+
+MariaDB [belajar]> DELIMITER $$
+MariaDB [belajar]> CREATE PROCEDURE IF NOT EXISTS penilaian (nim_mhs CHAR(8))
+    -> BEGIN
+    -> DECLARE nilai_ip DEC(4,2) DEFAULT 0.00;
+    -> SELECT
+    -> semester_1
+    -> INTO nilai_ip
+    -> FROM nilai_mahasiswa
+    -> WHERE nim = nim_mhs;
+    -> CASE
+    -> WHEN (nilai_ip <= 1.00) THEN 
+    -> SELECT 'Anda tidak belajar sama sekali, Calon DO';
+    -> WHEN (nilai_ip <= 2.00) THEN
+    -> SELECT 'Anda Kurang Fokus dalam belajar';
+    -> WHEN (nilai_ip <=3.00) THEN
+    -> SELECT 'Ayo, Awal yang baik berusahalah lebih keras lagi';
+    -> WHEN (nilai_ip <= 4.00) THEN
+    -> SELECT 'Good Job, Congratulations';
+    -> ELSE
+    -> IF (nilai_ip < 0.00 AND nilai_ip > 4.00) THEN
+    -> SELECT 'nim anda tidak terdaftar, anda kuliah dimana';
+    -> END IF
+    -> ;
+    -> END CASE;
+    -> END$$
+Query OK, 0 rows affected (0.008 sec)
+
+MariaDB [belajar]> DELIMITER ;
+MariaDB [belajar]> CALL penilaian('17140354');
++--------------------------------------------------+
+| Ayo, Awal yang baik berusahalah lebih keras lagi |
++--------------------------------------------------+
+| Ayo, Awal yang baik berusahalah lebih keras lagi |
++--------------------------------------------------+
+1 row in set (0.001 sec)
+
+Query OK, 1 row affected (0.001 sec)
+
+MariaDB [belajar]> CALL penilaian('1714035');
++------------------------------------------+
+| Anda tidak belajar sama sekali, Calon DO |
++------------------------------------------+
+| Anda tidak belajar sama sekali, Calon DO |
++------------------------------------------+
+1 row in set (0.001 sec)
+
+Query OK, 0 rows affected, 1 warning (0.001 sec)

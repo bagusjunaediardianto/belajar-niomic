@@ -1,0 +1,92 @@
+Bentuk looping atau perulangan kedua adalah REPEAT. 
+Konsep kerjanya sedikit berbeda dengan perulangan WHILE. Di dalam perulangan REPEAT, 
+pemeriksaan kondisi dilakukan di akhir perulangan, bukan di awal seperti di dalam WHILE.
+
+MariaDB [belajar]> DELIMITER $$
+MariaDB [belajar]> CREATE PROCEDURE IF NOT EXISTS faktorial(nilai SMALLINT)
+    -> BEGIN
+    -> DECLARE i SMALLINT DEFAULT 1;
+    -> DECLARE hasil INT DEFAULT 1;
+    -> REPEAT
+    -> SET hasil = hasil * i;
+    -> SET i = i + 1;
+    -> UNTIL i > nilai
+    -> END REPEAT;
+    -> SELECT hasil;
+    -> END$$
+Query OK, 0 rows affected (0.008 sec)
+
+MariaDB [belajar]> DELIMITER ;
+MariaDB [belajar]> CALL faktorial(3);
++-------+
+| hasil |
++-------+
+|     6 |
++-------+
+1 row in set (0.001 sec)
+
+Query OK, 0 rows affected (0.001 sec)
+
+MariaDB [belajar]> 
+MariaDB [belajar]> DELIMITER $$
+MariaDB [belajar]> CREATE PROCEDURE IF NOT EXISTS faktorial(nilai SMALLINT)
+    -> BEGIN
+    -> DECLARE i SMALLINT DEFAULT 1;
+    -> DECLARE hasil INT DEFAULT 1;
+    -> REPEAT
+    -> SET hasil = hasil * i;
+    -> SET i = i + 1;
+    -> UNTIL i > nilai
+    -> END REPEAT;
+    -> SELECT hasil;
+    -> END$$
+Query OK, 0 rows affected (0.008 sec)
+
+MariaDB [belajar]> DELIMITER ;
+MariaDB [belajar]> CALL faktorial(3);
+
++-------+
+| hasil |
++-------+
+|     6 |
++-------+
+
+i = 1
+hasil = 1
+for (i = 1 ; i <= nilai; i++){
+    hasil = hasil * i
+    i = i + i
+}
+hasil
+
+1*1 = 1
+2*1 = 2
+3*1 = 3
+
+1 * 2 * 3 = 6
+
+1 row in set (0.001 sec)
+
+Query OK, 0 rows affected (0.001 sec)
+
+MariaDB [belajar]> CALL faktorial(8);
++-------+
+| hasil |
++-------+
+| 40320 |
++-------+
+
+1 * 1 = 1
+1 * 2 = 2
+1 * 3 = 3 
+1 * 4 = 4
+1 * 5 = 5
+1 * 6 = 6
+1 * 7 = 7
+1 * 8 = 8
+
+1 * 2 * 3 * 4 * 5 * 6 * 7 * 8 = 40320
+1 row in set (0.000 sec)
+
+Query OK, 0 rows affected (0.001 sec)
+

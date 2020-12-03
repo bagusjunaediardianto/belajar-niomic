@@ -1,0 +1,13 @@
+Tabel siswa sudah berhasil dibuat. 
+Saatnya kita input beberapa data ke dalam tabel ini. 
+Dari halaman struktur sebelumnya, klik menu Insert. 
+Akan muncul jendela tampilan sebagai berikut:
+
+- Pada halaman ini, terdapat 4 baris inputan sesuai dengan jumlah kolom di dalam tabel siswa. 
+Paling kiri diawali dengan keterangan nama kolom (Column) serta tipe data (Type) kolom tersebut
+
+- Selanjutnya diikuti dengan kolom Function. 
+Kolom ini berisi pilihan berbagai fungsi bawaan MySQL yang bisa kita pakai
+
+- Mayoritas fungsi-fungsi ini sudah kita bahas. 
+Sebagai contoh, saya memilih fungsi UPPER untuk kolom nama siswa.

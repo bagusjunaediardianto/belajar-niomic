@@ -1,0 +1,34 @@
+*if you run in SQL *
+- SELECT * FROM customers where _id = "Bagus"
+> db.customers.find({_id : "Bagus"}).pretty()
+{ "_id" : "Bagus", "name" : "Bagus Junaedi Ardianto" }
+
+- SELECT * FROM customers where name = "Bagus Junaedi Ardianto"
+> db.customers.find({name : "Bagus Junaedi Ardianto"}).pretty()
+{ "_id" : "Bagus", "name" : "Bagus Junaedi Ardianto" }
+
+- SELECT * FROM products where price = 2000
+> db.products.find({price : 2000}).pretty()
+{ "_id" : 1, "name" : "Indomie Ayam Bawang", "price" : NumberLong(2000) }
+{ "_id" : 2, "name" : "Mie Sedap", "price" : NumberLong(2000) }
+
+- SELECT * FROM orders where items.products.id = 1
+> db.orders.find({"items.product_id" : 1}).pretty()
+{
+	"_id" : ObjectId("5f6134913178ba0969033dfb"),
+	"total" : NumberLong(8000),
+	"items" : [
+		{
+			"product_id" : 1,
+			"price" : NumberLong(2000),
+			"quantity" : 2
+		},
+		{
+			"product_id" : 2,
+			"price" : NumberLong(2000),
+			"quantity" : 2
+		}
+	]
+}
+> 
+

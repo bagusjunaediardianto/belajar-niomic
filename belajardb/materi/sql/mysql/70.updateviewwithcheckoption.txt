@@ -1,0 +1,15 @@
+*Konsistensi Update VIEW dengan WITH CHECK OPTION *
+
+- Fitur update ke dalam view yang kita coba sebelum ini memiliki sebuah masalah konsistensi. 
+View mahasiswa_ilkom hanya menampilkan mahasiswa yang memiliki jurusan Ilmu Komputer saja.
+Apabila tidak sesuai, maka akan menampilkan pesan error
+
+MariaDB [belajar]> CREATE OR REPLACE mahasiswa_ilkom AS
+    -> SELECT
+    -> nim,nama,jurusan FROM mahasiswa WHERE jurusan = 'Ilmu Komputer'
+    -> WITH CHECK OPTION;
+Query OK, 0 rows affected (0.033 sec)
+
+MariaDB [belajar]> INSERT INTO mahasiswa_ilkom VALUES
+    -> ('17080286','Rano Tobing','Akuntansi');
+ERROR 1369 (44000): CHECK OPTION failed `belajar`.`mahasiswa_ilkom`

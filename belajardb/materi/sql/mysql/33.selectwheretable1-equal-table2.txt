@@ -1,0 +1,162 @@
+*Buat table like dengan mengambil data dari database lain*
+CREATE TABLE provinsi like otherdatabase.provinsi;
+
+Query OK, 0 rows affected (0.021 sec)
+
+MariaDB [belajar]> desc provinsi;
++--------------------+--------------+------+-----+---------+-------+
+| Field              | Type         | Null | Key | Default | Extra |
++--------------------+--------------+------+-----+---------+-------+
+| id_prov            | int(11)      | YES  |     | NULL    |       |
+| nama_prov          | varchar(100) | YES  |     | NULL    |       |
+| ibu_kota           | varchar(100) | YES  |     | NULL    |       |
+| populasi           | int(11)      | YES  |     | NULL    |       |
+| tanggal_diresmikan | date         | YES  |     | NULL    |       |
++--------------------+--------------+------+-----+---------+-------+
+
+*melakukan insert dari db lain untuk mendapatkan data yang sama di table baru tersebut*
+INSERT provinsi SELECT * FROM indonesia.provinsi;
+Query OK, 7 rows affected (0.014 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+atau
+
+INSERT INTO provinsi SELECT * FROM indonesia.provinsi;
+Query OK, 7 rows affected (0.014 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+*menampilkan data provinsi hasil cloning*
+
+*IDENTIFIER QUALIFIER*
+merupakan cara penulisan nama kolom atau table dengan menulis nama lengkap dari table atau databasenya;
+
+contoh penggunaan identifier qualifier
+SELECT populasi.kota, populasi.penduduk from populasi;
++-----------+----------+
+| kota      | penduduk |
++-----------+----------+
+| Jakarta   |  9988495 |
+| Surabaya  |  2805906 |
+| Medan     |  2465469 |
+| Bekasi    |  2381053 |
+| Bandung   |  2339463 |
+| Makassar  |  1651146 |
+| Depok     |  1631951 |
+| Semarang  |  1621384 |
+| Tangerang |  1566190 |
+| Palembang |  1548064 |
++-----------+----------+
+
+select upper(provinsi.nama_prov) as `Nama Provinsi`,
+    -> upper(provinsi.ibu_kota) as `Nama Kota` from provinsi;
++----------------+----------------+
+| Nama Provinsi  | Nama Kota      |
++----------------+----------------+
+| DKI JAKARTA    | JAKARTA        |
+| JATIM          | SURABAYA       |
+| JABAR          | BANDUNG        |
+| BANTEN         | SERANG         |
+| JATENG         | SEMARANG       |
+| KEPULAUAN RIAU | TANJUNG PINANG |
+| PAPUA BARAT    | MANOKWARI      |
++----------------+----------------+
+
+SELECT
+    -> upper(provinsi.nama_prov) as `Nama Provinsi`,
+    -> upper(populasi.kota) as `Nama Kota`,
+    -> populasi.penduduk as `Jumlah Penduduk`
+    -> FROM provinsi,populasi;
++----------------+-----------+-----------------+
+| Nama Provinsi  | Nama Kota | Jumlah Penduduk |
++----------------+-----------+-----------------+
+| DKI JAKARTA    | JAKARTA   |         9988495 |
+| JATIM          | JAKARTA   |         9988495 |
+| JABAR          | JAKARTA   |         9988495 |
+| BANTEN         | JAKARTA   |         9988495 |
+| JATENG         | JAKARTA   |         9988495 |
+| KEPULAUAN RIAU | JAKARTA   |         9988495 |
+| PAPUA BARAT    | JAKARTA   |         9988495 |
+| DKI JAKARTA    | SURABAYA  |         2805906 |
+| JATIM          | SURABAYA  |         2805906 |
+| JABAR          | SURABAYA  |         2805906 |
+| BANTEN         | SURABAYA  |         2805906 |
+| JATENG         | SURABAYA  |         2805906 |
+| KEPULAUAN RIAU | SURABAYA  |         2805906 |
+| PAPUA BARAT    | SURABAYA  |         2805906 |
+| DKI JAKARTA    | MEDAN     |         2465469 |
+| JATIM          | MEDAN     |         2465469 |
+| JABAR          | MEDAN     |         2465469 |
+| BANTEN         | MEDAN     |         2465469 |
+| JATENG         | MEDAN     |         2465469 |
+| KEPULAUAN RIAU | MEDAN     |         2465469 |
+| PAPUA BARAT    | MEDAN     |         2465469 |
+| DKI JAKARTA    | BEKASI    |         2381053 |
+| JATIM          | BEKASI    |         2381053 |
+| JABAR          | BEKASI    |         2381053 |
+| BANTEN         | BEKASI    |         2381053 |
+| JATENG         | BEKASI    |         2381053 |
+| KEPULAUAN RIAU | BEKASI    |         2381053 |
+| PAPUA BARAT    | BEKASI    |         2381053 |
+| DKI JAKARTA    | BANDUNG   |         2339463 |
+| JATIM          | BANDUNG   |         2339463 |
+| JABAR          | BANDUNG   |         2339463 |
+| BANTEN         | BANDUNG   |         2339463 |
+| JATENG         | BANDUNG   |         2339463 |
+| KEPULAUAN RIAU | BANDUNG   |         2339463 |
+| PAPUA BARAT    | BANDUNG   |         2339463 |
+| DKI JAKARTA    | MAKASSAR  |         1651146 |
+| JATIM          | MAKASSAR  |         1651146 |
+| JABAR          | MAKASSAR  |         1651146 |
+| BANTEN         | MAKASSAR  |         1651146 |
+| JATENG         | MAKASSAR  |         1651146 |
+| KEPULAUAN RIAU | MAKASSAR  |         1651146 |
+| PAPUA BARAT    | MAKASSAR  |         1651146 |
+| DKI JAKARTA    | DEPOK     |         1631951 |
+| JATIM          | DEPOK     |         1631951 |
+| JABAR          | DEPOK     |         1631951 |
+| BANTEN         | DEPOK     |         1631951 |
+| JATENG         | DEPOK     |         1631951 |
+| KEPULAUAN RIAU | DEPOK     |         1631951 |
+| PAPUA BARAT    | DEPOK     |         1631951 |
+| DKI JAKARTA    | SEMARANG  |         1621384 |
+| JATIM          | SEMARANG  |         1621384 |
+| JABAR          | SEMARANG  |         1621384 |
+| BANTEN         | SEMARANG  |         1621384 |
+| JATENG         | SEMARANG  |         1621384 |
+| KEPULAUAN RIAU | SEMARANG  |         1621384 |
+| PAPUA BARAT    | SEMARANG  |         1621384 |
+| DKI JAKARTA    | TANGERANG |         1566190 |
+| JATIM          | TANGERANG |         1566190 |
+| JABAR          | TANGERANG |         1566190 |
+| BANTEN         | TANGERANG |         1566190 |
+| JATENG         | TANGERANG |         1566190 |
+| KEPULAUAN RIAU | TANGERANG |         1566190 |
+| PAPUA BARAT    | TANGERANG |         1566190 |
+| DKI JAKARTA    | PALEMBANG |         1548064 |
+| JATIM          | PALEMBANG |         1548064 |
+| JABAR          | PALEMBANG |         1548064 |
+| BANTEN         | PALEMBANG |         1548064 |
+| JATENG         | PALEMBANG |         1548064 |
+| KEPULAUAN RIAU | PALEMBANG |         1548064 |
+| PAPUA BARAT    | PALEMBANG |         1548064 |
++----------------+-----------+-----------------+
+*terlihat data mengulang dan mengisi pada tempat yang tidak sesuai, 
+maka untuk menangani ini, kita perlu melakukan expresion where untuk menampilkan data yang sesuai*
+
+
+SELECT
+    -> upper(provinsi.nama_prov) as `Nama Provinsi`,
+    -> upper(populasi.kota) as `Nama Kota`,
+    -> populasi.penduduk as `Jumlah penduduk`
+    -> FROM provinsi,populasi
+    -> WHERE provinsi.ibu_kota = populasi.kota; 
++---------------+-----------+-----------------+
+| Nama Provinsi | Nama Kota | Jumlah penduduk |
++---------------+-----------+-----------------+
+| DKI JAKARTA   | JAKARTA   |         9988495 |
+| JATIM         | SURABAYA  |         2805906 |
+| JABAR         | BANDUNG   |         2339463 |
+| JATENG        | SEMARANG  |         1621384 |
++---------------+-----------+-----------------+
+
+*terlihat bukan perbedaannya*

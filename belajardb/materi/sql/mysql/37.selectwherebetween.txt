@@ -1,0 +1,95 @@
+*memanggil query select where between menghasilkan output 
+memilih data dimana data tersebut memiliki range tertentu*
+
+*memanggil data berdasarkan kolom kecamatan yang jumlah kecamatannya antara 20 s/d 30*
+SELECT * FROM populasi WHERE kec
+    -> BETWEEN 20 AND 30;
++---------+---------+------+------+--------+----------+
+| id_kota | kota    | kec  | kel  | luas   | penduduk |
++---------+---------+------+------+--------+----------+
+|       3 | Medan   |   21 |  151 | 265.00 |  2465469 |
+|       5 | Bandung |   30 |  151 | 167.67 |  2339463 |
++---------+---------+------+------+--------+----------+
+
+*memanggil data berdasarkan kolom penduduk yang jumlah penduduknya antara 1000000 s/d 2000000*
+SELECT * FROM populasi
+    -> WHERE penduduk
+    -> BETWEEN 1000000 AND 2000000;
++---------+-----------+------+------+--------+----------+
+| id_kota | kota      | kec  | kel  | luas   | penduduk |
++---------+-----------+------+------+--------+----------+
+|       6 | Makassar  |   14 |  143 | 199.26 |  1651146 |
+|       7 | Depok     |   11 |   63 | 200.29 |  1631951 |
+|       8 | Semarang  |   16 |  177 | 373.78 |  1621384 |
+|       9 | Tangerang |   13 |  104 | 153.93 |  1566190 |
+|      10 | Palembang |   14 |  107 | 369.22 |  1548064 |
++---------+-----------+------+------+--------+----------+
+
+*memanggil data berdasarkan kolom penduduk yang jumlah penduduknya bukan diantara 1000000 s/d 2000000*
+SELECT * FROM populasi
+    -> WHERE penduduk
+    -> NOT BETWEEN 1000000 AND 2000000;
++---------+----------+------+------+--------+----------+
+| id_kota | kota     | kec  | kel  | luas   | penduduk |
++---------+----------+------+------+--------+----------+
+|       1 | Jakarta  |   44 |  267 | 664.01 |  9988495 |
+|       2 | Surabaya |   31 |  154 | 350.54 |  2805906 |
+|       3 | Medan    |   21 |  151 | 265.00 |  2465469 |
+|       4 | Bekasi   |   12 |   56 | 206.61 |  2381053 |
+|       5 | Bandung  |   30 |  151 | 167.67 |  2339463 |
++---------+----------+------+------+--------+----------+
+
+*memanggil data berdasarkan kolom kota yang nama kotanya diantara abjad yang berawalan B pada 
+ Bekasi s/d yang berawalan M pada Medan*
+SELECT * FROM populasi
+    -> WHERE kota
+    -> BETWEEN 'Bekasi' AND 'Medan';
++---------+----------+------+------+--------+----------+
+| id_kota | kota     | kec  | kel  | luas   | penduduk |
++---------+----------+------+------+--------+----------+
+|       1 | Jakarta  |   44 |  267 | 664.01 |  9988495 |
+|       3 | Medan    |   21 |  151 | 265.00 |  2465469 |
+|       4 | Bekasi   |   12 |   56 | 206.61 |  2381053 |
+|       6 | Makassar |   14 |  143 | 199.26 |  1651146 |
+|       7 | Depok    |   11 |   63 | 200.29 |  1631951 |
++---------+----------+------+------+--------+----------+
+
+SELECT * FROM populasi
+    -> WHERE kota
+    -> BETWEEN "Bekasi" AND "Medan"
+    -> ORDER BY kota ASC;
++---------+----------+------+------+--------+----------+
+| id_kota | kota     | kec  | kel  | luas   | penduduk |
++---------+----------+------+------+--------+----------+
+|       4 | Bekasi   |   12 |   56 | 206.61 |  2381053 |
+|       7 | Depok    |   11 |   63 | 200.29 |  1631951 |
+|       1 | Jakarta  |   44 |  267 | 664.01 |  9988495 |
+|       6 | Makassar |   14 |  143 | 199.26 |  1651146 |
+|       3 | Medan    |   21 |  151 | 265.00 |  2465469 |
++---------+----------+------+------+--------+----------+
+
+SELECT * FROM provinsi
+    -> WHERE tanggal_diresmikan
+    -> BETWEEN '1945-01-01' AND '1997-12-31'
+    -> ORDER BY tanggal_diresmikan ASC;
++---------+-------------+----------+----------+--------------------+
+| id_prov | nama_prov   | ibu_kota | populasi | tanggal_diresmikan |
++---------+-------------+----------+----------+--------------------+
+|       3 | JABAR       | Bandung  |  2000000 | 1945-12-19         |
+|       2 | JATIM       | SURABAYA |  5000000 | 1960-11-10         |
+|       1 | DKI Jakarta | Jakarta  | 20000000 | 1997-08-28         |
++---------+-------------+----------+----------+--------------------+
+
+*menampilkan data dari seluruh isi tabel provinsi yang mana
+ mengacu pada tanggal diresmikan antara tanggal tersebut s/d tanggal tersebut 
+ dan tidak berisi ibukota yang di sebutkan tersebut*
+SELECT * FROM provinsi
+    -> WHERE (tanggal_diresmikan BETWEEN '1945-01-01' AND '1997-12-31')
+    -> AND
+    -> ibu_kota NOT IN('Semarang','Jakarta','Palembang');
++---------+-----------+----------+----------+--------------------+
+| id_prov | nama_prov | ibu_kota | populasi | tanggal_diresmikan |
++---------+-----------+----------+----------+--------------------+
+|       2 | JATIM     | SURABAYA |  5000000 | 1960-11-10         |
+|       3 | JABAR     | Bandung  |  2000000 | 1945-12-19         |
++---------+-----------+----------+----------+--------------------+

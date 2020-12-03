@@ -1,0 +1,32 @@
+*tipe data txt*
+LOAD DATA INFILE 
+    -> '/home/bagus/Documents/1.belajar-niomic/belajardb/materi/data/nama_provinsi_g.txt' 
+    -> INTO TABLE provinsi 
+    -> FIELDS TERMINATED BY ',' ENCLOSED BY '"' 
+    -> LINES TERMINATED BY '\n';
+Query OK, 5 rows affected (0.004 sec)                
+
+atau
+
+*tipe data CSV*
+LOAD DATA INFILE 
+    -> '/home/bagus/Documents/1.belajar-niomic/belajardb/materi/data/nama_provinsi_g.csv' 
+    -> INTO TABLE provinsi 
+    -> FIELDS TERMINATED BY ',' ENCLOSED BY '"' 
+    -> LINES TERMINATED BY '\n';
+Query OK, 5 rows affected (0.004 sec)                
+
+
+Records: 5  Deleted: 0  Skipped: 0  Warnings: 0
+
+MariaDB [belajar]> SELECT * FROM provinsi;
++--------------------+----------+--------------+----------+-----------+----------+
+| nama_prov          | kode_iso | ibukota      | populasi | luas      | apbd     |
++--------------------+----------+--------------+----------+-----------+----------+
+| Kalimantan Barat   | KB       | Pontianak    |  4716093 | 115114.00 |  3929.90 |
+| Kalimantan Selatan | KS       | Banjarmasin  |  3922790 |  36805.00 |  6010.90 |
+| Kalimantan Tengah  | KT       | Palangkaraya |  2439858 | 153564.00 |  3510.90 |
+| Kalimantan Timur   | KI       | Samarinda    |  3351432 | 194849.00 | 15731.10 |
+| Kalimantan Utara   | KU       | Tanjungselor |   618384 |  71177.00 |  2299.60 |
++--------------------+----------+--------------+----------+-----------+----------+
+

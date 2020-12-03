@@ -1,0 +1,114 @@
+1.login dengan user root
+
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 11
+Server version: 10.4.13-MariaDB Source distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> use mysql;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+
+2.mengubah atau menambahkan hak akses pada user terpilih
+MariaDB [mysql]> GRANT SELECT, DELETE ON belajar.* TO 'Andi'@'localhost';
+Query OK, 0 rows affected (0.001 sec)
+
+MariaDB [mysql]> FLUSH PRIVILEGES ;
+Query OK, 0 rows affected (0.001 sec)
+
+MariaDB [mysql]> exit;
+Bye
+
+3.exit dan login ulang dengan menggunakan user terpilih yang sudah diubah hak aksesnya
+
+bagus@bagus-ThinkPad-T430:~$ /opt/lampp/bin/mysql -u Andi -p
+Enter password: 
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 12
+Server version: 10.4.13-MariaDB Source distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+4. user yang sudah diubah hak aksesnya dapat mengakses db yang ada di root;
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| belajar            |
+| information_schema |
+| test               |
++--------------------+
+3 rows in set (0.001 sec)
+
+MariaDB [(none)]> use belajar
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+MariaDB [belajar]> show tables;
++-------------------------+
+| Tables_in_belajar       |
++-------------------------+
+| contoh dengan spasi     |
+| contoh_auto_increment_3 |
+| contoh_charset_3        |
+| contoh_comment_1        |
+| contoh_copy_2           |
+| contoh_copy_3           |
+| contoh_copy_4           |
+| contoh_insert_1         |
+| contoh_insert_2         |
+| contoh_insert_3         |
+| contoh_insert_4         |
+| contoh_tabel_1          |
+| contoh_tabel_2          |
+| contoh_tabel_3          |
+| contoh_tabel_asal       |
+| contoh_truncate         |
+| copy_contoh_tabel_asal  |
+| mahasiswa               |
+| mahasiswa_niomic        |
+| populasi                |
+| populasi_2              |
+| provinsi                |
+| tugas_daftar_provinsi   |
+| tugas_populasi          |
+| universitas             |
++-------------------------+
+25 rows in set (0.001 sec)
+
+
+*menghapus hak akses*
+
+REVOKE SELECT, DELETE ON belajar.* FROM 'Andi'@'localhost';
+Query OK, 0 rows affected (0.001 sec)
+
+MariaDB [(none)]> FLUSh PRIVILEGES;
+Query OK, 0 rows affected (0.001 sec)
+
+MariaDB [(none)]> exit
+Bye
+bagus@bagus-ThinkPad-T430:~$ /opt/lampp/bin/mysql -u Andi -p
+Enter password: 
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 14
+Server version: 10.4.13-MariaDB Source distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> SHOW GRANTS;
++------------------------------------------+
+| Grants for Andi@localhost                |
++------------------------------------------+
+| GRANT USAGE ON *.* TO `Andi`@`localhost` |
++------------------------------------------+
+1 row in set (0.000 sec)

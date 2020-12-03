@@ -1,0 +1,33 @@
+*membuat table*
+CREATE TABLE IF NOT EXISTS contoh_insert_2(
+    -> a int,
+    -> b varchar(10),
+    -> c date
+    -> );
+
+*menampilkan struktur table yang telah dibuat*
+desc contoh_insert_2 \g
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| a     | int(11)     | YES  |     | NULL    |       |
+| b     | varchar(10) | YES  |     | NULL    |       |
+| c     | date        | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+
+*melakukan insert dengan query perintah INSERT SET*
+INSERT INTO contoh_insert_2 SET a=50, b="merah", c=20180101;
+
+atau 
+
+INSERT contoh_insert_2 SET a=51, b="kuning", c=20180102;
+
+*menampilkan hasil dari insert*
+SELECT * FROM contoh_insert_2;
++------+--------+------------+
+| a    | b      | c          |
++------+--------+------------+
+|   50 | merah  | 2018-01-01 |
+|   51 | kuning | 2018-01-02 |
++------+--------+------------+
+

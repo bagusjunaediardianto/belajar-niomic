@@ -1,0 +1,53 @@
+*melakukan load data mengacu pada path filenya,
+ dan melakukan terminasi/ membatasi data by tanda baca*
+LOAD DATA INFILE 
+    -> '/home/bagus/Documents/1.belajar-niomic/belajardb/materi/data/nama_provinsi_d.txt' 
+    -> INTO TABLE provinsi FIELDS TERMINATED BY ',';
+Query OK, 1 row affected (0.006 sec)                 
+Records: 1  Deleted: 0  Skipped: 0  Warnings: 0
+
+MariaDB [belajar]> SELECT * FROM provinsi;
++-------------+----------+------------+----------+----------+----------+
+| nama_prov   | kode_iso | ibukota    | populasi | luas     | apbd     |
++-------------+----------+------------+----------+----------+----------+
+| Aceh        | AC       | Banda Aceh |  4906835 | 57365.00 | 15572.50 |
+| Banten      | BT       | Serang     | 11704877 |  9019.00 |  8398.20 |
+| DKI Jakarta | JK       | Jakarta    | 15000228 | 12104.00 | 67528.66 |
++-------------+----------+------------+----------+----------+----------+
+
+LOAD DATA INFILE 
+    -> '/home/bagus/Documents/1.belajar-niomic/belajardb/materi/data/nama_provinsi_e.txt' 
+    -> INTO TABLE provinsi FIELDS TERMINATED BY '!';
+Query OK, 1 row affected (0.006 sec)                 
+Records: 1  Deleted: 0  Skipped: 0  Warnings: 0
+
+MariaDB [belajar]> SELECT * FROM provinsi;
++-------------+----------+------------+----------+----------+----------+
+| nama_prov   | kode_iso | ibukota    | populasi | luas     | apbd     |
++-------------+----------+------------+----------+----------+----------+
+| Aceh        | AC       | Banda Aceh |  4906835 | 57365.00 | 15572.50 |
+| Banten      | BT       | Serang     | 11704877 |  9019.00 |  8398.20 |
+| DKI Jakarta | JK       | Jakarta    | 15000228 | 12104.00 | 67528.66 |
+| Riau        | RU       | Pekanbaru  |  1000288 |  9899.00 |  5238.88 |
++-------------+----------+------------+----------+----------+----------+
+
+*melakukan load data terhadap data yang memiliki banyak pembatas, untuk membaca batas kolom dan baris*
+LOAD DATA INFILE
+    -> '/home/bagus/Documents/1.belajar-niomic/belajardb/materi/data/nama_provinsi_f.txt'
+    -> INTO TABLE provinsi
+    -> COLUMNS TERMINATED BY '-'
+    -> LINES TERMINATED BY '|';
+Query OK, 2 rows affected (0.005 sec)                
+Records: 2  Deleted: 0  Skipped: 0  Warnings: 0
+
+SELECT * FROM provinsi;
++-------------+----------+------------+----------+----------+----------+
+| nama_prov   | kode_iso | ibukota    | populasi | luas     | apbd     |
++-------------+----------+------------+----------+----------+----------+
+| Aceh        | AC       | Banda Aceh |  4906835 | 57365.00 | 15572.50 |
+| Banten      | BT       | Serang     | 11704877 |  9019.00 |  8398.20 |
+| DKI Jakarta | JK       | Jakarta    | 15000228 | 12104.00 | 67528.66 |
+| Riau        | RU       | Pekanbaru  |  1000288 |  9899.00 |  5238.88 |
+| Jakarta     | JK       | Jakarta    | 10012271 |   740.00 | 79285.13 |
+| Jambi       | JA       | Jambi      |  3344400 | 53509.00 |  3548.66 |
++-------------+----------+------------+----------+----------+----------+

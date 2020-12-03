@@ -1,0 +1,10 @@
+*Penulisan Query*
+*penulisan query dapat dilakukan dengan 3 cara*
+
+1. select now();
+
+2. select now() \g
+
+3. select
+     -> now()
+     -> ;

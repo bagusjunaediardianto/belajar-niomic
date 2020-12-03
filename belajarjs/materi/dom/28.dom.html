@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>BELAJAR DOM - drag drop event</title>
+        <style>
+            .droptarget {
+                float :left;
+                width: 100px;
+                height: 35px;
+                margin: 15px;
+                padding: 10px;
+                border: 1px solid #aaaaaa;
+            }
+        </style>
+    </head>
+    <body>
+        <p>Drag elemen Diantara dua kotak</p>
+        <div class="droptarget" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <p ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" id="dragtarget">Drag saya</p>
+        </div>
+
+        <div class="droptarget" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <p id="object_text"></p>
+        <script type="text/javascript" src="../js/28.dom.js"></script>
+    </body>
+</html>

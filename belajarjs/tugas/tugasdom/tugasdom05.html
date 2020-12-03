@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>BELAJAR DOM</title>
+    </head>
+    <body>
+        <input type="text" class="middle" value="nama depan" />
+        <br/>
+        <input type="text" class="middle" value="nama belakang" />
+        <br/>
+        <input type="text" class="middle" value="hobi" />
+        <br/>
+        <button type="button" name="button" onclick="jalanScript()">Jalan</button>
+        <script type="text/javascript">
+            var jalanScript = ()=> {
+                console.log(document.querySelector('.middle'))
+            }
+        </script>
+    </body>
+</html>

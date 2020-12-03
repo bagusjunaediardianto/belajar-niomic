@@ -1,0 +1,30 @@
+- SELECT * FROM products WHERE category is NULL
+> db.products.find({
+...     category : {
+...         $exists : false,
+...             }
+... })
+{ "_id" : 1, "name" : "Indomie Ayam Bawang", "price" : NumberLong(2000) }
+{ "_id" : 2, "name" : "Mie Sedap", "price" : NumberLong(2000) }
+
+- SELECT * FROM products WHERE type(category) = "string"
+> db.products.find({
+    category : {
+        $type : "string"
+    }
+})
+{ "_id" : 4, "name" : "Samsung Galaxy S9+", "price" : NumberLong(10000000), "category" : "handphone" }
+{ "_id" : 5, "name" : "Acer Precator XXI", "price" : NumberLong(25000000), "category" : "laptop" }
+{ "_id" : 3, "name" : "Pop Mie rasa bakso", "price" : NumberLong(2500), "category" : "food" }
+
+- SELECT * FROM products WHERE type(price) in ("int","long");
+> db.products.find({
+... price : {
+... $type : ["int","long"],
+... }
+... })
+{ "_id" : 1, "name" : "Indomie Ayam Bawang", "price" : NumberLong(2000) }
+{ "_id" : 2, "name" : "Mie Sedap", "price" : NumberLong(2000) }
+{ "_id" : 4, "name" : "Samsung Galaxy S9+", "price" : NumberLong(10000000), "category" : "handphone" }
+{ "_id" : 5, "name" : "Acer Precator XXI", "price" : NumberLong(25000000), "category" : "laptop" }
+{ "_id" : 3, "name" : "Pop Mie rasa bakso", "price" : NumberLong(2500), "category" : "food" }

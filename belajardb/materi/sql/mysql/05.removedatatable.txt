@@ -1,0 +1,2 @@
+*Menghapus data table*
+DELETE FROM provinsi where ibu_kota="MANOKWARI";

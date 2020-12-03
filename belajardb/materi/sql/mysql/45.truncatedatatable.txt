@@ -1,0 +1,69 @@
+Truncate data table adalah untuk mengosongkan seluruh isi data table
+dan membuat ulang struktur data tabel yang sama
+efek dari query ini adalah akan me reset kolom auto increment
+
+bisa dibilang untuk seorang database administrator ini adalah berbahaya apabila disalah gunakan
+
+*membuat table *
+CREATE TABLE IF NOT EXISTS contoh_truncate (
+    -> a TINYINT primary key auto_increment,
+    -> b varchar(10));
+Query OK, 0 rows affected (0.051 sec)
+
+*melakukan insert*
+MariaDB [belajar]> INSERT contoh_truncate (b) VALUES
+    -> ("merah"),("Biru"),("Kuning"),("Putih");
+Query OK, 4 rows affected (0.006 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+*menampilkan*
+MariaDB [belajar]> SELECT * FROM contoh_truncate;
++---+--------+
+| a | b      |
++---+--------+
+| 1 | merah  |
+| 2 | Biru   |
+| 3 | Kuning |
+| 4 | Putih  |
++---+--------+
+4 rows in set (0.001 sec)
+
+*melakukan delete dan mengisi kembali tabelnya*
+DELETE FROM contoh_truncate;
+Query OK, 4 rows affected (0.006 sec)
+
+MariaDB [belajar]> INSERT contoh_truncate (b) VALUES ("merah"),("Biru"),("Kuning"),("Putih");
+Query OK, 4 rows affected (0.006 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+*melihat data yang didelete dan menampilkan kembali*
+SELECT * FROM contoh_truncate;
++---+--------+
+| a | b      |
++---+--------+
+| 5 | merah  |
+| 6 | Biru   |
+| 7 | Kuning |
+| 8 | Putih  |
++---+--------+
+
+- terlihat data yang di delete akan menghasilkan data baru meneruskan data lama yang terhapus,
+  tetapi ketika melakukan Truncate kita akan mendapatkan table yang benar benar baru
+
+TRUNCATE contoh_truncate;
+Query OK, 0 rows affected (0.026 sec)
+
+MariaDB [belajar]> INSERT contoh_truncate (b) VALUES ("merah"),("Biru"),("Kuning"),("Putih");
+Query OK, 4 rows affected (0.005 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+MariaDB [belajar]> SELECT * FROM contoh_truncate;
++---+--------+
+| a | b      |
++---+--------+
+| 1 | merah  |
+| 2 | Biru   |
+| 3 | Kuning |
+| 4 | Putih  |
++---+--------+
+4 rows in set (0.001 sec)

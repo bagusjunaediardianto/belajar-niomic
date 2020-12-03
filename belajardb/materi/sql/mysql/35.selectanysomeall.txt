@@ -1,0 +1,76 @@
+*
+ Perintah yang ada di dalam query IN merupakan contoh subquery, 
+ yakni SELECT ibukota FROM daftar_provinsi. 
+ Subquery ini membentuk himpunan seluruh nama ibukota yang ada di dalam tabel daftar_provinsi. 
+ Hasil himpunan ini selanjutnya dipakai oleh query IN.
+*
+SELECT * FROM populasi
+    -> WHERE kota IN (SELECT ibu_kota FROM provinsi);
++---------+----------+------+------+--------+----------+
+| id_kota | kota     | kec  | kel  | luas   | penduduk |
++---------+----------+------+------+--------+----------+
+|       1 | Jakarta  |   44 |  267 | 664.01 |  9988495 |
+|       2 | Surabaya |   31 |  154 | 350.54 |  2805906 |
+|       5 | Bandung  |   30 |  151 | 167.67 |  2339463 |
+|       8 | Semarang |   16 |  177 | 373.78 |  1621384 |
++---------+----------+------+------+--------+----------+
+
+*Query ANY dan SOME dipakai untuk membandingkan salah satu data himpunan subquery*
+SELECT * FROM populasi
+    -> WHERE kota = ANY (SELECT ibu_kota FROM provinsi);
++---------+----------+------+------+--------+----------+
+| id_kota | kota     | kec  | kel  | luas   | penduduk |
++---------+----------+------+------+--------+----------+
+|       1 | Jakarta  |   44 |  267 | 664.01 |  9988495 |
+|       2 | Surabaya |   31 |  154 | 350.54 |  2805906 |
+|       5 | Bandung  |   30 |  151 | 167.67 |  2339463 |
+|       8 | Semarang |   16 |  177 | 373.78 |  1621384 |
++---------+----------+------+------+--------+----------+
+
+*Query ALL akan membandingkan seluruh data yang ada di himpunan subquery*
+SELECT * FROM populasi
+    -> WHERE kota != ALL (
+    -> SELECT ibu_kota FROM provinsi);
++---------+-----------+------+------+--------+----------+
+| id_kota | kota      | kec  | kel  | luas   | penduduk |
++---------+-----------+------+------+--------+----------+
+|       3 | Medan     |   21 |  151 | 265.00 |  2465469 |
+|       4 | Bekasi    |   12 |   56 | 206.61 |  2381053 |
+|       6 | Makassar  |   14 |  143 | 199.26 |  1651146 |
+|       7 | Depok     |   11 |   63 | 200.29 |  1631951 |
+|       9 | Tangerang |   13 |  104 | 153.93 |  1566190 |
+|      10 | Palembang |   14 |  107 | 369.22 |  1548064 |
++---------+-----------+------+------+--------+----------+
+
+pada tabel diatas output yang tampil adalah hasil dari
+perintah untuk menampilkan seluruh isi dari populasi, yang mana data yang tampil
+dipanggil berdasarkan nama kota yang tidak ada / sama pada tabel provinsi
+
+sebagai contoh :
+kolom kota dalam tabel populasi     kolom ibu_kota dalam tabel provinsi
+1. Jakarta x                        1. Jakarta x
+2. Surabaya x                       2. SURABAYA x
+3. Medan                            3. Bandung x
+4. Bekasi                           4. Serang
+5. Bandung x                        5. Semarang x
+6. Makassar                         6. Tanjung Pinang
+7. Depok                            7. Manokwari   
+8. Semarang x
+9. Tangerang
+10. Palembang
+
+data yang disilang berarti yang dieliminasi, selebihnya akan tampil
+
+*menggunakan data pembanding pada tabel yang sama,
+ menampilkan data dengan jumlah kelurahan yang paling sedikit diantara semua data kelurahan
+ pada tabel tsb*
+
+SELECT * FROM populasi
+    -> WHERE kel <= ALL (SELECT kel FROM populasi);
++---------+--------+------+------+--------+----------+
+| id_kota | kota   | kec  | kel  | luas   | penduduk |
++---------+--------+------+------+--------+----------+
+|       4 | Bekasi |   12 |   56 | 206.61 |  2381053 |
++---------+--------+------+------+--------+----------+
+
+

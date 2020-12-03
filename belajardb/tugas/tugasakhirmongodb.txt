@@ -1,0 +1,257 @@
+- membuat collections mahasiswa
+> use mahasiswa
+switched to db mahasiswa
+
+- melakukan insert dengan banyak data kedalam collections mahasiswa
+> db.mahasiswa.insertMany(
+... [
+... {
+... NIM : 111,
+... Nama : "Joko Purwono",
+... Email : "jokopurwono@yahoo.com",
+... Phone : "089812345678"
+... },{
+... NIM : 112,
+... Nama : "Widya Kosasih",
+... Email : "widyakosasih@gmail.com",
+... Phone : "085769553853"
+... },{
+... NIM : 113,
+... Nama : "Hanung Bramantyo",
+... Email : "hanungbra@yahoo.com",
+... Phone : "082183729013"
+... },{
+... NIM : 114,
+... Nama : "Robby Purba",
+... Email : "robbypurba@gmail.com",
+... Phone : "087709241345"
+... },{
+... NIM : 115,
+... Nama : "Nining Herawati",
+... Email : "herawatinining123@gmail.com",
+... Phone : "085638391042"
+... },{
+... NIM : 116,
+... Nama : "M. Nurreza Hidayat",
+... Email : "rezahidayat@gmail.com",
+... Phone : "082293750135"
+... },{
+... NIM : 117,
+... Nama : "Rahmad Ibrahim",
+... Email : "ibrahimrahamddd@yahoo.com",
+... Phone : "081339519352"
+... },{
+... NIM : 118,
+... Nama : "Meilani Fifi",
+... Email : "fifimeilani93@gmail.com",
+... Phone : "089810917249"
+... },{
+... NIM : 119,
+... Nama : "Alica Nur Jannah",
+... Email : "alicajannah@gmail.com",
+... Phone : "087712497535"
+... },{
+... NIM : 120,
+... Nama : "Benny Sucipto",
+... Email : "bennysu@yahoo.com",
+... Phone : "082212497953"
+... }
+... ]);
+{
+	"acknowledged" : true,
+	"insertedIds" : [
+		ObjectId("5f55d478b3c4c479397c8ddd"),
+		ObjectId("5f55d478b3c4c479397c8dde"),
+		ObjectId("5f55d478b3c4c479397c8ddf"),
+		ObjectId("5f55d478b3c4c479397c8de0"),
+		ObjectId("5f55d478b3c4c479397c8de1"),
+		ObjectId("5f55d478b3c4c479397c8de2"),
+		ObjectId("5f55d478b3c4c479397c8de3"),
+		ObjectId("5f55d478b3c4c479397c8de4"),
+		ObjectId("5f55d478b3c4c479397c8de5"),
+		ObjectId("5f55d478b3c4c479397c8de6")
+	]
+}
+
+- menampilkan data yang telah diinputkan
+
+> db.mahasiswa.find().pretty()
+{
+	"_id" : ObjectId("5f53bbdd3dc860c88a60aa2f"),
+	"nama" : "Bagus Junaedi Ardianto",
+	"nrp" : "090411100096",
+	"nilai" : 100
+}
+{
+	"_id" : ObjectId("5f55d478b3c4c479397c8ddd"),
+	"NIM" : 111,
+	"Nama" : "Joko Purwono",
+	"Email" : "jokopurwono@yahoo.com",
+	"Phone" : "089812345678"
+}
+{
+	"_id" : ObjectId("5f55d478b3c4c479397c8dde"),
+	"NIM" : 112,
+	"Nama" : "Widya Kosasih",
+	"Email" : "widyakosasih@gmail.com",
+	"Phone" : "085769553853"
+}
+{
+	"_id" : ObjectId("5f55d478b3c4c479397c8ddf"),
+	"NIM" : 113,
+	"Nama" : "Hanung Bramantyo",
+	"Email" : "hanungbra@yahoo.com",
+	"Phone" : "082183729013"
+}
+{
+	"_id" : ObjectId("5f55d478b3c4c479397c8de0"),
+	"NIM" : 114,
+	"Nama" : "Robby Purba",
+	"Email" : "robbypurba@gmail.com",
+	"Phone" : "087709241345"
+}
+{
+	"_id" : ObjectId("5f55d478b3c4c479397c8de1"),
+	"NIM" : 115,
+	"Nama" : "Nining Herawati",
+	"Email" : "herawatinining123@gmail.com",
+	"Phone" : "085638391042"
+}
+{
+	"_id" : ObjectId("5f55d478b3c4c479397c8de2"),
+	"NIM" : 116,
+	"Nama" : "M. Nurreza Hidayat",
+	"Email" : "rezahidayat@gmail.com",
+	"Phone" : "082293750135"
+}
+{
+	"_id" : ObjectId("5f55d478b3c4c479397c8de3"),
+	"NIM" : 117,
+	"Nama" : "Rahmad Ibrahim",
+	"Email" : "ibrahimrahamddd@yahoo.com",
+	"Phone" : "081339519352"
+}
+{
+	"_id" : ObjectId("5f55d478b3c4c479397c8de4"),
+	"NIM" : 118,
+	"Nama" : "Meilani Fifi",
+	"Email" : "fifimeilani93@gmail.com",
+	"Phone" : "089810917249"
+}
+{
+	"_id" : ObjectId("5f55d478b3c4c479397c8de5"),
+	"NIM" : 119,
+	"Nama" : "Alica Nur Jannah",
+	"Email" : "alicajannah@gmail.com",
+	"Phone" : "087712497535"
+}
+{
+	"_id" : ObjectId("5f55d478b3c4c479397c8de6"),
+	"NIM" : 120,
+	"Nama" : "Benny Sucipto",
+	"Email" : "bennysu@yahoo.com",
+	"Phone" : "082212497953"
+}
+
+- memberi field key unik pada email
+> db.mahasiswa.createIndex({Email:1},{unique:true})
+{
+	"createdCollectionAutomatically" : false,
+	"numIndexesBefore" : 1,
+	"numIndexesAfter" : 2,
+	"ok" : 1
+}
+
+
+- menampilkan data dengan mengurutkan nama berdasarkan alfabet paling awal (A-Z)
+> db.mahasiswa.find().sort({Nama: 1}).pretty()
+{
+	"_id" : ObjectId("5f55d478b3c4c479397c8de5"),
+	"NIM" : 119,
+	"Nama" : "Alica Nur Jannah",
+	"Email" : "alicajannah@gmail.com",
+	"Phone" : "087712497535"
+}
+{
+	"_id" : ObjectId("5f55d478b3c4c479397c8de6"),
+	"NIM" : 120,
+	"Nama" : "Benny Sucipto",
+	"Email" : "bennysu@yahoo.com",
+	"Phone" : "082212497953"
+}
+{
+	"_id" : ObjectId("5f55d478b3c4c479397c8ddf"),
+	"NIM" : 113,
+	"Nama" : "Hanung Bramantyo",
+	"Email" : "hanungbra@yahoo.com",
+	"Phone" : "082183729013"
+}
+{
+	"_id" : ObjectId("5f55d478b3c4c479397c8ddd"),
+	"NIM" : 111,
+	"Nama" : "Joko Purwono",
+	"Email" : "jokopurwono@yahoo.com",
+	"Phone" : "089812345678"
+}
+{
+	"_id" : ObjectId("5f55d478b3c4c479397c8de2"),
+	"NIM" : 116,
+	"Nama" : "M. Nurreza Hidayat",
+	"Email" : "rezahidayat@gmail.com",
+	"Phone" : "082293750135"
+}
+{
+	"_id" : ObjectId("5f55d478b3c4c479397c8de4"),
+	"NIM" : 118,
+	"Nama" : "Meilani Fifi",
+	"Email" : "fifimeilani93@gmail.com",
+	"Phone" : "089810917249"
+}
+{
+	"_id" : ObjectId("5f55d478b3c4c479397c8de1"),
+	"NIM" : 115,
+	"Nama" : "Nining Herawati",
+	"Email" : "herawatinining123@gmail.com",
+	"Phone" : "085638391042"
+}
+{
+	"_id" : ObjectId("5f55d478b3c4c479397c8de3"),
+	"NIM" : 117,
+	"Nama" : "Rahmad Ibrahim",
+	"Email" : "ibrahimrahamddd@yahoo.com",
+	"Phone" : "081339519352"
+}
+{
+	"_id" : ObjectId("5f55d478b3c4c479397c8de0"),
+	"NIM" : 114,
+	"Nama" : "Robby Purba",
+	"Email" : "robbypurba@gmail.com",
+	"Phone" : "087709241345"
+}
+{
+	"_id" : ObjectId("5f55d478b3c4c479397c8dde"),
+	"NIM" : 112,
+	"Nama" : "Widya Kosasih",
+	"Email" : "widyakosasih@gmail.com",
+	"Phone" : "085769553853"
+}
+
+- update nama menjadi Joko Dwi Purwono
+> db.mahasiswa.update(
+... {
+... NIM : 111
+... },
+... {$set:{Nama : "Joko Dwi Purwono"}},
+... false,true
+... );
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+
+- ubah email menjadi bennyofficial@gmail.com
+> db.mahasiswa.update(
+... {
+... NIM : 120
+... },
+... {$set:{Email : "bennyofficial@gmail.com"}},
+... false,true
+... );
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })

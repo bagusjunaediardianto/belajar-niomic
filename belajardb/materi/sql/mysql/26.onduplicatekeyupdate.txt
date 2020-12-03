@@ -1,0 +1,60 @@
+*membuat table*
+CREATE TABLE IF NOT EXISTS contoh_insert_4(
+    -> a int primary key,
+    -> b varchar(10),
+    -> c date
+    -> );
+
+*melakukan insert multi row*
+INSERT contoh_insert_4 VALUES
+    -> (2, "merah",20180101),
+    -> (3, "biru",20180102),
+    -> (4, "putih",20180103);
+
+*menampilkan hasil dari insert*
+SELECT * FROM contoh_insert_4;
++---+-------+------------+
+| a | b     | c          |
++---+-------+------------+
+| 2 | merah | 2018-01-01 |
+| 3 | biru  | 2018-01-02 |
+| 4 | putih | 2018-01-03 |
++---+-------+------------+
+
+*melakukan insert dengan memberi primary key yang sama pada salah 1 row*
+INSERT INTO contoh_insert_4 VALUES (2, "jingga",20180104);
+*terdapat error*
+ERROR 1062 (23000): Duplicate entry '2' for key 'PRIMARY'
+
+*untuk mengatasi permasalahan diatas*
+INSERT INTO contoh_insert_4 VALUES (2,"jingga",20180104)
+    -> on DUPLICATE key update b="jingga";
+
+*menampilkan hasil dari insert yang dijalankan dengan perintah on DUPLICATE KEY UPDATE*
+SELECT * FROM contoh_insert_4;
++---+--------+------------+
+| a | b      | c          |
++---+--------+------------+
+| 2 | jingga | 2018-01-01 |
+| 3 | biru   | 2018-01-02 |
+| 4 | putih  | 2018-01-03 |
++---+--------+------------+
+
+*terlihat data diatas berhasil diubah*
+
+atau dalam contoh lain
+
+*insert data primary key yang sudah ada*
+INSERT INTO contoh_insert_4 VALUES (11, "hitam",20190105) on DUPLICATE KEY UPDATE a=12, b="kuning",c=20190104;
+
+*hasilnya akan mengganti primary keynya juga*
+select * from contoh_insert_4;
++----+--------+------------+
+| a  | b      | c          |
++----+--------+------------+
+|  2 | jingga | 2018-01-01 |
+|  3 | biru   | 2018-01-02 |
+|  4 | putih  | 2018-01-03 |
+| 12 | kuning | 2019-01-04 |
++----+--------+------------+
+

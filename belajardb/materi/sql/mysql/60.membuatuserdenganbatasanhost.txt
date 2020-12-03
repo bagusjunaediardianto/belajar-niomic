@@ -1,0 +1,19 @@
+1. membuat user baru dengan host
+CREATE user 'Budi'@'192.168.0.2';
+Query OK, 0 rows affected (0.001 sec)
+
+MariaDB [mysql]> SELECT User,Host,Password from user;
++-------+-------------+----------+
+| User  | Host        | Password |
++-------+-------------+----------+
+| root  | localhost   |          |
+| Budi  | 192.168.0.2 |          |
+| root  | 127.0.0.1   |          |
+| root  | ::1         |          |
+|       | localhost   |          |
+| Bagus | %           |          |
+| pma   | localhost   |          |
++-------+-------------+----------+
+7 rows in set (0.001 sec)
+
+2. menghapus user dengan batasan host

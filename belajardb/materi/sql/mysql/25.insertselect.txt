@@ -1,0 +1,27 @@
+*membuat table dengan like*
+CREATE TABLE IF NOT EXISTS contoh_insert_3 like contoh_insert_2;
+
+*menampilkan hasil table yang telah dibuat*
+desc contoh_insert_3;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| a     | int(11)     | YES  |     | NULL    |       |
+| b     | varchar(10) | YES  |     | NULL    |       |
+| c     | date        | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+
+*melakukan insert dengan Query insert SELECT*
+INSERT INTO contoh_insert_3 SELECT * FROM contoh_insert_2;
+
+atau
+INSERT contoh_insert_3 SELECT * FROM contoh_insert_2;
+
+*menampilkan hasil table yang telah di insert*
+SELECT * FROM contoh_insert_3;
++------+--------+------------+
+| a    | b      | c          |
++------+--------+------------+
+|   50 | merah  | 2018-01-01 |
+|   51 | kuning | 2018-01-02 |
++------+--------+------------+

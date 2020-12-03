@@ -1,0 +1,61 @@
+show create table provinsi;
++----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table    | Create Table                                                                                                                                                                                                                                                                                  |
++----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| provinsi | CREATE TABLE `provinsi` (
+  `nama_prov` varchar(50) DEFAULT NULL,
+  `kode_iso` char(2) DEFAULT NULL,
+  `ibukota` varchar(50) DEFAULT NULL,
+  `populasi` varchar(50) DEFAULT NULL,
+  `luas` varchar(5) DEFAULT NULL,
+  `apbd` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 |
++----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
+LOAD DATA INFILE 
+    ->'/home/bagus/Documents/1.belajar-niomic/belajardb/materi/data/tabel_provinsi.csv' 
+    -> INTO TABLE provinsi COLUMNS TERMINATED BY ',' 
+    -> LINES TERMINATED BY '\n' 
+    -> IGNORE 1 LINES;
+
+
+MariaDB [belajar]> SELECT * FROM provinsi;
++----------------------------+----------+----------------+------------+-------+-----------+
+| nama_prov                  | kode_iso | ibukota        | populasi   | luas  | apbd      |
++----------------------------+----------+----------------+------------+-------+-----------+
+   |ceh                      | AC       | Banda Aceh     | 4.906.835  | 86    | 130.45
+   |ali                      | BA       | Denpasar       | 4.104.900  | 738   | 156.45
+   |anten                    | BT       | Serang         | 11.704.877 | 1.298 | 432.76
+    |ngkulu                  | BE       | Bengkulu       | 1.844.800  | 93    | 45.24
+     |ontalo                 | GO       | Gorontalo      | 1.115.633  | 93    | 25.2
+ | Jakarta                   | JK       | Jakarta        | 10.012.271 | 13.53 | 1.761.41
+   |ambi                     | JA       | Jambi          | 3.344.400  | 63    | 153.86
+ | Jawa Barat                | JB       | Bandung        | 46.029.668 | 1.306 | 1.385.96
+   |awa Tengah               | JT       | Semarang       | 33.522.663 | 986   | 925.66
+ | Jawa Timur                | JI       | Surabaya       | 38.610.202 | 806   | 1.540.70
+   |alimantan Barat          | KB       | Pontianak      | 4.716.093  | 41    | 131.93
+   |alimantan Selatan        | KS       | Banjarmasin    | 3.922.790  | 107   | 131.59
+    |limantan Tengah         | KT       | Palangkaraya   | 2.439.858  | 16    | 89.87
+   |alimantan Timur          | KI       | Samarinda      | 3.351.432  | 17    | 519.93
+    |limantan Utara          | KU       | Tanjungselor   | 618.384    | 9     | 59.08
+    |pulauan Bangka Belitung | BB       | Pangkalpinang  | 1.343.900  | 82    | 56.39
+   |epulauan Riau            | KR       | Tanjung Pinang | 1.917.415  | 237   | 182.92
+   |ampung                   | LA       | Bandar Lampung | 8.026.191  | 227   | 231.01
+    |luku                    | MA       | Ambon          | 1.657.409  | 34    | 31.73
+    |luku Utara              | MU       | Sofifi         | 1.138.667  | 27    | 24.05
+    |sa Tenggara Barat       | NB       | Mataram        | 4.773.795  | 239   | 82.25
+     |a Tenggara Timur       | NT       | Kupang         | 5.036.897  | 106   | 68.6
+   |apua                     | PA       | Jayapura       | 3.091.047  | 10    | 123.18
+    |pua Barat               | PB       | Manokwari      | 849.809    | 7     | 58.29
+   |iau                      | RI       | Pekanbaru      | 6.188.442  | 66    | 679.69
+    |lawesi Barat            | SR       | Mamuju         | 1.258.090  | 75    | 29.39
+   |ulawesi Selatan          | SN       | Makassar       | 8.432.163  | 183   | 300.12
+    |lawesi Tengah           | ST       | Palu           | 2.831.283  | 42    | 90.26
+    |lawesi Tenggara         | SG       | Kendari        | 2.448.081  | 67    | 78.62
+    |lawesi Utara            | SA       | Manado         | 2.386.604  | 171   | 80.62
+   |umatra Barat             | SB       | Padang         | 5.131.900  | 121   | 167.04
+   |umatra Selatan           | SS       | Palembang      | 7.941.500  | 93    | 308.41
+   |umatra Utara             | SU       | Medan          | 13.766.851 | 189   | 523.77
+    |gyakarta                | YO       | Yogyakarta     | 3.553.100  | 1.134 | 93.45
++----------------------------+----------+----------------+------------+-------+-----------+

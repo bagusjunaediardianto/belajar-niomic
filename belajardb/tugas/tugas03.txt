@@ -1,0 +1,15 @@
+1. Apa kepanjangan dari XAMPP?
+2. Bagaimana cara untuk mengakses XAMPP Panel?
+3. Module apa yang harus diaktifkan untuk menjalankan MYSQL Server?
+4. Bagaimana cara menjalankan PHPMyAdmin di browser?
+5. Bagaimana menjalankan MYSQL Client?
+
+*Jawaban*
+1. Kepanjangan dari XAMPP adalah Apache,MYSQL atau MariaDB, PHP, dan Perl
+2. Cara mengakses XAMPP Panel bisa dilakukan dengan instalasi panelnya terlebih dahulu
+   atau dapat juga menggunakan terminal atau CMD
+3. Modul yang perlu diaktifkan saat menggunakan MySQL Cukup dengan mengaktifkan MYSQL
+4. Jika akan menjalankan PHPMyAdmin maka yang perlu dilakukan adalah Mengaktifkan PHPMyAdmin lewat Panel
+   atau jika menggunakan Terminal maka dapat melakukkan run 
+5. menjalankan mysql dapat dilakukan dengan menekan button terminal pada XAMPP Panel
+   atau dapat juga mengakses direktori lewat terminal atau CMD

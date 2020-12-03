@@ -1,0 +1,24 @@
+*digunakan untuk mengabaikan beberapa karakter awal dari setiap baris *
+LOAD DATA INFILE
+    -> '/home/bagus/Documents/1.belajar-niomic/belajardb/materi/data/nama_provinsi_i.txt'
+    -> INTO TABLE provinsi
+    -> COLUMNS TERMINATED BY ','
+    -> LINES STARTING BY '##' TERMINATED BY '\n'
+    -> IGNORE 2 LINES;
+
+- query diatas bermakna (
+    LOAD data dalam file 'file path' kedalam table provinsi,
+    yang mana pembatas kolom adalah tanda ,
+    dan setiap baris dimulai dengan ## dibatasi/diakhiri dengan baris baru
+    tidak termasuk 2 baris paling atas
+)
+
+SELECT * FROM provinsi;
++---------------------+----------+---------+----------+----------+---------+
+| nama_prov           | kode_iso | ibukota | populasi | luas     | apbd    |
++---------------------+----------+---------+----------+----------+---------+
+| Maluku              | MA       | Ambon   |  1657409 | 49350.00 | 2013.83 |
+| Maluku Utara        | MU       | Sofifi  |  1138667 | 42960.00 | 1599.66 |
+| Nusa Tenggara Barat | NB       | Mataram |  4773795 | 19950.00 | 2884.89 |
+| Nusa Tenggara Timur | NT       | Kupang  |  5036897 | 47676.00 | 2916.88 |
++---------------------+----------+---------+----------+----------+---------+

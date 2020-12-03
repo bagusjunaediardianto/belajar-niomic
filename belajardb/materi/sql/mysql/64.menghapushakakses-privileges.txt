@@ -1,0 +1,50 @@
+*menghapus dengan query revoke*
+
+1. melakukan penghapusan hak akses
+REVOKE ALL ON *.* FROM 'Andi'@'localhost';
+Query OK, 0 rows affected (0.001 sec)
+
+atau 
+REVOKE SELECT, DELETE ON dbname.* FROM Andi@localhost;
+Query OK, 0 rows affected (0.001 sec)
+
+MariaDB [mysql]> FLUSH PRIVILEGES ;
+Query OK, 0 rows affected (0.001 sec)
+
+MariaDB [mysql]> SELECT User, Host, Password from user;
++-------+-----------+----------+
+| User  | Host      | Password |
++-------+-----------+----------+
+| root  | localhost |          |
+| root  | 127.0.0.1 |          |
+| root  | ::1       |          |
+|       | localhost |          |
+| Bagus | %         |          |
+| pma   | localhost |          |
+| Andi  | localhost |          |
+| Andi  | 127.0.0.1 |          |
++-------+-----------+----------+
+8 rows in set (0.001 sec)
+
+2.exit untuk login dengan user andi
+MariaDB [mysql]> exit
+Bye
+
+
+bagus@bagus-ThinkPad-T430:~$ /opt/lampp/bin/mysql -u Andi -p 
+Enter password: 
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 10
+Server version: 10.4.13-MariaDB Source distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show grants;
++--------------------------------------+
+| Grants for @localhost                |
++--------------------------------------+
+| GRANT USAGE ON *.* TO ``@`localhost` |
++--------------------------------------+
+1 row in set (0.000 sec)

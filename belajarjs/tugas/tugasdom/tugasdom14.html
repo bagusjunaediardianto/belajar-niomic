@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>TUGAS DOM</title>
+    </head>
+    <body>
+        <h1>TUGAS 44</h1>
+        <p>Jangan Rubah Yang ini</p>
+        <p>Rubah warna yang ini</p>
+        <button onclick="myFunction(this)">Ubah Warna</button>
+        <script type="text/javascript">
+            function myFunction(x){
+                x = document.getElementsByTagName("p")
+
+                x.item(1).style.color = "blue"
+            }
+        </script>
+    </body>
+</html>

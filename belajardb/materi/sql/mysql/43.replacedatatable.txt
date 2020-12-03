@@ -1,0 +1,56 @@
+*Replace sejatinya merupakan perpaduan antara insert dan update, 
+ saat data yang direplace tidak ada, maka fungsinya menjadi insert, 
+ sedangkan jika data pada primary keynya sama, maka fungsinya menjadi update*
+
+ REPLACE mahasiswa VALUES
+    -> (11,"Hasan Fathurahman","Malang","L",177,"Peternakan",328.33);
+
+atau
+
+REPLACE INTO mahasiswa VALUES
+    -> (11,"Hasan Fathurahman","Malang","L",177,"Peternakan",328.33);
+Query OK, 1 row affected (0.006 sec)
+
+SELECT * FROM mahasiswa;
++----+--------------------+------------+------+--------+-----------------+-----------+
+| no | nama               | asal       | kel  | tinggi | jurusan         | nilai_uan |
++----+--------------------+------------+------+--------+-----------------+-----------+
+|  1 | Rianna Putria      | Padang     | P    |    155 | Kimia           |    339.20 |
+|  2 | Rudi Permana       | Bandung    | L    |    163 | Ilmu Komputer   |    290.44 |
+|  3 | Sari Citra Lestari | Jakarta    | P    |    161 | Manajemen       |    310.60 |
+|  4 | Rina Kumala Sari   | Jakarta    | P    |    158 | Akuntansi       |    337.99 |
+|  5 | Jerry Fernando     | Medan      | L    |    168 | Kedokteran Gigi |    341.10 |
+|  6 | Ranti Widowati     | Yogyakarta | P    |    165 | Ilmu Komputer   |    351.28 |
+|  7 | Husli Khairan      | Jakarta    | L    |    170 | Akuntansi       |    288.55 |
+|  8 | Christine Wijaya   | Medan      | P    |    157 | Manajemen       |    321.74 |
+|  9 | Iksan Prayoga      | Jakarta    | L    |    172 | Ilmu Komputer   |    300.16 |
+| 10 | Bobby Permana      | Medan      | L    |    161 | Ilmu Komputer   |    280.82 |
+| 11 | Hasan Fathurahman  | Malang     | L    |    177 | Peternakan      |    328.33 |
++----+--------------------+------------+------+--------+-----------------+-----------+
+
+terlihat data yang di replace tidak ada, maka fungsinya menjadi insert
+
+dalam contoh lain
+
+REPLACE mahasiswa VALUES
+    -> (6,"Sinta Nurhasanah","Yogyakarta","P",155,"Ilmu Komputer",352.33);
+Query OK, 2 rows affected (0.006 sec)
+
+SELECT * FROM mahasiswa;
++----+--------------------+------------+------+--------+-----------------+-----------+
+| no | nama               | asal       | kel  | tinggi | jurusan         | nilai_uan |
++----+--------------------+------------+------+--------+-----------------+-----------+
+|  1 | Rianna Putria      | Padang     | P    |    155 | Kimia           |    339.20 |
+|  2 | Rudi Permana       | Bandung    | L    |    163 | Ilmu Komputer   |    290.44 |
+|  3 | Sari Citra Lestari | Jakarta    | P    |    161 | Manajemen       |    310.60 |
+|  4 | Rina Kumala Sari   | Jakarta    | P    |    158 | Akuntansi       |    337.99 |
+|  5 | Jerry Fernando     | Medan      | L    |    168 | Kedokteran Gigi |    341.10 |
+|  6 | Sinta Nurhasanah   | Yogyakarta | P    |    155 | Ilmu Komputer   |    352.33 |
+|  7 | Husli Khairan      | Jakarta    | L    |    170 | Akuntansi       |    288.55 |
+|  8 | Christine Wijaya   | Medan      | P    |    157 | Manajemen       |    321.74 |
+|  9 | Iksan Prayoga      | Jakarta    | L    |    172 | Ilmu Komputer   |    300.16 |
+| 10 | Bobby Permana      | Medan      | L    |    161 | Ilmu Komputer   |    280.82 |
+| 11 | Hasan Fathurahman  | Malang     | L    |    177 | Peternakan      |    328.33 |
++----+--------------------+------------+------+--------+-----------------+-----------+
+
+terlihat datanya berubah namun tidak menambah baris baru

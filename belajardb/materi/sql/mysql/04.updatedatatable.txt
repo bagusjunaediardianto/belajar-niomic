@@ -1,0 +1,3 @@
+*mengubah isi data dengan query UPDATE*
+UPDATE provinsi set nama_prov="DKI Jakarta" where id_prov=1;
+

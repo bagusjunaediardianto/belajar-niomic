@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>TUGAS DOM</title>
+    </head>
+    <body>
+        <button type="button" name="button" onclick="Tombol()">Klik</button>
+        <br/>
+        <br/>
+        <hr/>
+        <b>Active Element</b> property : <br/>
+        <p id="contoh">contoh</p>
+        <hr/>
+        <b>addEventListener</b> property : <br/>
+        <p id="contoh2">contoh</p>
+        <hr/>
+        <b>Anchor</b> property (
+           <a name="jeruk" href="#">Jeruk</a> <a name="semangka" href="#">Semangka</a>) : 
+        <br/>
+        <p id="contoh3">contoh</p>
+
+        <script type="text/javascript">
+            function Tombol(){
+            var a = document.activeElement.tagName
+            document.getElementById("contoh").innerHTML = a
+
+            var b = document.addEventListener("click",()=>{
+            document.getElementById("contoh2").innerHTML = "Sukses ! merubah addEventListener()"
+            })
+
+            var c = document.anchors.length
+            document.getElementById("contoh3").innerHTML = c
+            }
+        </script>
+    </body>
+</html>

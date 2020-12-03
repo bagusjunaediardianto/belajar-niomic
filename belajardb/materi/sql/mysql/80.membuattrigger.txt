@@ -1,0 +1,137 @@
+1. melihat isi table mahasiswa
+MariaDB [belajar]> SELECT * FROM mahasiswa;
++----------+-------------------+---------+---------------+-----------+
+| nim      | nama              | asal    | jurusan       | nilai_uan |
++----------+-------------------+---------+---------------+-----------+
+| 17080225 | Husli Khairan     | Jakarta | Akuntansi     |    288.55 |
+| 17080305 | Rina Kumala Sari  | Jakarta | Akuntansi     |    337.99 |
+| 17090113 | Riana Putria      | Padang  | Kimia         |    339.20 |
+| 17090127 | 
+Herman Eka Putra | NULL    | Kimia         |      NULL |
+| 17140119 | Sandri Fatmala    | Bandung | Ilmu Komputer |    322.91 |
+| 17140133 | Ikhsan Prayoga    | Jakarta | Ilmu Komputer |    300.16 |
+| 17140143 | Rudi Permana      | Bandung | Ilmu Komputer |    290.44 |
+| 17140145 | Johana Aryabima   | Aceh    | Kimia         |    285.22 |
+| 17140155 | Tika Herina       | NULL    | Ilmu Komputer |      NULL |
++----------+-------------------+---------+---------------+-----------+
+9 rows in set (0.001 sec)
+
+2. menghapus table mahasiswa
+MariaDB [belajar]> DROP TABLE IF EXISTS mahasiswa;
+Query OK, 0 rows affected (0.014 sec)
+
+3. membuat table mahasiswa
+CREATE TABLE IF NOT EXISTS mahasiswa (
+    -> nim CHAR(8) primary key,
+    -> nama VARCHAR(50),
+    -> asal VARCHAR(50),
+    -> jurusan VARCHAR(20),
+    -> nilai_uan DEC(5,2));
+Query OK, 0 rows affected (0.019 sec)
+
+4. table mahasiswa tidak perlu diisi, yang akan dilakukan terhadap table kosong tsb adalah : 
+   - ketika sebuah event terjadi kedalam table mahasiswa, seperti penambahan data baru
+     akan dicatat kedalam tabel lain,
+   - yang perlu dilakukan adalah dengan membuat catatan atau log aktivitas yang disimpan kedalam
+     table_mahasiswa_log
+
+
+ - membuat table mahasiswa log
+MariaDB [belajar]> CREATE TABLE IF NOT EXISTS mahasiswa_log (
+    -> no INT auto_increment PRIMARY KEY,
+    -> nama VARCHAR(50),
+    -> waktu TIMESTAMP,
+    -> keterangan TEXT);
+Query OK, 0 rows affected (0.016 sec)
+MariaDB [belajar]> DELIMITER $$
+
+ - membuat trigger BEFORE INSERT
+MariaDB [belajar]> CREATE TRIGGER before_mahasiswa_insert
+    -> BEFORE INSERT ON mahasiswa
+    -> FOR EACH ROW
+    -> BEGIN
+    -> INSERT INTO mahasiswa_log VALUES
+    -> (0,NEW.nama,NOW(),'Ada Penambahan Mahasiswa Baru');
+    -> END$$
+Query OK, 0 rows affected (0.036 sec)
+
+MariaDB [belajar]> SELECT * FROM mahasiswa;
++----------+--------------+--------+---------+-----------+
+| nim      | nama         | asal   | jurusan | nilai_uan |
++----------+--------------+--------+---------+-----------+
+| 17090113 | Riana Putria | Padang | Kimia   |    399.20 |
++----------+--------------+--------+---------+-----------+
+1 row in set (0.000 sec)
+
+MariaDB [belajar]> SELECT * FROM mahasiswa_log;
++----+--------------+---------------------+-------------------------------+
+| no | nama         | waktu               | keterangan                    |
++----+--------------+---------------------+-------------------------------+
+|  1 | Riana Putria | 2020-08-25 17:41:15 | Ada Penambahan Mahasiswa Baru |
++----+--------------+---------------------+-------------------------------+
+1 row in set (0.001 sec)
+
+ - membuat trigger AFTER DELETE
+MariaDB [belajar]> DELIMITER $$
+MariaDB [belajar]> CREATE TRIGGER after_mahasiswa_delete
+    -> AFTER DELETE ON mahasiswa
+    -> FOR EACH ROW
+    -> BEGIN
+    -> INSERT INTO mahasiswa_log VALUES
+    -> (0, OLD.nama,NOW(),'Ada Penghapusan data mahasiswa');
+    -> END$$
+Query OK, 0 rows affected (0.010 sec)
+MariaDB [belajar]> DELIMITER ;
+
+MariaDB [belajar]> DELETE FROM mahasiswa WHERE nama = 'Riana Putria';
+Query OK, 1 row affected (0.007 sec)
+
+MariaDB [belajar]> SELECT * FROM mahasiswa
+    -> ;
+Empty set (0.000 sec)
+
+MariaDB [belajar]> SELECT * FROM mahasiswa_log;
++----+--------------+---------------------+--------------------------------+
+| no | nama         | waktu               | keterangan                     |
++----+--------------+---------------------+--------------------------------+
+|  1 | Riana Putria | 2020-08-25 17:41:15 | Ada Penambahan Mahasiswa Baru  |
+|  2 | Riana Putria | 2020-08-25 17:50:56 | Ada Penghapusan data mahasiswa |
++----+--------------+---------------------+--------------------------------+
+2 rows in set (0.000 sec)
+
+- membuat trigger After update
+MariaDB [belajar]> DELIMITER $$
+MariaDB [belajar]> CREATE TRIGGER after_mahasiswa_update
+    -> AFTER UPDATE ON mahasiswa
+    -> FOR EACH ROW
+    -> BEGIN
+    -> DECLARE keterangan TEXT;
+    -> SET keterangan = CONCAT(OLD.nama,' -> ',NEW.nama);
+    -> INSERT INTO mahasiswa_log VALUES
+    -> (0,New.nama,NOW(),keterangan);
+    -> END$$
+Query OK, 0 rows affected (0.009 sec)
+MariaDB [belajar]> DELIMITER ;
+
+MariaDB [belajar]> UPDATE mahasiswa SET mahasiswa.nama = "Hasan Sadikin" WHERE nim= '17080225';
+Query OK, 1 row affected (0.007 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [belajar]> SELECT * FROM mahasiswa;
++----------+---------------+---------+-----------+-----------+
+| nim      | nama          | asal    | jurusan   | nilai_uan |
++----------+---------------+---------+-----------+-----------+
+| 17080225 | Hasan Sadikin | Jakarta | Akuntansi |    288.55 |
++----------+---------------+---------+-----------+-----------+
+1 row in set (0.000 sec)
+
+MariaDB [belajar]> SELECT * FROM mahasiswa_log;
++----+---------------+---------------------+--------------------------------+
+| no | nama          | waktu               | keterangan                     |
++----+---------------+---------------------+--------------------------------+
+|  1 | Riana Putria  | 2020-08-25 17:41:15 | Ada Penambahan Mahasiswa Baru  |
+|  2 | Riana Putria  | 2020-08-25 17:50:56 | Ada Penghapusan data mahasiswa |
+|  3 | Husli Khairan | 2020-08-25 18:04:02 | Ada Penambahan Mahasiswa Baru  |
+|  4 | Hasan Sadikin | 2020-08-25 18:05:27 | Husli Khairan -> Hasan Sadikin |
++----+---------------+---------------------+--------------------------------+
+4 rows in set (0.000 sec)

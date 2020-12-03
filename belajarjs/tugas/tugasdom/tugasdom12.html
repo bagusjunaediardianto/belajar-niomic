@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>TUGAS DOM</title>
+    </head>
+    <body>
+        <p onmouseover="zoomIn(this)" onmouseout="zoomOut(this)">tulisan ini akan berubah warna, baik ketika di dekatkan atau dijauhkan kursornya</p>
+
+        <script type="text/javascript">
+            function zoomIn(x){
+                x.style.fontSize = "20pt"
+                x.style.color = "red"
+            }
+
+            function zoomOut(x){
+                x.style.fontSize = "12pt"
+                x.style.color = "black"
+            }
+        
+        </script>
+    </body>
+</html>
