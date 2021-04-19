@@ -1,48 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Grid, Icon, Segment, Statistic } from 'semantic-ui-react';
 import Page from '../Component/Page';
-
+import sourceDataHome from '../Data/sourceDataHome';
 const Home = () => {
+    const [dataHome] = useState(sourceDataHome)
+
     return (
         <Page>
             <Grid stackable columns={3}>
                 <Grid.Row textAlign="center">
-                    <Grid.Column>
-                        <Segment size="huge" color="blue">
-                            <Statistic size="large">
-                                <Statistic.Value>
-                                    <Icon name="minus circle" color="red" />3
-                        </Statistic.Value>
-                                <Statistic.Label>
-                                    Transfer Out
-                            </Statistic.Label>
-                            </Statistic>
-                        </Segment>
-                    </Grid.Column>
-                    <Grid.Column>
-                        <Segment size="huge" color="blue">
-                            <Statistic size="large">
-                                <Statistic.Value>
-                                    <Icon name="plus circle" color="yellow" />3
-                            </Statistic.Value>
-                                <Statistic.Label>
-                                    Transfer In
-                            </Statistic.Label>
-                            </Statistic>
-                        </Segment>
-                    </Grid.Column>
-                    <Grid.Column>
-                        <Segment size="huge" color="blue">
-                            <Statistic size="large">
-                                <Statistic.Value>
-                                    <Icon name="truck" color="green" />3
-                            </Statistic.Value>
-                                <Statistic.Label>
-                                    PO & DO Transactions
-                            </Statistic.Label>
-                            </Statistic>
-                        </Segment>
-                    </Grid.Column>
+
+                    {dataHome.map((item, index) => {
+                        return (
+                            <Grid.Column key={index}>
+                                <Segment size="huge" color="blue">
+                                    <Statistic size="large">
+                                        <Statistic.Value>
+                                            <Icon name={item.icon} color={item.color} />{item.record}
+                                        </Statistic.Value>
+                                        <Statistic.Label>
+                                            {item.title}
+                                        </Statistic.Label>
+                                    </Statistic>
+                                </Segment>
+                            </Grid.Column>
+                        )
+                    })}
                 </Grid.Row>
             </Grid>
         </Page>

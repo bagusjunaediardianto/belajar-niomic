@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Button, Icon, Menu, Table } from 'semantic-ui-react';
 import Page from '../Component/Page';
-import sourceData from '../Data/sourceData';
+import sourceDataArticles from '../Data/sourceDataArticles'
 const Articles = () => {
-    const [dataSource] = useState(sourceData)
+    const [dataSource, setDataSource] = useState(sourceDataArticles)
     const pageNumbers = []
     const totalPosts = dataSource.length + 1
     const [currentPage, setCurrentPage] = useState(1)

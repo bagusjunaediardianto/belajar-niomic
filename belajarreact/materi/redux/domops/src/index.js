@@ -3,9 +3,6 @@ import ReactDOM from 'react-dom';
 import 'semantic-ui-css/semantic.min.css';
 import reportWebVitals from './reportWebVitals';
 import App from './App';
-// import {Provider} from 'react-redux';
-// import {createStore} from 'redux';
-
 // const stateMenu = {
 //   activeItem : "home"
 // };
@@ -16,7 +13,7 @@ import App from './App';
 //     case "ACTIVE_ITEM":
 //       var stateActiveItem = {...state, activeItem : action.ActiveItem};
 //       return stateActiveItem
-  
+
 //     default:
 //       return state
 //   }
@@ -25,7 +22,7 @@ import App from './App';
 // const store = createStore(reducerMenu);
 
 ReactDOM.render(
-    <App />
+  <App />
   ,
   document.getElementById('root')
 );
